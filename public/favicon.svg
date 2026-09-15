@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Fondo redondeado suave -->
+  <rect width="100" height="100" rx="28" fill="#E6F0EC" />
+  
+  <!-- Círculo de calma exterior -->
+  <circle cx="50" cy="50" r="38" stroke="#5A937E" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.4" />
+  
+  <!-- Onda de calma (ripple interior) -->
+  <circle cx="50" cy="50" r="28" fill="#CEE2D8" opacity="0.6" />
+  
+  <!-- Hoja orgánica de bienestar (Sage) -->
+  <path d="M50 22C38 32 34 46 40 60C46 72 62 76 68 64C72 54 66 36 50 22Z" fill="#5A937E" />
+  
+  <!-- Acento lavanda (brote sutil de esperanza y calma mental) -->
+  <path d="M50 42C44 48 43 56 47 62C51 68 60 69 63 62C65 57 61 48 50 42Z" fill="#8E7DBE" opacity="0.9" />
+  
+  <!-- Tallo central sutil -->
+  <path d="M50 25C49 42 48 55 52 70" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+</svg>

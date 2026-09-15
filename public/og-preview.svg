@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#FCFBF8"/>
+  <circle cx="150" cy="120" r="320" fill="#E6F0EC" opacity="0.7" filter="blur(40px)"/>
+  <circle cx="1050" cy="500" r="350" fill="#F1EFFB" opacity="0.8" filter="blur(50px)"/>
+  <circle cx="600" cy="550" r="280" fill="#E0EEF6" opacity="0.6" filter="blur(40px)"/>
+  
+  <g transform="translate(140, 180)">
+    <!-- Logo Icon -->
+    <rect width="90" height="90" rx="26" fill="#5A937E"/>
+    <path d="M45 18C33 27 30 40 35 52C40 63 54 67 60 56C63 47 58 31 45 18Z" fill="#FFFFFF"/>
+    <path d="M45 35C40 40 39 47 43 52C46 57 53 58 56 52C57 48 54 40 45 35Z" fill="#CDC6F3"/>
+    
+    <!-- Brand Title -->
+    <text x="110" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="800" fill="#274138">Mente en Línea</text>
+    
+    <!-- Headline -->
+    <text x="0" y="160" font-family="'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="700" fill="#1A1917">
+      Apoyo psicológico por WhatsApp
+    </text>
+    <text x="0" y="225" font-family="'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="700" fill="#5A937E">
+      para todo el Perú.
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="295" font-family="'Inter', sans-serif" font-size="26" fill="#554381">
+      Sin videollamadas · Psicólogos verificados CPsP · A tu propio ritmo
+    </text>
+  </g>
+</svg>
