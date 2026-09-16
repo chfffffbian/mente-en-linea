@@ -10,9 +10,9 @@ const regionsData = [
     id: 'loreto',
     name: 'Loreto',
     category: 'priority',
-    brecha: '80%+',
-    stat: '82% de brecha en salud mental',
-    description: 'Menos de 1 psicólogo por cada 45,000 habitantes en cuencas ribereñas. Traslados fluviales de días para llegar a un centro.',
+    brecha: '89%',
+    stat: 'Brecha cercana al 89%',
+    description: 'Brecha de atención en salud mental cercana al 89%, una de las más altas del país.',
     color: 'sage',
     coords: { x: 260, y: 85, width: 140, height: 110 },
     badge: 'Región Prioritaria',
@@ -22,9 +22,9 @@ const regionsData = [
     id: 'piura',
     name: 'Piura',
     category: 'priority',
-    brecha: '78%',
-    stat: '78% sin acceso oportuno',
-    description: 'Demanda crítica en valles agrícolas y caletas costeras. Hospitales provinciales desbordados con citas diferidas a 3 meses.',
+    brecha: '80%+',
+    stat: 'Brecha superior al 80%',
+    description: 'Brecha de atención en salud mental superior al 80% en esta región.',
     color: 'sage',
     coords: { x: 70, y: 100, width: 60, height: 50 },
     badge: 'Región Prioritaria',
@@ -34,9 +34,9 @@ const regionsData = [
     id: 'lambayeque',
     name: 'Lambayeque',
     category: 'priority',
-    brecha: '75%',
-    stat: '75% de desatención periférica',
-    description: 'Concentración exclusiva en Chiclayo; distritos rurales y agrícolas carecen de acompañamiento psicológico continuo.',
+    brecha: '80%+',
+    stat: 'Brecha superior al 80%',
+    description: 'Brecha de atención en salud mental superior al 80% en esta región.',
     color: 'lavender',
     coords: { x: 85, y: 145, width: 50, height: 40 },
     badge: 'Región Prioritaria',
@@ -46,9 +46,9 @@ const regionsData = [
     id: 'ucayali',
     name: 'Ucayali',
     category: 'priority',
-    brecha: '85%',
-    stat: '85% de brecha asistencial',
-    description: 'Fuerte dispersión geográfica. Dificultad extrema para retener especialistas clínicos fuera de Pucallpa.',
+    brecha: '80%+',
+    stat: 'Brecha superior al 80%',
+    description: 'Brecha de atención en salud mental superior al 80% en esta región.',
     color: 'lavender',
     coords: { x: 250, y: 220, width: 90, height: 80 },
     badge: 'Región Prioritaria',
@@ -58,9 +58,9 @@ const regionsData = [
     id: 'madrededios',
     name: 'Madre de Dios',
     category: 'priority',
-    brecha: '83%',
-    stat: '83% sin cobertura clínica',
-    description: 'Campamentos y comunidades nativas sin consultorios de apoyo emocional. WhatsApp permite llegar donde no hay carreteras.',
+    brecha: '80%+',
+    stat: 'Brecha superior al 80%',
+    description: 'Brecha de atención en salud mental superior al 80% en esta región.',
     color: 'lavender',
     coords: { x: 330, y: 310, width: 85, height: 65 },
     badge: 'Región Prioritaria',
@@ -70,9 +70,9 @@ const regionsData = [
     id: 'puno',
     name: 'Puno',
     category: 'priority',
-    brecha: '82%',
-    stat: '82% de déficit en atención',
-    description: 'Menos de 2 psicólogos clínicos por 50,000 hab. en el altiplano. Estigma social elevado y falta de canales privados confidenciales.',
+    brecha: '89%',
+    stat: 'Brecha cercana al 89%',
+    description: 'Brecha de atención en salud mental cercana al 89%, una de las más altas del país.',
     color: 'sage',
     coords: { x: 340, y: 400, width: 75, height: 85 },
     badge: 'Región Prioritaria',
@@ -82,25 +82,13 @@ const regionsData = [
     id: 'lima',
     name: 'Lima y Callao',
     category: 'metropolitan',
-    brecha: '65% sat.',
-    stat: '65% especialistas concentrados, pero saturados',
-    description: 'Concentra la mayoría de psicólogos, pero los costos privados (S/ 150/sesión) y el tráfico de 2h imposibilitan la terapia continua.',
+    brecha: '~50%',
+    stat: 'Aproximadamente el 50%',
+    description: 'Aproximadamente la mitad de los psicólogos del país ejerce en Lima, pero persisten barreras de costo y tiempo para acceder a terapia.',
     color: 'calmblue',
     coords: { x: 165, y: 285, width: 55, height: 60 },
     badge: 'Saturación Urbana',
     path: 'M 160,265 L 195,270 L 205,330 L 170,335 Z'
-  },
-  {
-    id: 'cusco',
-    name: 'Cusco',
-    category: 'standard',
-    brecha: '72%',
-    stat: '72% sin cobertura rural',
-    description: 'Alta presión laboral en sectores turismo, servicios y comunidades altoandinas sin acceso a salud mental.',
-    color: 'neutral',
-    coords: { x: 275, y: 350, width: 65, height: 60 },
-    badge: 'Zona Altoandina',
-    path: 'M 265,320 L 330,315 L 335,370 L 280,380 Z'
   }
 ];
 
@@ -330,6 +318,10 @@ export default function PeruMap() {
 
           <p className="text-[11px] text-sand-500 dark:text-sand-400 mt-3 text-center">
             📍 Servicio 100% activo en los 24 departamentos y la provincia constitucional del Callao.
+          </p>
+
+          <p className="text-[11px] text-sand-500 dark:text-sand-400 mt-1 text-center italic">
+            Cifras de brecha regional agregadas a partir de reportes de la Defensoría del Pueblo del Perú (2025).
           </p>
 
         </div>

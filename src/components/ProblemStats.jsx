@@ -52,39 +52,39 @@ export default function ProblemStats() {
       id: 1,
       number: 80,
       prefix: "",
-      suffix: "%",
+      suffix: "%+",
       label: "Brecha de atención regional",
-      detail: "En departamentos como Loreto, Puno y Huancavelica, más del 80% de la población no tiene acceso a servicios de salud mental.",
+      detail: "En regiones como Loreto, Puno y Ucayali, más del 80% de la población no tiene acceso a servicios de salud mental (cercana al 89% en Loreto y Puno).",
       icon: TrendingUp,
       color: "sage"
     },
     {
       id: 2,
-      number: 8,
+      number: 9,
       prefix: "",
       suffix: " de 10",
       label: "Sin atención oportuna",
-      detail: "8 de cada 10 peruanos que experimentan cuadros de ansiedad, duelo o depresión no reciben acompañamiento profesional a tiempo.",
+      detail: "Cerca del 90% (9 de cada 10) de personas con problemas de salud mental en el Perú no consulta a un profesional debido a barreras económicas, desconocimiento y estigma.",
       icon: Users,
       color: "lavender"
     },
     {
       id: 3,
-      number: 160,
+      number: 200,
       prefix: "S/ ",
       suffix: "",
-      label: "Costo promedio por sesión",
-      detail: "Una sesión presencial privada cuesta entre S/ 120 y S/ 180, imposible de sostener frente al sueldo mínimo legal de S/ 1,130.",
+      label: "Costo por sesión privada",
+      detail: "El costo de una sesión privada oscila entre S/ 100 y S/ 300, frente a un sueldo mínimo legal de S/ 1,130.",
       icon: DollarSign,
       color: "calmblue"
     },
     {
       id: 4,
-      number: 3,
+      number: 5,
       prefix: "< ",
       suffix: " esp.",
       label: "Especialistas por 100k hab.",
-      detail: "Mientras Lima concentra más del 65% de psicólogos clínicos del país, en el interior hay menos de 3 profesionales por cada 100 mil habitantes.",
+      detail: "Aproximadamente la mitad de los psicólogos del país ejerce en Lima. En zonas de la Amazonía y la sierra alta hay menos de 5 psicólogos clínicos por cada 100,000 habitantes.",
       icon: AlertCircle,
       color: "sage"
     }
@@ -166,6 +166,11 @@ export default function ProblemStats() {
           })}
         </div>
 
+        {/* Nota discreta de transparencia académica */}
+        <p className="text-center text-xs text-sand-500 dark:text-sand-400 italic -mt-8 mb-14">
+          Cifras de brecha regional agregadas a partir de reportes de la Defensoría del Pueblo del Perú (2025).
+        </p>
+
         {/* MAPA INTERACTIVO DEL PERÚ - REFUERZO VISUAL DE COBERTURA NACIONAL */}
         <PeruMap />
 
@@ -190,7 +195,7 @@ export default function ProblemStats() {
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Costos inasumibles: S/ 150 por 50 minutos semanales de atención privada.</span>
+                <span>Costos inasumibles: entre S/ 100 y S/ 300 por sesión de atención privada.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
