@@ -57,7 +57,7 @@ export default function App() {
         {/* 2. Hero con fondo Aurora animado y propuesta de valor */}
         <Hero />
 
-        {/* 3. Problema: Cifras de impacto regional EXPOINNOVA con contadores animados */}
+        {/* 3. Problema: Cifras de brecha regional de la Defensoría del Pueblo y MINSA */}
         <ProblemStats />
 
         {/* 4. Cómo funciona: 4 pasos ilustrados y secuenciales */}

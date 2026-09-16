@@ -44,7 +44,7 @@ function AnimatedCounter({ target, suffix = "", prefix = "", duration = 2 }) {
 import PeruMap from './PeruMap.jsx';
 
 /**
- * Sección El Problema: Cifras de impacto validadas en la investigación EXPOINNOVA
+ * Sección El Problema: Cifras de impacto validadas por la Defensoría del Pueblo del Perú y el MINSA
  */
 export default function ProblemStats() {
   const stats = [
@@ -54,7 +54,7 @@ export default function ProblemStats() {
       prefix: "",
       suffix: "%+",
       label: "Brecha de atención regional",
-      detail: "En regiones como Loreto, Puno y Ucayali, más del 80% de la población no tiene acceso a servicios de salud mental (cercana al 89% en Loreto y Puno).",
+      detail: "Más del 80% sin atención en 6 regiones; cerca del 89% en Loreto y Puno.",
       icon: TrendingUp,
       color: "sage"
     },
@@ -64,7 +64,7 @@ export default function ProblemStats() {
       prefix: "",
       suffix: " de 10",
       label: "Sin atención oportuna",
-      detail: "Cerca del 90% (9 de cada 10) de personas con problemas de salud mental en el Perú no consulta a un profesional debido a barreras económicas, desconocimiento y estigma.",
+      detail: "9 de cada 10 personas con problemas de salud mental no consultan a un profesional.",
       icon: Users,
       color: "lavender"
     },
@@ -74,7 +74,7 @@ export default function ProblemStats() {
       prefix: "S/ ",
       suffix: "",
       label: "Costo por sesión privada",
-      detail: "El costo de una sesión privada oscila entre S/ 100 y S/ 300, frente a un sueldo mínimo legal de S/ 1,130.",
+      detail: "Sesiones de S/ 100 a S/ 300 frente a un sueldo mínimo de S/ 1,130.",
       icon: DollarSign,
       color: "calmblue"
     },
@@ -84,7 +84,7 @@ export default function ProblemStats() {
       prefix: "< ",
       suffix: " esp.",
       label: "Especialistas por 100k hab.",
-      detail: "Aproximadamente la mitad de los psicólogos del país ejerce en Lima. En zonas de la Amazonía y la sierra alta hay menos de 5 psicólogos clínicos por cada 100,000 habitantes.",
+      detail: "Lima concentra la mitad de psicólogos; menos de 5 por 100k hab. en sierra y selva.",
       icon: AlertCircle,
       color: "sage"
     }
@@ -123,8 +123,7 @@ export default function ProblemStats() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed"
           >
-            Investigaciones del proyecto EXPOINNOVA y reportes del MINSA evidencian cómo las distancias geográficas, 
-            la saturación hospitalaria y los altos costos aíslan a millones de personas tanto en Lima como en las regiones del país.
+            Reportes de la Defensoría del Pueblo y el MINSA evidencian cómo los altos costos y la distancia aíslan a millones de peruanos.
           </motion.p>
         </div>
 
@@ -191,19 +190,19 @@ export default function ProblemStats() {
             <ul className="space-y-3.5 text-sm text-sand-700 dark:text-sand-300">
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Tener que desplazarse horas en el tráfico o viajar a otra ciudad para hallar un consultorio.</span>
+                <span>Horas en el tráfico o viajes largos para llegar a un consultorio.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Costos inasumibles: entre S/ 100 y S/ 300 por sesión de atención privada.</span>
+                <span>Costos altos: entre S/ 100 y S/ 300 por sesión privada.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Temor al estigma social de ser visto entrando a un consultorio psiquiátrico.</span>
+                <span>Falta de privacidad y temor al estigma de asistir a consulta.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Videollamadas rígidas que exigen privacidad total y conexión wifi de alta velocidad.</span>
+                <span>Videollamadas rígidas que exigen conexión rápida y silencio.</span>
               </li>
             </ul>
           </div>
@@ -217,19 +216,19 @@ export default function ProblemStats() {
             <ul className="space-y-3.5 text-sm text-sand-800 dark:text-sand-200">
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>100% por WhatsApp:</strong> funciona con señal móvil básica y paquetes prepago de datos.</span>
+                <span><strong>100% por WhatsApp:</strong> funciona con datos móviles básicos.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>Accesible de verdad:</strong> Planes desde S/ 89 al mes (o S/ 49 con practicante supervisado).</span>
+                <span><strong>Planes accesibles:</strong> desde S/ 49 al mes con practicante supervisado.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>Privacidad absoluta:</strong> Nadie en tu entorno sabe que estás conversando con un especialista.</span>
+                <span><strong>Privacidad total:</strong> nadie en tu entorno sabe que estás en terapia.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>Acompañamiento reflexivo continuo:</strong> Escribes tus pensamientos a tu ritmo, sin agendar citas rígidas.</span>
+                <span><strong>A tu ritmo:</strong> escribe o envía notas de voz cuando lo necesites.</span>
               </li>
             </ul>
           </div>

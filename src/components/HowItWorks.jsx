@@ -11,29 +11,31 @@ export default function HowItWorks() {
       number: "01",
       icon: MessageSquare,
       title: "Escribes un mensaje por WhatsApp",
-      description: "Sin instalar nuevas aplicaciones, sin formularios pesados. Un 'Hola' basta para iniciar tu proceso en la app que ya usas todos los días.",
-      highlight: "Directo y sin fricción"
+      description: "Escribe un 'Hola' en WhatsApp para iniciar sin formularios ni descargas.",
+      highlight: "Directo y sin fricción",
+      image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80"
     },
     {
       number: "02",
       icon: Sparkles,
       title: "Triaje empático y breve",
-      description: "A través de preguntas guiadas y respetuosas, identificamos tu motivo de consulta (estrés laboral, ansiedad, duelo, pareja o crecimiento personal).",
+      description: "Identificamos brevemente lo que necesitas para orientar tu acompañamiento.",
       highlight: "100% Confidencial"
     },
     {
       number: "03",
       icon: UserCheck,
       title: "Conexión con tu profesional ideal",
-      description: "Te asignamos un psicólogo verificado con colegiatura (CPsP) o un practicante supervisado de últimos ciclos, según tu preferencia y presupuesto.",
+      description: "Te conectamos con un especialista colegiado (CPsP) o practicante supervisado.",
       highlight: "Criterio ético CPsP"
     },
     {
       number: "04",
       icon: HeartPulse,
       title: "Acompañamiento continuo a tu ritmo",
-      description: "Comparte tus dudas, textos o audios cuando lo sientas necesario. Recibes devoluciones clínicas profundas, tareas reflexivas y apoyo sostenido.",
-      highlight: "Sin presión de cámara"
+      description: "Escribe o envía notas de voz a tu ritmo y recibe orientación continua.",
+      highlight: "Sin presión de cámara",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80"
     }
   ];
 
@@ -67,7 +69,7 @@ export default function HowItWorks() {
             transition={{ delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed"
           >
-            Diseñado para personas que valoran la privacidad, tienen horarios demandantes o prefieren expresarse escribiendo.
+            Diseñado para personas que valoran la privacidad y prefieren avanzar escribiendo a su ritmo.
           </motion.p>
         </div>
 
@@ -101,6 +103,18 @@ export default function HowItWorks() {
                     <Icon className="w-6 h-6" />
                   </div>
 
+                  {/* Imagen ilustrativa opcional con lazy loading */}
+                  {step.image && (
+                    <div className="mb-4 overflow-hidden rounded-2xl aspect-[16/10] w-full border border-sand-200/60 dark:border-sand-800/60">
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+
                   {/* Título y Descripción */}
                   <h3 className="font-display font-bold text-lg text-sand-900 dark:text-sand-50 mb-3">
                     {step.title}
@@ -128,7 +142,7 @@ export default function HowItWorks() {
           className="mt-14 p-5 rounded-2xl bg-lavender-50/80 dark:bg-lavender-950/30 border border-lavender-200 dark:border-lavender-900/60 text-center max-w-3xl mx-auto"
         >
           <p className="text-sm text-lavender-900 dark:text-lavender-200">
-            🌿 <strong>¿Prefieres notas de voz?</strong> Muchos usuarios en regiones envían audios mientras caminan o al terminar su jornada laboral. Tu terapeuta escucha con atención y responde de forma estructurada.
+            🌿 <strong>¿Prefieres notas de voz?</strong> Puedes enviar audios en tus tiempos libres. Tu terapeuta escucha con atención y responde con estructura clínica.
           </p>
         </motion.div>
 

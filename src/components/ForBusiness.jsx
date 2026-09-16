@@ -14,23 +14,23 @@ export default function ForBusiness({ onOpenDemoModal }) {
   const b2bBenefits = [
     {
       icon: Users2,
-      title: "Cobertura para equipos en todo el Perú",
-      description: "Ideal tanto para personal en operaciones descentralizadas (minería, agroindustria, plantas) como para equipos de oficina y trabajo híbrido en Lima."
+      title: "Cobertura en todo el Perú",
+      description: "Ideal para personal en operaciones descentralizadas, minería, plantas y trabajo híbrido."
     },
     {
       icon: ShieldCheck,
-      title: "100% Confidencialidad para el trabajador",
-      description: "Tus colaboradores usan el servicio con total privacidad desde su WhatsApp personal. RRHH jamás tiene acceso a conversaciones individuales."
+      title: "100% Confidencialidad",
+      description: "Tus colaboradores escriben desde su WhatsApp personal; RRHH jamás accede a conversaciones."
     },
     {
       icon: LineChart,
-      title: "Métricas agregadas y anónimas para RRHH",
-      description: "Reportes trimestrales de clima emocional, factores de estrés más frecuentes y tasas de adopción para tomar decisiones informadas."
+      title: "Métricas anónimas para RRHH",
+      description: "Reportes trimestrales de clima emocional y adopción para decisiones informadas."
     },
     {
       icon: HeartHandshake,
       title: "Cero fricción de adopción",
-      description: "Sin capacitaciones complejas ni plataformas nuevas. Se activa con un simple enlace de WhatsApp para todo tu equipo."
+      description: "Sin plataformas pesadas ni capacitaciones: se activa con un simple enlace de WhatsApp."
     }
   ];
 
@@ -60,13 +60,12 @@ export default function ForBusiness({ onOpenDemoModal }) {
             Bienestar emocional para equipos en cualquier rincón del Perú
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-sand-300 leading-relaxed font-normal">
-            El 42% del ausentismo no programado y la rotación laboral se relacionan con el estrés y la sobrecarga emocional.
-            Brinda a tu equipo un beneficio accesible y de alto impacto humano.
+            El estrés causa el 42% del ausentismo laboral. Protege a tu equipo con un beneficio accesible y confidencial.
           </p>
         </div>
 
         {/* Grid de Beneficios Corporativos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
           {b2bBenefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
@@ -86,6 +85,21 @@ export default function ForBusiness({ onOpenDemoModal }) {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Banner Fotográfico de Bienestar de Equipos con Lazy Loading */}
+        <div className="mb-16 overflow-hidden rounded-3xl border border-sand-800 relative max-h-64 sm:max-h-72 w-full">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+            alt="Equipo colaborativo en ambiente de trabajo saludable"
+            loading="lazy"
+            className="w-full h-full object-cover filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-sand-950/90 via-sand-950/40 to-transparent flex items-end p-6 sm:p-8">
+            <p className="text-white text-sm sm:text-base font-medium max-w-xl">
+              Equipos más motivados y conectados, desde operaciones en regiones hasta oficinas híbridas en Lima.
+            </p>
+          </div>
         </div>
 
         {/* Bloque interactivo: Estimador rápido para líderes de talento / RRHH */}

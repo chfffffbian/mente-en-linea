@@ -9,8 +9,14 @@ export default function Hero({ onExploreClick }) {
   return (
     <section className="relative min-h-[92vh] pt-36 pb-28 md:pt-44 md:pb-36 flex items-center justify-center overflow-hidden">
       
-      {/* Fondo Aurora Mesh Gradient (Acelerado por Hardware) */}
+      {/* Fondo Aurora Mesh Gradient con Fotografía Paisajística Sutil */}
       <div className="aurora-bg">
+        <img
+          src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1600&q=80"
+          alt="Montañas y naturaleza con niebla suave"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-15 mix-blend-overlay pointer-events-none"
+        />
         <div className="aurora-blob-1" />
         <div className="aurora-blob-2" />
         <div className="aurora-blob-3" />
@@ -46,15 +52,14 @@ export default function Hero({ onExploreClick }) {
           </span>
         </motion.h1>
 
-        {/* Subtítulo con propuesta de valor clara y contraste marcado */}
+        {/* Subtítulo con propuesta de valor concisa */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 max-w-2xl mx-auto mb-12 leading-relaxed font-normal"
         >
-          Te conectamos por <strong>WhatsApp</strong> con psicólogos colegiados (CPsP) y practicantes supervisados a nivel nacional. 
-          Acompañamiento cálido a tu ritmo, <strong>sin videollamadas</strong>, sin salas de espera ni traslados costosos.
+          Terapia accesible por <strong>WhatsApp</strong> con psicólogos colegiados (CPsP). A tu ritmo, <strong>sin videollamadas</strong> ni salas de espera.
         </motion.p>
 
         {/* Grupo de CTAs */}

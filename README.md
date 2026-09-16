@@ -19,7 +19,7 @@ Plataforma peruana de apoyo psicológico por WhatsApp que conecta a personas fue
 
 1. **Hero con Fondo Aurora Animado:** Mesh gradient con blobs orgánicos flotando suavemente y acelerados por GPU.
 2. **Scroll-Reveal:** Aparición secuencial con fade-in y slide-up al hacer scroll.
-3. **Contadores de Impacto Animados:** Cifras de investigación basadas en **EXPOINNOVA** sobre la brecha en salud mental en provincias.
+3. **Contadores de Impacto Animados:** Cifras de brecha en salud mental validadas por la **Defensoría del Pueblo** y el **MINSA**.
 4. **Mockup Interactivo de WhatsApp en Tiempo Real:** Simula una conversación real entre un usuario de provincia y una psicóloga verificada (CPsP), con indicador de "escribiendo...", notas de voz y botones de reinicio.
 5. **Sección B2B / Bienestar Laboral:** Simulador interactivo de inversión para líderes de Gestión Humana y Recursos Humanos.
 6. **Modo Oscuro / Claro:** Con botón accesible y persistencia en `localStorage`.
@@ -113,7 +113,7 @@ mente-en-linea/
 │   ├── components/
 │   │   ├── Header.jsx       # Barra fija, navegación, dark mode, WhatsApp CTA
 │   │   ├── Hero.jsx         # Titular emocional, fondo Aurora y badges
-│   │   ├── ProblemStats.jsx # Contadores animados y datos EXPOINNOVA
+│   │   ├── ProblemStats.jsx # Contadores animados y datos de brecha nacional
 │   │   ├── HowItWorks.jsx   # 4 pasos ilustrados y conector de proceso
 │   │   ├── WhatsAppMockup.jsx # Simulación en vivo de WhatsApp (texto + audio)
 │   │   ├── ForBusiness.jsx  # Sección B2B corporativa con estimador de RRHH

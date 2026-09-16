@@ -60,7 +60,7 @@ export default function Pricing({ onOpenB2BModal }) {
             Salud mental de calidad al alcance de tu bolsillo
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed">
-            Compara el costo de una sola sesión presencial tradicional (entre S/ 100 y S/ 300) con un mes entero de acompañamiento continuo a tu ritmo.
+            Un mes de acompañamiento continuo por menos de lo que cuesta una sola sesión presencial tradicional.
           </p>
 
           {/* Selector de audiencia: Individual vs Empresa */}

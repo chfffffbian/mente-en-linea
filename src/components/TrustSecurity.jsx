@@ -10,25 +10,25 @@ export default function TrustSecurity() {
     {
       icon: ShieldCheck,
       title: "Verificación en el CPsP",
-      description: "Cada psicólogo titulado pasa por una verificación rigurosa de su número de colegiatura activa en el Colegio de Psicólogos del Perú antes de atender a cualquier usuario.",
+      description: "Verificamos la colegiatura y habilitación vigente de cada psicólogo en el CPsP.",
       tag: "100% Colegiados Habilitados"
     },
     {
       icon: GraduationCap,
       title: "Supervisión Clínica para Practicantes",
-      description: "Nuestros practicantes son estudiantes de últimos ciclos de facultades acreditadas. Cada caso es revisado semanalmente en comités clínicos con un psicólogo senior supervisor.",
+      description: "Estudiantes de últimos ciclos supervisados semanalmente por psicólogos colegiados senior.",
       tag: "Acompañamiento Ético Guiado"
     },
     {
       icon: Lock,
       title: "Privacidad y Cifrado WhatsApp",
-      description: "Aprovechamos la infraestructura de WhatsApp con encriptación de extremo a extremo. Ni terceros, ni operadoras, ni nosotros podemos intervenir o comercializar tus conversaciones.",
+      description: "Conversaciones protegidas con cifrado de extremo a extremo por WhatsApp. 100% privadas.",
       tag: "Confidencialidad Médica"
     },
     {
       icon: FileText,
       title: "Consentimiento Claro desde el Día 1",
-      description: "Antes de iniciar, recibes un resumen sencillo sobre el alcance del acompañamiento, horarios de respuesta acordados y límites del servicio, sin letras chicas engañosas.",
+      description: "Alcances, acuerdos y tiempos de respuesta claros desde el primer mensaje, sin sorpresas.",
       tag: "Transparencia Total"
     }
   ];
@@ -47,7 +47,7 @@ export default function TrustSecurity() {
             Tu tranquilidad y confianza están en manos protegidas
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed">
-            Hacer la salud mental accesible no significa recortar en calidad clínica. Cuidamos cada interacción con los más altos estándares profesionales del Perú.
+            Atención profesional y confidencial con los más altos estándares éticos del país.
           </p>
         </div>
 
@@ -85,17 +85,23 @@ export default function TrustSecurity() {
           })}
         </div>
 
-        {/* Cita de Compromiso Profesional */}
-        <div className="bg-sage-50/70 dark:bg-sage-950/40 rounded-3xl p-6 sm:p-8 border border-sage-200/70 dark:border-sage-900 flex flex-col sm:flex-row items-center gap-6 max-w-4xl mx-auto">
-          <div className="w-16 h-16 rounded-2xl bg-sage-600 text-white flex items-center justify-center shrink-0 shadow-md">
-            <ShieldCheck className="w-8 h-8" />
+        {/* Cita de Compromiso Profesional con Fotografía Cálida */}
+        <div className="bg-sage-50/70 dark:bg-sage-950/40 rounded-3xl p-6 sm:p-8 border border-sage-200/70 dark:border-sage-900 flex flex-col md:flex-row items-center gap-6 max-w-4xl mx-auto overflow-hidden">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 shadow-xs border border-sage-200/60 dark:border-sage-800/60">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+              alt="Especialista colegiada en consulta empática"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="text-center sm:text-left">
-            <h4 className="font-bold text-base text-sand-900 dark:text-sand-100 mb-1">
-              Código de Ética y Deontología Profesional
-            </h4>
-            <p className="text-xs sm:text-sm text-sand-800 dark:text-sand-300 leading-relaxed">
-              Todos los profesionales adscritos a Mente en Línea operan bajo los lineamientos del Colegio de Psicólogos del Perú y la Ley de Salud Mental N° 30947, garantizando el respeto irrestricto al secreto profesional y la dignidad del usuario.
+          <div className="text-center md:text-left flex-1">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-1.5">
+              <ShieldCheck className="w-4 h-4 text-sage-600 dark:text-sage-400" />
+              <span>Código de Ética y Deontología Profesional</span>
+            </div>
+            <p className="text-xs sm:text-sm text-sand-800 dark:text-sand-300 leading-relaxed font-normal">
+              Atención regida por el Colegio de Psicólogos del Perú y la Ley de Salud Mental N° 30947, con estricto secreto profesional.
             </p>
           </div>
         </div>

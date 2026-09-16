@@ -18,10 +18,8 @@ export default function Footer() {
                   Aviso importante de atención en crisis
                 </h4>
                 <p className="text-xs sm:text-sm text-amber-900/90 dark:text-amber-300/80 leading-relaxed max-w-3xl">
-                  Mente en Línea es un servicio de acompañamiento y orientación psicológica, no un centro de urgencias psiquiátricas. 
-                  Si estás en una situación de peligro inminente o riesgo de autolesión, comunícate de inmediato y sin costo a la 
-                  <strong> Línea 113 (Opción 5) del MINSA</strong> (atención psicológica 24/7 gratuita a nivel nacional), 
-                  al <strong>SAMU (106)</strong> o acude al Centro de Salud Mental Comunitaria (CSMC) más cercano.
+                  Mente en Línea no atiende urgencias. En caso de riesgo o crisis inmediata, llama gratis a la 
+                  <strong> Línea 113 (Opción 5) del MINSA</strong> (24/7) o acude al CSMC más cercano.
                 </p>
               </div>
             </div>
@@ -72,7 +70,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-sand-800 dark:text-sand-300 leading-relaxed font-normal">
-              Conectamos el talento psicológico con las personas de todo el Perú a través de WhatsApp. Descentralizando el bienestar emocional sin barreras geográficas.
+              Acompañamiento psicológico accesible y confidencial por WhatsApp para todo el Perú.
             </p>
             <div className="text-[11px] text-sage-800 dark:text-sage-400 flex items-center gap-1.5 font-medium">
               <ShieldCheck className="w-4 h-4" />
@@ -87,7 +85,7 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2.5 text-xs text-sand-800 dark:text-sand-300">
               <li><a href="#como-funciona" className="hover:text-sage-600 transition-colors">Cómo funciona</a></li>
-              <li><a href="#problema" className="hover:text-sage-600 transition-colors">El problema en provincias</a></li>
+              <li><a href="#problema" className="hover:text-sage-600 transition-colors">Realidad nacional</a></li>
               <li><a href="#demo-chat" className="hover:text-sage-600 transition-colors">Simulación del chat</a></li>
               <li><a href="#empresas" className="hover:text-sage-600 transition-colors">Para empresas (B2B EAP)</a></li>
               <li><a href="#precios" className="hover:text-sage-600 transition-colors">Planes y tarifas</a></li>
