@@ -14,8 +14,8 @@ export default function ForBusiness({ onOpenDemoModal }) {
   const b2bBenefits = [
     {
       icon: Users2,
-      title: "Cobertura en operaciones y campamentos remotos",
-      description: "Ideal para personal en faenas mineras, fundos agroindustriales o almacenes regionales donde no existen consultorios psicológicos cercanos."
+      title: "Cobertura para equipos en todo el Perú",
+      description: "Ideal tanto para personal en operaciones descentralizadas (minería, agroindustria, plantas) como para equipos de oficina y trabajo híbrido en Lima."
     },
     {
       icon: ShieldCheck,
@@ -38,11 +38,11 @@ export default function ForBusiness({ onOpenDemoModal }) {
     { name: "AgroExport del Norte", sector: "Agroindustria · Piura e Ica" },
     { name: "Minería Los Andes", sector: "Operaciones Mineras · Arequipa y Puno" },
     { name: "Logística Andina Express", sector: "Transporte y Distribución · Nacional" },
-    { name: "FinTech Soluciones", sector: "Tecnología y Trabajo Híbrido" },
+    { name: "FinTech Soluciones", sector: "Tecnología y Trabajo Híbrido · Lima y Remoto" },
   ];
 
   return (
-    <section id="empresas" className="py-24 bg-gradient-to-b from-sand-900 via-sand-950 to-sand-900 text-sand-50 relative overflow-hidden">
+    <section id="empresas" className="py-28 md:py-36 bg-gradient-to-b from-sand-900 via-sand-950 to-sand-900 text-sand-50 relative overflow-hidden">
       
       {/* Decoración de fondo */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-sage-600/10 rounded-full filter blur-3xl pointer-events-none"></div>
@@ -50,16 +50,16 @@ export default function ForBusiness({ onOpenDemoModal }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado B2B */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-500/20 border border-sage-500/30 text-sage-300 text-xs font-semibold uppercase tracking-wider mb-4">
+        {/* Encabezado B2B con Jerarquía Tipográfica */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-500/20 border border-sage-500/30 text-sage-300 text-xs font-semibold uppercase tracking-wider mb-4">
             <Building2 className="w-3.5 h-3.5" />
-            Mente en Línea para Empresas (B2B / EAP)
+            <span>Mente en Línea para Empresas (B2B / EAP)</span>
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight mb-5">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-white tracking-tight mb-5">
             Bienestar emocional para equipos en cualquier rincón del Perú
           </h2>
-          <p className="text-base sm:text-lg text-sand-300 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-sand-300 leading-relaxed font-normal">
             El 42% del ausentismo no programado y la rotación laboral se relacionan con el estrés y la sobrecarga emocional.
             Brinda a tu equipo un beneficio accesible y de alto impacto humano.
           </p>
@@ -172,7 +172,7 @@ export default function ForBusiness({ onOpenDemoModal }) {
         {/* Sectores que confían en este modelo */}
         <div className="pt-6 border-t border-sand-800 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-sand-300 mb-6">
-            Diseñado para los sectores productivos de nuestras regiones
+            Diseñado para los sectores productivos y organizaciones de todo el país
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {alliedSectors.map((partner, idx) => (

@@ -3,7 +3,7 @@ import { HeartPulse, PhoneCall, MessageCircle, ExternalLink, ShieldCheck, Mail, 
 
 export default function Footer() {
   return (
-    <footer className="bg-sand-100 dark:bg-sand-950 border-t border-sand-200 dark:border-sand-800/80 pt-16 pb-12 transition-colors">
+    <footer className="bg-warm-cream dark:bg-sand-950 border-t border-sand-200 dark:border-sand-800/80 pt-20 pb-14 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* BANNER DE CRISIS Y EMERGENCIA OFICIAL (VERIFICADO MINSA PERÚ) */}

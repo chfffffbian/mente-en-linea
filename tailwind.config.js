@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'warm-cream': '#FBF7F0',
         sage: {
           50: '#F4F8F6',
           100: '#E6F0EC',

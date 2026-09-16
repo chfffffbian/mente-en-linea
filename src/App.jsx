@@ -4,6 +4,7 @@ import Hero from './components/Hero.jsx';
 import ProblemStats from './components/ProblemStats.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
 import WhatsAppMockup from './components/WhatsAppMockup.jsx';
+import Testimonials from './components/Testimonials.jsx';
 import ForBusiness from './components/ForBusiness.jsx';
 import TrustSecurity from './components/TrustSecurity.jsx';
 import Pricing from './components/Pricing.jsx';
@@ -11,12 +12,19 @@ import Footer from './components/Footer.jsx';
 import B2BModal from './components/B2BModal.jsx';
 
 export default function App() {
-  // Manejo de Modo Oscuro con localStorage y sincronización con clase <html>
+  // Manejo de Modo Oscuro con localStorage (Modo Claro por defecto para nuevos visitantes)
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('mente_linea_dark_mode') || localStorage.getItem('mente_calma_dark_mode');
-      if (saved !== null) return JSON.parse(saved);
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem('mente_linea_dark_mode');
+      if (saved !== null) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          return false;
+        }
+      }
+      // Por defecto: Modo Claro (light)
+      return false;
     }
     return false;
   });
@@ -36,7 +44,7 @@ export default function App() {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <div className="min-h-screen flex flex-col bg-sand-50 dark:bg-sand-950 text-sand-900 dark:text-sand-100 selection:bg-sage-200 selection:text-sage-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-warm-cream dark:bg-sand-950 text-sand-900 dark:text-sand-100 selection:bg-sage-200 selection:text-sage-900 transition-colors duration-300">
       
       {/* 1. Header fijo/sticky */}
       <Header 
@@ -57,6 +65,9 @@ export default function App() {
 
         {/* 5. Mockup de conversación de WhatsApp animada en tiempo real */}
         <WhatsAppMockup />
+
+        {/* 5.5. Testimonios y prueba social ilustrativa */}
+        <Testimonials />
 
         {/* 6. Para empresas (B2B): Programa de bienestar laboral corporativo */}
         <ForBusiness onOpenDemoModal={() => setIsB2BModalOpen(true)} />

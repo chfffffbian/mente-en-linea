@@ -41,6 +41,8 @@ function AnimatedCounter({ target, suffix = "", prefix = "", duration = 2 }) {
   );
 }
 
+import PeruMap from './PeruMap.jsx';
+
 /**
  * Sección El Problema: Cifras de impacto validadas en la investigación EXPOINNOVA
  */
@@ -89,17 +91,17 @@ export default function ProblemStats() {
   ];
 
   return (
-    <section id="problema" className="py-24 bg-sand-100/60 dark:bg-sand-900/40 relative">
+    <section id="problema" className="py-28 md:py-36 bg-warm-cream dark:bg-sand-900/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado de Sección */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Encabezado de Sección con Mayor Jerarquía */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200/70 dark:bg-sand-800/70 text-xs font-semibold text-sand-800 dark:text-sand-200 uppercase tracking-widest mb-3"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sand-200/80 dark:bg-sand-800/80 text-xs font-semibold text-sand-800 dark:text-sand-200 uppercase tracking-widest mb-4"
           >
             Realidad de la Salud Mental en el Perú
           </motion.div>
@@ -109,9 +111,9 @@ export default function ProblemStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display font-bold text-3xl sm:text-4xl text-sand-900 dark:text-sand-50 mb-5"
+            className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-sand-900 dark:text-sand-50 mb-6 tracking-tight"
           >
-            La descentralización de la salud mental es una urgencia real
+            La descentralización de la salud mental es una urgencia nacional
           </motion.h2>
           
           <motion.p
@@ -119,10 +121,10 @@ export default function ProblemStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg text-sand-800 dark:text-sand-300 font-normal leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed"
           >
-            Investigaciones del proyecto EXPOINNOVA y reportes del MINSA evidencian cómo la distancia física, 
-            el estigma social y los altos costos aíslan a millones de compatriotas fuera de la capital.
+            Investigaciones del proyecto EXPOINNOVA y reportes del MINSA evidencian cómo las distancias geográficas, 
+            la saturación hospitalaria y los altos costos aíslan a millones de personas tanto en Lima como en las regiones del país.
           </motion.p>
         </div>
 
@@ -138,13 +140,13 @@ export default function ProblemStats() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="bg-white/80 dark:bg-sand-900/80 backdrop-blur-sm p-6 rounded-2xl border border-sand-200/80 dark:border-sand-800 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                className="bg-white/90 dark:bg-sand-900/80 backdrop-blur-sm p-7 rounded-2xl border border-sand-200/90 dark:border-sand-800 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-sage-50 dark:bg-sage-950/60 text-sage-600 dark:text-sage-400 flex items-center justify-center mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-sage-50 dark:bg-sage-950/60 text-sage-600 dark:text-sage-400 flex items-center justify-center mb-4">
                     <IconComponent className="w-5 h-5" />
                   </div>
-                  <div className="text-3xl sm:text-4xl text-sand-900 dark:text-sand-50 mb-2">
+                  <div className="text-3xl sm:text-4xl md:text-5xl text-sand-900 dark:text-sand-50 mb-2 font-display font-extrabold">
                     <AnimatedCounter
                       target={stat.number}
                       prefix={stat.prefix}
@@ -156,7 +158,7 @@ export default function ProblemStats() {
                     {stat.label}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-sand-800 dark:text-sand-300 leading-normal mt-2 border-t border-sand-100 dark:border-sand-800/80 pt-3">
+                <p className="text-xs sm:text-sm text-sand-700 dark:text-sand-300 leading-relaxed mt-2 border-t border-sand-100 dark:border-sand-800/80 pt-3 font-normal">
                   {stat.detail}
                 </p>
               </motion.div>
@@ -164,50 +166,53 @@ export default function ProblemStats() {
           })}
         </div>
 
+        {/* MAPA INTERACTIVO DEL PERÚ - REFUERZO VISUAL DE COBERTURA NACIONAL */}
+        <PeruMap />
+
         {/* Comparativa: Modelo Tradicional vs Mente en Línea */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-sand-900 rounded-3xl p-6 sm:p-10 border border-sand-200 dark:border-sand-800 shadow-sm"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white/95 dark:bg-sand-900 rounded-3xl p-7 sm:p-12 border border-sand-200 dark:border-sand-800 shadow-sm"
         >
           {/* Columna Tradicional */}
           <div className="space-y-4 pr-0 md:pr-6 border-b md:border-b-0 md:border-r border-sand-200 dark:border-sand-800 pb-6 md:pb-0">
-            <div className="flex items-center gap-2 text-rose-800 dark:text-rose-400 font-bold text-base">
-              <span className="w-3 h-3 rounded-full bg-rose-500/20 border border-rose-500 flex items-center justify-center text-[10px]">✕</span>
-              <span>La barrera actual en provincias</span>
+            <div className="flex items-center gap-2 text-rose-800 dark:text-rose-400 font-bold text-lg">
+              <span className="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500 flex items-center justify-center text-xs">✕</span>
+              <span>La barrera del modelo tradicional</span>
             </div>
-            <ul className="space-y-3 text-sm text-sand-800 dark:text-sand-300">
+            <ul className="space-y-3.5 text-sm text-sand-700 dark:text-sand-300">
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Tener que viajar 2 a 4 horas a una capital provincial para hallar un consultorio.</span>
+                <span>Tener que desplazarse horas en el tráfico o viajar a otra ciudad para hallar un consultorio.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Costos inasumibles: S/ 150 por 50 minutos semanales.</span>
+                <span>Costos inasumibles: S/ 150 por 50 minutos semanales de atención privada.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Temor a ser visto entrando a un consultorio psiquiátrico en pueblos o ciudades pequeñas.</span>
+                <span>Temor al estigma social de ser visto entrando a un consultorio psiquiátrico.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-rose-600 dark:text-rose-400 font-bold">✕</span>
-                <span>Videollamadas que se cortan por mala conexión de internet fija.</span>
+                <span>Videollamadas rígidas que exigen privacidad total y conexión wifi de alta velocidad.</span>
               </li>
             </ul>
           </div>
 
           {/* Columna Mente en Línea */}
           <div className="space-y-4 pl-0 md:pl-2">
-            <div className="flex items-center gap-2 text-sage-800 dark:text-sage-400 font-bold text-base">
+            <div className="flex items-center gap-2 text-sage-800 dark:text-sage-400 font-bold text-lg">
               <CheckCircle className="w-5 h-5 text-sage-600 dark:text-sage-400" />
               <span>La respuesta de Mente en Línea</span>
             </div>
-            <ul className="space-y-3 text-sm text-sand-800 dark:text-sand-200">
+            <ul className="space-y-3.5 text-sm text-sand-800 dark:text-sand-200">
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>100% por WhatsApp:</strong> funciona incluso con señal móvil básica o paquetes prepago de datos.</span>
+                <span><strong>100% por WhatsApp:</strong> funciona con señal móvil básica y paquetes prepago de datos.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
@@ -215,11 +220,11 @@ export default function ProblemStats() {
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>Privacidad total:</strong> Nadie en tu entorno sabe que estás conversando con un psicólogo.</span>
+                <span><strong>Privacidad absoluta:</strong> Nadie en tu entorno sabe que estás conversando con un especialista.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-sage-600 dark:text-sage-400 font-bold">✓</span>
-                <span><strong>Acompañamiento reflexivo continuo:</strong> Escribes tus pensamientos conforme surgen, sin agendar citas rígidas.</span>
+                <span><strong>Acompañamiento reflexivo continuo:</strong> Escribes tus pensamientos a tu ritmo, sin agendar citas rígidas.</span>
               </li>
             </ul>
           </div>
