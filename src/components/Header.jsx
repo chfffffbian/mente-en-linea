@@ -18,10 +18,10 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
 
   const navLinks = [
     { label: 'Cómo funciona', href: '#como-funciona' },
-    { label: 'El problema', href: '#problema' },
+    { label: 'Problema', href: '#problema' },
     { label: 'Testimonios', href: '#testimonios' },
-    { label: 'Para empresas', href: '#empresas' },
-    { label: 'Confianza y ética', href: '#seguridad' },
+    { label: 'Empresas', href: '#empresas' },
+    { label: 'Confianza', href: '#seguridad' },
     { label: 'Planes', href: '#precios' },
   ];
 
@@ -56,21 +56,24 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation con espaciado uniforme y nowrap */}
+          <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-7 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-sand-800 dark:text-sand-200 hover:text-sage-700 dark:hover:text-sage-400 transition-colors"
+                className="whitespace-nowrap text-sm font-medium text-sand-800 dark:text-sand-200 hover:text-sage-700 dark:hover:text-sage-400 transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Actions: Dark mode + WhatsApp CTA */}
+          {/* Right Actions: Separador sutil + Dark mode + WhatsApp CTA centrados */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Divisor vertical sutil */}
+            <div className="hidden md:block h-5 w-px bg-sand-300/80 dark:bg-sand-700/80 mr-1" />
+
             {/* Toggle Dark Mode */}
             <button
               onClick={toggleDarkMode}
@@ -86,7 +89,7 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
               href="https://wa.me/51999999999?text=Hola%20Mente%20en%20L%C3%ADnea,%20deseo%20informaci%C3%B3n%20para%20iniciar%20acompa%C3%B1amiento%20psicol%C3%B3gico."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white font-medium text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="whitespace-nowrap inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white font-medium text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4 fill-white/20" />
               <span>Escríbenos por WhatsApp</span>

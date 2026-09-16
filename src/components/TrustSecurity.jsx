@@ -15,9 +15,9 @@ export default function TrustSecurity() {
     },
     {
       icon: GraduationCap,
-      title: "Supervisión Clínica para Practicantes",
-      description: "Estudiantes de últimos ciclos supervisados semanalmente por psicólogos colegiados senior.",
-      tag: "Acompañamiento Ético Guiado"
+      title: "Practicantes Supervisados",
+      description: "Cada practicante trabaja bajo supervisión semanal de un psicólogo colegiado.",
+      tag: "Formación Supervisada"
     },
     {
       icon: Lock,

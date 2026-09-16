@@ -20,14 +20,16 @@ export default function HowItWorks() {
       icon: Sparkles,
       title: "Triaje empático y breve",
       description: "Identificamos brevemente lo que necesitas para orientar tu acompañamiento.",
-      highlight: "100% Confidencial"
+      highlight: "100% Confidencial",
+      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80"
     },
     {
       number: "03",
       icon: UserCheck,
       title: "Conexión con tu profesional ideal",
       description: "Te conectamos con un especialista colegiado (CPsP) o practicante supervisado.",
-      highlight: "Criterio ético CPsP"
+      highlight: "Criterio ético CPsP",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80"
     },
     {
       number: "04",

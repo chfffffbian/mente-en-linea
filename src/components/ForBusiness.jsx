@@ -140,6 +140,23 @@ export default function ForBusiness({ onOpenDemoModal }) {
                   <span>300+ (Corporación)</span>
                 </div>
               </div>
+
+              {/* Cita ilustrativa corporativa */}
+              <div className="mt-8 pt-6 border-t border-sand-800/80 flex items-center gap-4 text-left">
+                <div className="w-10 h-10 rounded-full bg-sage-500/20 border border-sage-500/40 flex items-center justify-center font-display font-bold text-sage-300 text-xs shrink-0">
+                  RH
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-sand-300 italic mb-1">
+                    "Nuestros colaboradores en operaciones descentralizadas acceden a apoyo psicológico con total discreción."
+                  </p>
+                  <div className="flex items-center gap-2 text-[11px] text-sand-400">
+                    <span className="font-medium text-sand-200">Gerencia de Personas & Cultura</span>
+                    <span>·</span>
+                    <span className="italic text-sand-500">Ejemplo ilustrativo corporativo</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Tarjeta de Resumen Estimado */}

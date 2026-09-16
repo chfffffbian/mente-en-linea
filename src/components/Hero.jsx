@@ -32,7 +32,7 @@ export default function Hero({ onExploreClick }) {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage-100/80 dark:bg-sage-900/50 border border-sage-200 dark:border-sage-800 text-sage-800 dark:text-sage-200 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm shadow-xs"
         >
           <MapPin className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
-          <span>Atención psicológica accesible en Lima y en todas las regiones del país</span>
+          <span>Disponible en todo el Perú</span>
           <span className="w-1.5 h-1.5 rounded-full bg-sage-500"></span>
         </motion.div>
 

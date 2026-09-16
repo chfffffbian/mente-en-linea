@@ -84,7 +84,7 @@ export default function Testimonials() {
             transition={{ delay: 0.3 }}
             className="mt-3 text-xs text-sand-500 dark:text-sand-400 italic"
           >
-            Testimonios ilustrativos con fines de presentación
+            Testimonios y valoraciones ilustrativas con fines de presentación
           </motion.div>
         </div>
 
@@ -103,7 +103,7 @@ export default function Testimonials() {
               <div>
                 {/* Cabecera de la tarjeta: Estrellas + Badge de motivo */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-1 text-amber-400">
+                  <div className="flex items-center gap-1 text-amber-400" title="Valoración ilustrativa">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-amber-400" />
                     ))}
