@@ -108,19 +108,19 @@ export default function WhatsAppMockup() {
   };
 
   return (
-    <section id="demo-chat" className="py-24 bg-sand-100/50 dark:bg-sand-900/30 relative">
+    <section id="demo-chat" className="py-28 md:py-36 bg-warm-cream dark:bg-sand-900/30 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 dark:bg-sage-900/60 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-3">
+        {/* Encabezado con Jerarquía Tipográfica Clara */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 dark:bg-sage-900/60 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            Experiencia en Tiempo Real
+            <span>Experiencia en Tiempo Real</span>
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-sand-900 dark:text-sand-50 mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-sand-900 dark:text-sand-50 mb-5 tracking-tight">
             Así de natural y seguro se siente usar Mente en Línea
           </h2>
-          <p className="text-base sm:text-lg text-sand-800 dark:text-sand-300">
+          <p className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed">
             Sin salas de espera, sin el estrés de mirarse a una cámara. Solo tú, tu celular y un profesional colegiado escuchándote con empatía.
           </p>
         </div>

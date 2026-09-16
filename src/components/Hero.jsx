@@ -7,7 +7,7 @@ import { MessageCircle, ShieldCheck, MapPin, Sparkles, CheckCircle2, HeartHandsh
  */
 export default function Hero({ onExploreClick }) {
   return (
-    <section className="relative min-h-[92vh] pt-32 pb-20 flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[92vh] pt-36 pb-28 md:pt-44 md:pb-36 flex items-center justify-center overflow-hidden">
       
       {/* Fondo Aurora Mesh Gradient (Acelerado por Hardware) */}
       <div className="aurora-bg">
@@ -18,7 +18,7 @@ export default function Hero({ onExploreClick }) {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Badge superior: Enfoque regional descentralizado */}
+        {/* Badge superior: Enfoque nacional inclusivo */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,35 +26,34 @@ export default function Hero({ onExploreClick }) {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage-100/80 dark:bg-sage-900/50 border border-sage-200 dark:border-sage-800 text-sage-800 dark:text-sage-200 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm shadow-xs"
         >
           <MapPin className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
-          <span>Salud mental accesible para Piura, Loreto, Cusco, Puno y todo el Perú</span>
+          <span>Atención psicológica accesible en Lima y en todas las regiones del país</span>
           <span className="w-1.5 h-1.5 rounded-full bg-sage-500"></span>
         </motion.div>
 
-        {/* Titular Emocional Principal */}
+        {/* Titular Emocional Principal de Alcance Nacional */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-sand-900 dark:text-sand-50 tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto"
+          className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-sand-900 dark:text-sand-50 tracking-tight leading-[1.12] mb-6 max-w-4xl mx-auto"
         >
-          Encontrar un psicólogo de confianza{' '}
+          Encontrar un psicólogo de confianza no debería ser tan difícil,{' '}
           <span className="relative inline-block text-sage-700 dark:text-sage-300">
-            fuera de Lima
+            estés donde estés.
             <svg className="absolute -bottom-2 left-0 w-full h-3 text-sage-400/40 dark:text-sage-500/30" viewBox="0 0 100 20" preserveAspectRatio="none">
               <path d="M0 15 Q 50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"/>
             </svg>
-          </span>{' '}
-          no debería ser tan difícil.
+          </span>
         </motion.h1>
 
-        {/* Subtítulo con propuesta de valor cercana y desestigmatizada */}
+        {/* Subtítulo con propuesta de valor clara y contraste marcado */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="text-base sm:text-xl text-sand-800 dark:text-sand-200 max-w-2xl mx-auto mb-10 leading-relaxed font-normal"
+          className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 max-w-2xl mx-auto mb-12 leading-relaxed font-normal"
         >
-          Te conectamos por <strong>WhatsApp</strong> con psicólogos colegiados (CPsP) y practicantes supervisados. 
+          Te conectamos por <strong>WhatsApp</strong> con psicólogos colegiados (CPsP) y practicantes supervisados a nivel nacional. 
           Acompañamiento cálido a tu ritmo, <strong>sin videollamadas</strong>, sin salas de espera ni traslados costosos.
         </motion.p>
 

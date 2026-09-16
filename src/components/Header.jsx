@@ -19,6 +19,7 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
   const navLinks = [
     { label: 'Cómo funciona', href: '#como-funciona' },
     { label: 'El problema', href: '#problema' },
+    { label: 'Testimonios', href: '#testimonios' },
     { label: 'Para empresas', href: '#empresas' },
     { label: 'Confianza y ética', href: '#seguridad' },
     { label: 'Planes', href: '#precios' },
@@ -28,7 +29,7 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-sand-50/90 dark:bg-sand-950/90 backdrop-blur-md shadow-sm border-b border-sand-200/60 dark:border-sand-800/60 py-3'
+          ? 'bg-warm-cream/90 dark:bg-sand-950/90 backdrop-blur-md shadow-sm border-b border-sand-200/60 dark:border-sand-800/60 py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -113,7 +114,7 @@ export default function Header({ darkMode, toggleDarkMode, onOpenB2BModal }) {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="sm:hidden mt-3 pt-3 pb-5 px-4 bg-sand-100/95 dark:bg-sand-900/95 backdrop-blur-lg rounded-2xl border border-sand-200 dark:border-sand-800 shadow-xl space-y-3 animate-in fade-in slide-in-from-top-3 duration-200">
+          <div className="sm:hidden mt-3 pt-3 pb-5 px-4 bg-warm-cream/95 dark:bg-sand-900/95 backdrop-blur-lg rounded-2xl border border-sand-200 dark:border-sand-800 shadow-xl space-y-3 animate-in fade-in slide-in-from-top-3 duration-200">
             {navLinks.map((link) => (
               <a
                 key={link.href}

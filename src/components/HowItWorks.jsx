@@ -38,16 +38,16 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="como-funciona" className="py-24 relative overflow-hidden">
+    <section id="como-funciona" className="py-28 md:py-36 bg-warm-cream dark:bg-sand-950 relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado */}
+        {/* Encabezado con Jerarquía Tipográfica Clara */}
         <div className="text-center max-w-2xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-100 dark:bg-sage-900/60 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-3"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sage-100 dark:bg-sage-900/60 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-4"
           >
             Sencillo y sin barreras
           </motion.div>
@@ -56,7 +56,7 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display font-bold text-3xl sm:text-4xl text-sand-900 dark:text-sand-50 mb-4"
+            className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-sand-900 dark:text-sand-50 mb-5 tracking-tight"
           >
             Cuidar tu bienestar en 4 pasos
           </motion.h2>
@@ -65,9 +65,9 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-sand-800 dark:text-sand-300"
+            className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed"
           >
-            Diseñado para personas que valoran la privacidad, viven lejos de consultorios o prefieren expresarse escribiendo.
+            Diseñado para personas que valoran la privacidad, tienen horarios demandantes o prefieren expresarse escribiendo.
           </motion.p>
         </div>
 
@@ -83,7 +83,7 @@ export default function HowItWorks() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="relative bg-white/70 dark:bg-sand-900/60 backdrop-blur-xs p-7 rounded-3xl border border-sand-200/80 dark:border-sand-800 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
+                className="relative bg-white/95 dark:bg-sand-900/60 backdrop-blur-xs p-7 rounded-3xl border border-sand-200/90 dark:border-sand-800 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
               >
                 <div>
                   {/* Top Bar: Número y Badge */}

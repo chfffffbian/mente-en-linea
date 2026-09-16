@@ -34,19 +34,19 @@ export default function TrustSecurity() {
   ];
 
   return (
-    <section id="seguridad" className="py-24 relative bg-sand-50 dark:bg-sand-950">
+    <section id="seguridad" className="py-28 md:py-36 relative bg-warm-cream dark:bg-sand-950 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 dark:bg-sage-900/50 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-3">
+        {/* Encabezado con Jerarquía Tipográfica Clara */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 dark:bg-sage-900/50 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-4">
             <HeartHandshake className="w-3.5 h-3.5" />
-            Rigurosidad Ética y Humana
+            <span>Rigurosidad Ética y Humana</span>
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-sand-900 dark:text-sand-50 mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-sand-900 dark:text-sand-50 mb-5 tracking-tight">
             Tu tranquilidad y confianza están en manos protegidas
           </h2>
-          <p className="text-base sm:text-lg text-sand-800 dark:text-sand-300">
+          <p className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed">
             Hacer la salud mental accesible no significa recortar en calidad clínica. Cuidamos cada interacción con los más altos estándares profesionales del Perú.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function TrustSecurity() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white/80 dark:bg-sand-900/60 p-8 rounded-3xl border border-sand-200/80 dark:border-sand-800 shadow-xs flex flex-col justify-between"
+                className="bg-white/95 dark:bg-sand-900/60 p-8 rounded-3xl border border-sand-200/90 dark:border-sand-800 shadow-xs flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
