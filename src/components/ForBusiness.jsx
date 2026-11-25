@@ -1,217 +1,179 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Building2, LineChart, ShieldCheck, HeartHandshake, Users2, 
-  ArrowRight, Check, FileSpreadsheet, Sparkles 
-} from 'lucide-react';
+import { Building2, Globe, Shield, Scale, Zap, ArrowRight, MessageCircle, Users, Check } from 'lucide-react';
+import { CONTENT, getWhatsAppUrl } from '../content';
 
-export default function ForBusiness({ onOpenDemoModal }) {
-  // Calculadora interactiva rápida de impacto para RRHH
-  const [collaborators, setCollaborators] = useState(50);
-  const costPerEmployee = collaborators > 150 ? 25 : 32;
-  const estimatedInvestment = collaborators * costPerEmployee;
+export default function ForBusiness() {
+  const { b2b } = CONTENT;
+  const [collaborators, setCollaborators] = useState(100);
 
-  const b2bBenefits = [
-    {
-      icon: Users2,
-      title: "Cobertura en todo el Perú",
-      description: "Ideal para personal en operaciones descentralizadas, minería, plantas y trabajo híbrido."
-    },
-    {
-      icon: ShieldCheck,
-      title: "100% Confidencialidad",
-      description: "Tus colaboradores escriben desde su WhatsApp personal; RRHH jamás accede a conversaciones."
-    },
-    {
-      icon: LineChart,
-      title: "Métricas anónimas para RRHH",
-      description: "Reportes trimestrales de clima emocional y adopción para decisiones informadas."
-    },
-    {
-      icon: HeartHandshake,
-      title: "Cero fricción de adopción",
-      description: "Sin plataformas pesadas ni capacitaciones: se activa con un simple enlace de WhatsApp."
-    }
-  ];
+  const priceNet = b2b.pricePerCollab * collaborators;
+  const igv = priceNet * b2b.igvRate;
+  const totalWithIgv = priceNet + igv;
+  const activeExpected = Math.round(collaborators * 0.08); // 8% adopción proyectada
 
-  const alliedSectors = [
-    { name: "AgroExport del Norte", sector: "Agroindustria · Piura e Ica" },
-    { name: "Minería Los Andes", sector: "Operaciones Mineras · Arequipa y Puno" },
-    { name: "Logística Andina Express", sector: "Transporte y Distribución · Nacional" },
-    { name: "FinTech Soluciones", sector: "Tecnología y Trabajo Híbrido · Lima y Remoto" },
-  ];
+  const icons = [Globe, Shield, Scale, Zap];
 
   return (
-    <section id="empresas" className="py-28 md:py-36 bg-gradient-to-b from-sand-900 via-sand-950 to-sand-900 text-sand-50 relative overflow-hidden">
+    <section id="empresas" className="py-20 md:py-32 bg-[#12201A] text-[#E6F0EB] relative overflow-hidden">
       
-      {/* Decoración de fondo */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-sage-600/10 rounded-full filter blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-lavender-600/10 rounded-full filter blur-3xl pointer-events-none"></div>
+      {/* Fondo con resplandores suaves oscuros */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#1F4D3A]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#7FD6A5]/10 rounded-full blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado B2B con Jerarquía Tipográfica */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-500/20 border border-sage-500/30 text-sage-300 text-xs font-semibold uppercase tracking-wider mb-4">
+        {/* Encabezado B2B */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1B2E25] border border-[#7FD6A5]/30 text-[#7FD6A5] text-xs font-bold uppercase tracking-wider mb-4">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Mente en Línea para Empresas (B2B / EAP)</span>
+            <span>{b2b.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-white tracking-tight mb-5">
-            Bienestar emocional para equipos en cualquier rincón del Perú
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-5">
+            {b2b.title}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-sand-300 leading-relaxed font-normal">
-            El estrés causa el 42% del ausentismo laboral. Protege a tu equipo con un beneficio accesible y confidencial.
+          <p className="text-base sm:text-lg text-sand-300 leading-relaxed font-normal">
+            {b2b.subtitle}
           </p>
         </div>
 
-        {/* Grid de Beneficios Corporativos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
-          {b2bBenefits.map((benefit, index) => {
-            const Icon = benefit.icon;
+        {/* 4 Tarjetas de Pilares B2B */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {b2b.cards.map((card, index) => {
+            const Icon = icons[index] || Globe;
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-sand-900/70 border border-sand-800 p-6 rounded-2xl hover:border-sage-500/50 transition-colors"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-[#1B2E25] rounded-3xl p-6 sm:p-7 border border-[#263F33] hover:border-[#7FD6A5]/40 transition-all duration-200 text-left flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-sage-500/20 text-sage-400 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5" />
+                <div>
+                  <div className="w-11 h-11 rounded-2xl bg-[#12201A] border border-[#263F33] text-[#7FD6A5] flex items-center justify-center mb-5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-display font-bold text-lg text-white mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-sand-300 leading-relaxed font-normal">
+                    {card.description}
+                  </p>
                 </div>
-                <h3 className="font-bold text-lg text-white mb-2">{benefit.title}</h3>
-                <p className="text-xs sm:text-sm text-sand-300 leading-relaxed">{benefit.description}</p>
+
+                <div className="pt-4 mt-6 border-t border-[#263F33] text-[11px] text-[#7FD6A5] flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Beneficio corporativo</span>
+                </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Banner Fotográfico de Bienestar de Equipos con Lazy Loading */}
-        <div className="mb-16 overflow-hidden rounded-3xl border border-sand-800 relative max-h-64 sm:max-h-72 w-full">
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-            alt="Equipo colaborativo en ambiente de trabajo saludable"
-            loading="lazy"
-            className="w-full h-full object-cover filter brightness-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-sand-950/90 via-sand-950/40 to-transparent flex items-end p-6 sm:p-8">
-            <p className="text-white text-sm sm:text-base font-medium max-w-xl">
-              Equipos más motivados y conectados, desde operaciones en regiones hasta oficinas híbridas en Lima.
-            </p>
-          </div>
-        </div>
-
-        {/* Bloque interactivo: Estimador rápido para líderes de talento / RRHH */}
-        <div className="bg-sand-900/90 border border-sand-800 rounded-3xl p-6 sm:p-10 mb-16 shadow-xl backdrop-blur-md">
+        {/* Calculadora B2B Interactiva */}
+        <div className="bg-[#1B2E25] border border-[#263F33] rounded-3xl p-6 sm:p-10 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            <div className="lg:col-span-7">
-              <span className="text-xs font-semibold text-sage-400 uppercase tracking-wider">
-                Simulador de inversión corporativa
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mt-1 mb-3">
-                Calcula la inversión para tu planilla
-              </h3>
-              <p className="text-sm text-sand-300 mb-6">
-                Planes corporativos flexibles desde <strong>S/ 25 a S/ 35 por colaborador al mes</strong>, 
-                con activación inmediata y sin contratos de permanencia abusivos.
-              </p>
+            {/* Input y Sliders */}
+            <div className="lg:col-span-7 text-left space-y-6">
+              <div>
+                <span className="text-xs font-bold text-[#7FD6A5] uppercase tracking-wider block mb-1">
+                  Simulador de inversión corporativa
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
+                  {b2b.calculatorTitle}
+                </h3>
+                <p className="text-xs sm:text-sm text-sand-300">
+                  {b2b.calculatorSubtitle}
+                </p>
+              </div>
 
-              {/* Slider interactivo de colaboradores */}
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-sand-300">Número de colaboradores:</span>
-                  <span className="font-bold text-sage-300 text-base">{collaborators} personas</span>
+              {/* Slider de Colaboradores */}
+              <div className="space-y-3 pt-2">
+                <div className="flex justify-between items-baseline text-sm">
+                  <span className="text-sand-300">Nº de colaboradores en planilla:</span>
+                  <span className="font-display font-extrabold text-2xl text-white">
+                    {collaborators} personas
+                  </span>
                 </div>
+
                 <input
                   type="range"
-                  min="10"
-                  max="300"
-                  step="5"
+                  min={b2b.minCollaborators}
+                  max={500}
+                  step={10}
                   value={collaborators}
                   onChange={(e) => setCollaborators(Number(e.target.value))}
-                  className="w-full h-2 bg-sand-800 rounded-lg appearance-none cursor-pointer accent-sage-500"
+                  className="w-full h-2.5 bg-[#12201A] rounded-lg appearance-none cursor-pointer accent-[#7FD6A5]"
                   aria-label="Número de colaboradores"
                 />
-                <div className="flex justify-between text-[11px] text-sand-300">
-                  <span>10 (Pequeña empresa)</span>
-                  <span>150 (Mediana)</span>
-                  <span>300+ (Corporación)</span>
+
+                <div className="flex justify-between text-[11px] text-sand-400">
+                  <span>50 (Mínimo piloto)</span>
+                  <span>150 (Mediana empresa)</span>
+                  <span>500+ (Corporación)</span>
                 </div>
               </div>
 
-              {/* Cita ilustrativa corporativa */}
-              <div className="mt-8 pt-6 border-t border-sand-800/80 flex items-center gap-4 text-left">
-                <div className="w-10 h-10 rounded-full bg-sage-500/20 border border-sage-500/40 flex items-center justify-center font-display font-bold text-sage-300 text-xs shrink-0">
-                  RH
+              {/* Métrica de adopción estimada */}
+              <div className="p-4 rounded-2xl bg-[#12201A] border border-[#263F33] text-xs space-y-1.5 text-sand-300">
+                <div className="flex justify-between text-white font-semibold">
+                  <span>Tasa de adopción estimada (~8% de la planilla):</span>
+                  <span className="text-[#7FD6A5] font-bold">~{activeExpected} personas con psicólogo activo</span>
                 </div>
-                <div className="flex-1">
-                  <p className="text-xs text-sand-300 italic mb-1">
-                    "Nuestros colaboradores en operaciones descentralizadas acceden a apoyo psicológico con total discreción."
-                  </p>
-                  <div className="flex items-center gap-2 text-[11px] text-sand-400">
-                    <span className="font-medium text-sand-200">Gerencia de Personas & Cultura</span>
-                    <span>·</span>
-                    <span className="italic text-sand-500">Ejemplo ilustrativo corporativo</span>
-                  </div>
-                </div>
+                <p className="text-[11px] text-sand-400">
+                  Ideal para prevenir el ausentismo laboral, rotación temprana y sanciones SST por riesgos psicosociales (Ley 29783).
+                </p>
               </div>
             </div>
 
-            {/* Tarjeta de Resumen Estimado */}
-            <div className="lg:col-span-5 bg-sand-950/80 border border-sand-800/80 p-6 rounded-2xl flex flex-col justify-between">
+            {/* Tarjeta de Resumen Financiero B2B */}
+            <div className="lg:col-span-5 bg-[#12201A] border border-[#263F33] p-6 sm:p-8 rounded-2xl text-left flex flex-col justify-between space-y-6">
               <div>
-                <div className="text-xs text-sand-300 uppercase tracking-wider mb-1">
-                  Inversión mensual estimada
+                <span className="text-[11px] font-bold text-sand-400 uppercase tracking-widest block mb-1">
+                  Inversión mensual calculada
+                </span>
+                
+                <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-1">
+                  S/ {totalWithIgv.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <span className="text-xs font-normal text-sand-400 block mt-0.5">
+                    con IGV incluido (neto S/ {priceNet.toLocaleString('es-PE')})
+                  </span>
                 </div>
-                <div className="text-4xl font-display font-extrabold text-white mb-2">
-                  S/ {estimatedInvestment.toLocaleString('es-PE')}
-                  <span className="text-sm font-normal text-sand-300"> / mes</span>
+
+                <div className="text-xs text-[#7FD6A5] font-semibold mt-3 pt-3 border-t border-[#263F33]">
+                  Aprox. S/ 20 + IGV por colaborador al mes
                 </div>
-                <div className="text-xs text-sage-400 font-medium mb-4">
-                  Aprox. S/ {costPerEmployee} por colaborador / mes
-                </div>
-                <ul className="text-xs text-sand-300 space-y-2 mb-6">
+
+                <ul className="text-xs text-sand-300 space-y-2 mt-4">
                   <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-sage-400" />
-                    <span>Acompañamiento psicológico ilimitado por WhatsApp</span>
+                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
+                    <span>Reportes trimestrales agregados para RR. HH.</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-sage-400" />
-                    <span>Reporte anónimo trimestral para RRHH</span>
+                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
+                    <span>Total privacidad individual garantizada</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-sage-400" />
-                    <span>1 Taller virtual de prevención de burnout al trimestre</span>
+                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
+                    <span>Activación del piloto en 7 días hábiles</span>
                   </li>
                 </ul>
               </div>
 
-              <button
-                onClick={onOpenDemoModal}
-                className="w-full py-3.5 px-5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-sage-500/20"
+              <a
+                href={getWhatsAppUrl(`Hola, deseo solicitar una propuesta para un piloto de 30 días para mi empresa (${collaborators} colaboradores).`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-5 rounded-full bg-[#7FD6A5] hover:bg-[#6ec292] text-[#12201A] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
               >
-                <span>Solicitar propuesta y demo personalizada</span>
+                <MessageCircle className="w-4 h-4 fill-[#12201A]/20" />
+                <span>Solicitar piloto de 30 días</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
 
-          </div>
-        </div>
-
-        {/* Sectores que confían en este modelo */}
-        <div className="pt-6 border-t border-sand-800 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-sand-300 mb-6">
-            Diseñado para los sectores productivos y organizaciones de todo el país
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {alliedSectors.map((partner, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-sand-900/40 border border-sand-800/60 text-left">
-                <div className="font-semibold text-sm text-sand-200">{partner.name}</div>
-                <div className="text-[11px] text-sand-300">{partner.sector}</div>
-              </div>
-            ))}
           </div>
         </div>
 

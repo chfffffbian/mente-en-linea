@@ -1,19 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Fondo redondeado suave -->
-  <rect width="100" height="100" rx="28" fill="#E6F0EC" />
+  <!-- Fondo redondeado suave y cálido -->
+  <rect width="100" height="100" rx="26" fill="#F7F1E8" />
   
-  <!-- Círculo de calma exterior -->
-  <circle cx="50" cy="50" r="38" stroke="#5A937E" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.4" />
+  <!-- Borde fino translúcido -->
+  <rect x="1" y="1" width="98" height="98" rx="25" stroke="#5E7F63" stroke-width="2" stroke-opacity="0.25" />
   
-  <!-- Onda de calma (ripple interior) -->
-  <circle cx="50" cy="50" r="28" fill="#CEE2D8" opacity="0.6" />
-  
-  <!-- Hoja orgánica de bienestar (Sage) -->
-  <path d="M50 22C38 32 34 46 40 60C46 72 62 76 68 64C72 54 66 36 50 22Z" fill="#5A937E" />
-  
-  <!-- Acento lavanda (brote sutil de esperanza y calma mental) -->
-  <path d="M50 42C44 48 43 56 47 62C51 68 60 69 63 62C65 57 61 48 50 42Z" fill="#8E7DBE" opacity="0.9" />
-  
-  <!-- Tallo central sutil -->
-  <path d="M50 25C49 42 48 55 52 70" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+  <!-- Cerebro protegido por la mano (Isotipo Mente en Línea) -->
+  <g transform="translate(14, 12) scale(0.72)" stroke="#5E7F63" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Contornos del cerebro -->
+    <path d="M42 22 C30 14, 14 26, 16 42 C6 50, 10 70, 24 74 C26 84, 40 88, 52 84 C62 88, 78 84, 82 72 C94 66, 96 46, 84 36 C86 20, 68 12, 54 20 C48 16, 46 18, 42 22 Z" />
+    
+    <!-- Circunvoluciones cerebrales interiores -->
+    <path d="M38 34 C36 44, 48 46, 52 38 C56 30, 48 24, 42 28" />
+    <path d="M62 36 C64 48, 76 46, 74 34" />
+    <path d="M30 52 C38 52, 44 60, 42 68" />
+    
+    <!-- Mano protectora y cálida que sostiene la mente -->
+    <path d="M22 84 C38 88, 62 82, 78 68 C84 62, 88 54, 86 46 C76 56, 60 64, 42 66 C32 68, 26 76, 22 84 Z" fill="#DCE9DD" fill-opacity="0.6" />
+    <path d="M22 84 C38 88, 62 82, 78 68" stroke="#1F4D3A" stroke-width="8" />
+    <path d="M42 66 C56 64, 70 58, 80 50" stroke="#1F4D3A" stroke-width="6" />
+  </g>
 </svg>

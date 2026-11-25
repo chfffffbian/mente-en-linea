@@ -8,89 +8,71 @@ export default {
   theme: {
     extend: {
       colors: {
-        'warm-cream': '#FBF7F0',
+        // Paleta oficial Mente en Línea
+        cream: {
+          DEFAULT: '#F7F1E8', // Arena/crema cálido fondo
+          card: '#FBF8F3',    // Crema más claro para tarjetas
+          surface: '#F2ECE1',
+        },
         sage: {
-          50: '#F4F8F6',
-          100: '#E6F0EC',
-          200: '#CEE2D8',
-          300: '#A9CCBC',
-          400: '#7EAF9B',
-          500: '#5A937E', // Color representativo salvia
-          600: '#457765',
-          700: '#386052',
-          800: '#2F4D42',
-          900: '#274138',
+          DEFAULT: '#5E7F63', // Verde salvia marca/acentos
+          50: '#F4F7F4',
+          100: '#E4EDE5',
+          200: '#DCE9DD',    // Menta suave superficies
+          300: '#B8D1BA',
+          400: '#8AAFA0',
+          500: '#5E7F63',
+          600: '#4D6B52',
+          700: '#3D5441',
+          800: '#2D3D30',
+          900: '#1F2A21',
         },
-        lavender: {
-          50: '#F8F7FD',
-          100: '#F1EFFB',
-          200: '#E4E0F8',
-          300: '#CDC6F3',
-          400: '#B0A2EA',
-          500: '#8E7DBE', // Acento lavanda cálido
-          600: '#7B67B0',
-          700: '#67529B',
-          800: '#554381',
-          900: '#46386B',
+        forest: {
+          DEFAULT: '#1F4D3A', // Verde bosque profundo texto de marca, botones, sección oscura
+          light: '#28634B',
+          dark: '#16382A',
+          b2b: '#12201A',    // Fondo sección B2B oscura
+          b2bCard: '#1B2E25',// Tarjetas B2B
+          b2bAccent: '#7FD6A5', // Acento verde menta B2B
         },
-        calmblue: {
-          50: '#F0F6FA',
-          100: '#E0EEF6',
-          200: '#C2DEF0',
-          300: '#94C7E5',
-          400: '#5FA8D6',
-          500: '#3D8DC3',
-          600: '#2C71A4',
-          700: '#255B85',
+        text: {
+          primary: '#1E2A24',
+          secondary: '#5B6B62',
+          muted: '#8A9990',
         },
         sand: {
-          50: '#FCFBF8', // Fondo base ultra cálido
-          100: '#F7F4EE',
-          200: '#EEE7DD',
-          300: '#DFD4C2',
-          400: '#CABE9F',
-          800: '#2A2926',
-          900: '#1A1917', // Fondo modo oscuro suave (no negro puro)
-          950: '#121110',
+          50: '#FBF8F3',
+          100: '#F7F1E8',
+          200: '#EAE1D3',
+          300: '#DACDBB',
+          400: '#B8A892',
+          800: '#2C2B27',
+          900: '#1E2A24',
+          950: '#12201A',
         },
         whatsapp: {
           green: '#25D366',
           teal: '#128C7E',
           darkTeal: '#075E54',
-          bubbleLight: '#E7FCE3', // Burbuja saliente usuario
-          bubbleIn: '#FFFFFF', // Burbuja entrante
-          bubbleInDark: '#202C33',
-          bubbleOutDark: '#005C4B',
-          bgChat: '#EFEAE2',
-          bgChatDark: '#0B141A',
-          tickBlue: '#53BDEB',
+          bubbleLight: '#DCF8C6',
+          bubbleIncoming: '#FFFFFF',
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Quicksand', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', '"League Spartan"', 'system-ui', 'sans-serif'],
+        sans: ['Inter', '"DM Sans"', 'system-ui', 'sans-serif'],
       },
-      animation: {
-        'blob-slow': 'blob 18s infinite ease-in-out',
-        'pulse-subtle': 'pulseSubtle 3s infinite ease-in-out',
-        'float-slow': 'float 6s ease-in-out infinite',
+      borderRadius: {
+        '2xl': '20px',
+        '3xl': '28px',
+        '4xl': '36px',
       },
-      keyframes: {
-        blob: {
-          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
-          '33%': { transform: 'translate(30px, -40px) scale(1.08)' },
-          '66%': { transform: 'translate(-25px, 20px) scale(0.95)' },
-        },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-          '50%': { opacity: '0.85', transform: 'scale(1.02)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        }
+      boxShadow: {
+        'soft': '0 8px 30px rgba(31, 77, 58, 0.05)',
+        'card': '0 12px 36px rgba(31, 77, 58, 0.08)',
+        'floating': '0 20px 48px rgba(31, 77, 58, 0.12)',
       }
     },
   },
   plugins: [],
-};
+}

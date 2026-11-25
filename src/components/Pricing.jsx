@@ -1,159 +1,116 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, MessageCircle, Sparkles, Building2, HelpCircle, Shield } from 'lucide-react';
+import { Check, MessageCircle, Sparkles, Building2, User, ShieldCheck, ArrowRight } from 'lucide-react';
+import { CONTENT, getWhatsAppUrl } from '../content';
 
-export default function Pricing({ onOpenB2BModal }) {
-  const [billingCycle, setBillingCycle] = useState('monthly'); // 'monthly' | 'weekly'
-  const [planType, setPlanType] = useState('b2c'); // 'b2c' | 'b2b'
+export default function Pricing({ initialSegment = 'b2c', segment: externalSegment, onToggleSegment }) {
+  const { pricing } = CONTENT;
+  const [internalSegment, setInternalSegment] = useState(initialSegment);
+  const segment = externalSegment !== undefined ? externalSegment : internalSegment;
 
-  const b2cPlans = [
-    {
-      name: "Plan Social Guiado",
-      tagline: "Para estudiantes o quienes buscan dar su primer paso con apoyo accesible.",
-      badge: "Tarifa Solidaria",
-      priceMonthly: 49,
-      priceWeekly: 15,
-      practitioner: "Practicante de últimos ciclos supervisado por un psicólogo senior",
-      features: [
-        "Acompañamiento 100% por WhatsApp",
-        "Mensajes de texto y notas de voz",
-        "Respuestas estructuradas 3 veces por semana",
-        "Supervisión clínica continua de cada caso",
-        "Sin permanencia: cancelas cuando quieras",
-      ],
-      ctaText: "Elegir Plan Social por WhatsApp",
-      waMessage: "Hola, quisiera iniciar con el Plan Social de S/ 49/mes con practicante supervisado.",
-      popular: false,
-    },
-    {
-      name: "Plan Acompañamiento Integral",
-      tagline: "Nuestro servicio más elegido. Acompañamiento profesional personalizado continuo.",
-      badge: "Más Recomendado",
-      priceMonthly: 89,
-      priceWeekly: 25,
-      practitioner: "Psicólogo(a) Colegiado(a) habilitado(a) en el CPsP",
-      features: [
-        "Acompañamiento prioritario por WhatsApp",
-        "Mensajes de texto y audios sin límite",
-        "Respuestas y seguimiento clínico diario (lun a vie)",
-        "Herramientas y ejercicios de gestión emocional",
-        "Evaluación periódica de evolución emocional",
-        "Totalmente privado y confidencial",
-      ],
-      ctaText: "Elegir Plan Integral por WhatsApp",
-      waMessage: "Hola, me interesa el Plan Acompañamiento Integral de S/ 89/mes con psicólogo colegiado CPsP.",
-      popular: true,
+  const handleSelectSegment = (newSeg) => {
+    setInternalSegment(newSeg);
+    if (onToggleSegment) {
+      onToggleSegment(newSeg);
     }
-  ];
+  };
 
   return (
-    <section id="precios" className="py-28 md:py-36 bg-warm-cream dark:bg-sand-900/40 relative transition-colors">
+    <section id="precios" className="py-20 md:py-32 bg-cream-surface/60 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado con Jerarquía Tipográfica Clara */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 dark:bg-sage-900/60 text-xs font-semibold text-sage-800 dark:text-sage-300 uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Precios Claros y Transparentes</span>
+        {/* Encabezado */}
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sage-200/60 text-forest text-xs font-bold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-forest" />
+            <span>{pricing.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl text-sand-900 dark:text-sand-50 mb-5 tracking-tight">
-            Salud mental de calidad al alcance de tu bolsillo
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-text-primary tracking-tight mb-4">
+            {pricing.title}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-sand-700 dark:text-sand-300 font-normal leading-relaxed">
-            Un mes de acompañamiento continuo por menos de lo que cuesta una sola sesión presencial tradicional.
+          <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
+            {pricing.subtitle}
           </p>
 
-          {/* Selector de audiencia: Individual vs Empresa */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-sand-200/80 dark:bg-sand-800/80 mt-8 border border-sand-300/60 dark:border-sand-700/60">
+          {/* Selector de Segmento Personas / Empresas */}
+          <div className="inline-flex items-center bg-cream-card border border-sand-300 rounded-full p-1 mt-8 shadow-xs">
             <button
-              onClick={() => setPlanType('b2c')}
-              className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all ${
-                planType === 'b2c'
-                  ? 'bg-white dark:bg-sand-900 text-sand-900 dark:text-sand-50 shadow-sm'
-                  : 'text-sand-800 dark:text-sand-300 hover:text-sand-900'
+              onClick={() => handleSelectSegment('b2c')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all ${
+                segment === 'b2c'
+                  ? 'bg-forest text-white shadow-soft'
+                  : 'text-text-secondary hover:text-text-primary'
               }`}
             >
-              Para Personas (B2C)
+              <User className="w-4 h-4" />
+              <span>Para personas</span>
             </button>
             <button
-              onClick={() => setPlanType('b2b')}
-              className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 ${
-                planType === 'b2b'
-                  ? 'bg-white dark:bg-sand-900 text-sand-900 dark:text-sand-50 shadow-sm'
-                  : 'text-sand-800 dark:text-sand-300 hover:text-sand-900'
+              onClick={() => handleSelectSegment('b2b')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all ${
+                segment === 'b2b'
+                  ? 'bg-forest text-white shadow-soft'
+                  : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               <Building2 className="w-4 h-4" />
-              <span>Para Empresas (B2B)</span>
+              <span>Para empresas (B2B)</span>
             </button>
           </div>
         </div>
 
-        {/* Vista B2C: Personas */}
-        {planType === 'b2c' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
-            {b2cPlans.map((plan, index) => (
+        {/* Vista Planes B2C */}
+        {segment === 'b2c' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-12">
+            {pricing.plans.map((plan) => (
               <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 25 }}
+                key={plan.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.15 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-200 ${
-                  plan.popular
-                    ? 'bg-white dark:bg-sand-900 border-2 border-sage-500 shadow-xl'
-                    : 'bg-white/80 dark:bg-sand-900/60 border border-sand-200 dark:border-sand-800 shadow-xs'
-                }`}
+                className={`relative rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 ${
+                  plan.highlighted
+                    ? 'bg-cream-card border-2 border-forest shadow-floating scale-[1.02] z-10'
+                    : 'bg-cream-card border border-sand-300 shadow-soft hover:shadow-card'
+                } ${plan.disabled ? 'opacity-70 bg-cream' : ''}`}
               >
-                {/* Badge de Plan Destacado */}
-                {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-sage-600 text-white text-xs font-bold tracking-wide shadow-md">
-                    {plan.badge}
+                {/* Badge Superior */}
+                {plan.badge && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="px-4 py-1 rounded-full bg-forest text-white font-bold text-xs uppercase tracking-wider shadow-xs">
+                      {plan.badge}
+                    </span>
                   </div>
                 )}
 
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-display font-bold text-xl text-sand-900 dark:text-sand-50">
+                  <div className="text-left mb-4">
+                    <h3 className="font-display font-bold text-xl text-text-primary mb-1">
                       {plan.name}
                     </h3>
-                    {!plan.popular && (
-                      <span className="text-xs px-2.5 py-0.5 rounded-full bg-sand-100 dark:bg-sand-800 text-sand-800 dark:text-sand-300 font-medium">
-                        {plan.badge}
-                      </span>
-                    )}
+                    <p className="text-xs text-text-secondary min-h-[36px]">
+                      {plan.description}
+                    </p>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-sand-800 dark:text-sand-300 mb-6 leading-relaxed">
-                    {plan.tagline}
-                  </p>
-
-                  {/* Bloque de Precio */}
-                  <div className="mb-6 p-4 rounded-2xl bg-sand-50 dark:bg-sand-950/60 border border-sand-100 dark:border-sand-800">
+                  {/* Precio */}
+                  <div className="text-left my-4 pb-4 border-b border-sand-200">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-3xl sm:text-4xl font-display font-extrabold text-sand-900 dark:text-sand-50">
-                        S/ {plan.priceMonthly}
+                      <span className="font-display font-extrabold text-3xl sm:text-4xl text-forest">
+                        S/ {plan.price}
                       </span>
-                      <span className="text-xs text-sand-800 dark:text-sand-300 font-medium">/ mes completo</span>
-                    </div>
-                    <div className="text-[11px] text-sage-800 dark:text-sage-400 mt-1 font-medium">
-                      O aprox. S/ {plan.priceWeekly} por semana
+                      <span className="text-xs text-text-secondary font-medium">
+                        {plan.period}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Quien atiende */}
-                  <div className="mb-6 pb-6 border-b border-sand-100 dark:border-sand-800 text-xs text-sand-800 dark:text-sand-300 flex items-start gap-2">
-                    <Shield className="w-4 h-4 text-sage-600 dark:text-sage-400 shrink-0 mt-0.5" />
-                    <span><strong>Atendido por:</strong> {plan.practitioner}</span>
-                  </div>
-
-                  {/* Lista de características */}
-                  <ul className="space-y-3 mb-8 text-xs sm:text-sm text-sand-800 dark:text-sand-300">
-                    {plan.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-sage-600 dark:text-sage-400 shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                  {/* Lista de Beneficios */}
+                  <ul className="text-left space-y-2.5 text-xs sm:text-sm text-text-secondary mb-8">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-forest shrink-0 mt-0.5" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -161,72 +118,83 @@ export default function Pricing({ onOpenB2BModal }) {
 
                 {/* Botón CTA a WhatsApp */}
                 <a
-                  href={`https://wa.me/51999999999?text=${encodeURIComponent(plan.waMessage)}`}
+                  href={getWhatsAppUrl(plan.whatsappMessage)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm ${
-                    plan.popular
-                      ? 'bg-sage-600 hover:bg-sage-700 text-white shadow-sage-600/20 hover:shadow-md'
-                      : 'bg-sand-100 hover:bg-sand-200 dark:bg-sand-800 dark:hover:bg-sand-700 text-sand-800 dark:text-sand-100'
+                  className={`w-full py-3.5 px-4 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
+                    plan.highlighted
+                      ? 'bg-forest hover:bg-forest-light text-white shadow-card'
+                      : plan.disabled
+                      ? 'bg-sand-300 text-text-muted cursor-not-allowed'
+                      : 'bg-cream hover:bg-cream-surface border border-sand-300 text-text-primary'
                   }`}
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <MessageCircle className="w-4 h-4 text-whatsapp-green" />
                   <span>{plan.ctaText}</span>
                 </a>
               </motion.div>
             ))}
           </div>
         ) : (
-          /* Vista B2B: Empresas */
-          <div className="max-w-3xl mx-auto bg-white dark:bg-sand-900 rounded-3xl p-8 sm:p-10 border border-sand-200 dark:border-sand-800 shadow-xl">
-            <div className="text-center max-w-lg mx-auto mb-8">
-              <span className="px-3 py-1 rounded-full bg-sage-100 dark:bg-sage-900/60 text-sage-800 dark:text-sage-300 text-xs font-bold uppercase tracking-wider">
-                Para Empresas e Instituciones
-              </span>
-              <h3 className="font-display font-bold text-2xl sm:text-3xl text-sand-900 dark:text-sand-50 mt-3 mb-2">
-                Planes EAP desde S/ 25 a S/ 35 por colaborador
-              </h3>
-              <p className="text-xs sm:text-sm text-sand-800 dark:text-sand-300">
-                Tarifas escalonadas según el tamaño de tu equipo, con cobertura 24/7 y reportes anónimos para RRHH.
-              </p>
-            </div>
+          /* Vista Plan B2B Corporativo */
+          <div className="max-w-3xl mx-auto bg-cream-card rounded-3xl p-8 sm:p-12 border-2 border-forest shadow-card mb-12 text-left">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-sand-200">
+              <div>
+                <span className="px-3 py-1 rounded-full bg-sage-200 text-forest text-xs font-bold uppercase tracking-wider mb-2 inline-block">
+                  Beneficio de Bienestar Laboral
+                </span>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-text-primary">
+                  {pricing.b2bPlan.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-secondary mt-1">
+                  {pricing.b2bPlan.description}
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-center">
-              <div className="p-4 rounded-2xl bg-sand-50 dark:bg-sand-950 border border-sand-200 dark:border-sand-800">
-                <div className="text-xs text-sand-800 dark:text-sand-300 mb-1">De 10 a 50 personas</div>
-                <div className="text-2xl font-bold text-sand-900 dark:text-sand-100">S/ 35</div>
-                <div className="text-[11px] text-sand-800 dark:text-sand-300">colaborador / mes</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-sand-50 dark:bg-sand-950 border border-sand-200 dark:border-sand-800">
-                <div className="text-xs text-sand-800 dark:text-sand-300 mb-1">De 51 a 150 personas</div>
-                <div className="text-2xl font-bold text-sand-900 dark:text-sand-100">S/ 30</div>
-                <div className="text-[11px] text-sand-800 dark:text-sand-300">colaborador / mes</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-sage-50 dark:bg-sage-950 border border-sage-200 dark:border-sage-800">
-                <div className="text-xs text-sage-800 dark:text-sage-300 mb-1">Más de 150 personas</div>
-                <div className="text-2xl font-bold text-sage-700 dark:text-sage-300">S/ 25</div>
-                <div className="text-[11px] text-sage-800 dark:text-sage-400">colaborador / mes</div>
+              <div className="text-left sm:text-right">
+                <div className="font-display font-extrabold text-3xl sm:text-4xl text-forest">
+                  S/ {pricing.b2bPlan.price}
+                </div>
+                <div className="text-xs text-text-secondary">
+                  {pricing.b2bPlan.period}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={onOpenB2BModal}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white font-semibold text-sm shadow-md transition-all"
-              >
-                Solicitar cotización personalizada para mi empresa
-              </button>
+            <ul className="space-y-3 text-sm text-text-secondary mb-8">
+              {pricing.b2bPlan.features.map((feature, i) => (
+                <li key={i} className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-forest shrink-0" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <a
-                href="https://wa.me/51999999999?text=Hola%20Mente%20en%20L%C3%ADnea,%20quisiera%20cotizar%20el%20servicio%20para%20los%20colaboradores%20de%20mi%20empresa."
+                href={getWhatsAppUrl(pricing.b2bPlan.whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-sand-100 dark:bg-sand-800 text-sand-800 dark:text-sand-100 font-semibold text-sm hover:bg-sand-200 transition-all text-center"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-forest hover:bg-forest-light text-white font-bold text-sm flex items-center justify-center gap-2 shadow-card"
               >
-                Hablar con un asesor B2B
+                <MessageCircle className="w-4 h-4 text-whatsapp-green" />
+                <span>{pricing.b2bPlan.ctaText}</span>
+              </a>
+
+              <a
+                href="#empresas"
+                className="text-xs font-semibold text-text-secondary hover:text-forest underline"
+              >
+                Ver simulador detallado para planilla →
               </a>
             </div>
           </div>
         )}
+
+        {/* Métodos de Pago y Garantías */}
+        <div className="max-w-2xl mx-auto text-center p-4 rounded-2xl bg-cream-card border border-sand-300 text-xs text-text-secondary">
+          <p className="font-medium">{pricing.paymentMethods}</p>
+        </div>
 
       </div>
     </section>

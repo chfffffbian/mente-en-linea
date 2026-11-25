@@ -1,0 +1,5 @@
+# Robots.txt para Mente en Línea
+User-agent: *
+Allow: /
+
+Sitemap: https://mente-en-linea.vercel.app/sitemap.xml

@@ -1,88 +1,131 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header.jsx';
+import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import ProblemStats from './components/ProblemStats.jsx';
+import ProblemBento from './components/ProblemBento.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
-import WhatsAppMockup from './components/WhatsAppMockup.jsx';
+import ChatDemo from './components/ChatDemo.jsx';
+import BenefitsBento from './components/BenefitsBento.jsx';
+import Quiz from './components/Quiz.jsx';
+import CalculatorB2C from './components/CalculatorB2C.jsx';
 import Testimonials from './components/Testimonials.jsx';
 import ForBusiness from './components/ForBusiness.jsx';
-import TrustSecurity from './components/TrustSecurity.jsx';
+import TrustPrivacy from './components/TrustPrivacy.jsx';
 import Pricing from './components/Pricing.jsx';
+import FAQ from './components/FAQ.jsx';
+import FinalCTA from './components/FinalCTA.jsx';
 import Footer from './components/Footer.jsx';
+import FloatingWhatsApp from './components/FloatingWhatsApp.jsx';
 import B2BModal from './components/B2BModal.jsx';
 
 export default function App() {
-  // Manejo de Modo Oscuro con localStorage (Modo Claro por defecto para nuevos visitantes)
-  const [darkMode, setDarkMode] = useState(() => {
+  // Detección inicial de segmento mediante UTM params o almacenamiento
+  const [activeSegment, setActiveSegment] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('mente_linea_dark_mode');
-      if (saved !== null) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          return false;
-        }
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = (params.get('utm_source') || '').toLowerCase();
+      const utmCampaign = (params.get('utm_campaign') || '').toLowerCase();
+      const segmentParam = (params.get('segment') || '').toLowerCase();
+
+      if (
+        segmentParam === 'b2b' ||
+        segmentParam === 'empresas' ||
+        utmSource.includes('linkedin') ||
+        utmSource.includes('b2b') ||
+        utmCampaign.includes('b2b') ||
+        utmCampaign.includes('empresa') ||
+        utmCampaign.includes('rrhh') ||
+        utmCampaign.includes('sst')
+      ) {
+        return 'b2b';
       }
-      // Por defecto: Modo Claro (light)
-      return false;
     }
-    return false;
+    return 'b2c';
   });
 
+  // Escala de tamaño tipográfico para accesibilidad (A- / A+)
+  const [fontSizeScale, setFontSizeScale] = useState(1.0);
   const [isB2BModalOpen, setIsB2BModalOpen] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('mente_linea_dark_mode', JSON.stringify(darkMode));
-  }, [darkMode]);
+    document.documentElement.style.setProperty('--font-size-scale', `${fontSizeScale}rem`);
+  }, [fontSizeScale]);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
+  const handleToggleSegment = (segment) => {
+    setActiveSegment(segment);
+  };
+
+  const handleOpenChatDemo = () => {
+    const el = document.getElementById('demo-chat');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-warm-cream dark:bg-sand-950 text-sand-900 dark:text-sand-100 selection:bg-sage-200 selection:text-sage-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-cream text-text-primary selection:bg-mint selection:text-forest transition-colors duration-300 font-sans">
       
-      {/* 1. Header fijo/sticky */}
-      <Header 
-        darkMode={darkMode} 
-        toggleDarkMode={toggleDarkMode}
-        onOpenB2BModal={() => setIsB2BModalOpen(true)}
+      {/* 0. Barra de Anuncio Oficial y Navbar Sticky Blur */}
+      <Navbar
+        activeSegment={activeSegment}
+        onToggleSegment={handleToggleSegment}
+        fontSizeScale={fontSizeScale}
+        onChangeFontSize={setFontSizeScale}
       />
 
       <main className="flex-grow">
-        {/* 2. Hero con fondo Aurora animado y propuesta de valor */}
-        <Hero />
+        {/* 1. Hero con Animación Cinética y Propuesta de Valor */}
+        <Hero
+          activeSegment={activeSegment}
+          onOpenChatDemo={handleOpenChatDemo}
+        />
 
-        {/* 3. Problema: Cifras de brecha regional de la Defensoría del Pueblo y MINSA */}
-        <ProblemStats />
+        {/* 2. El Problema: Bento Grid de 4 Cifras Verificadas + Mapa Interactivo del Perú */}
+        <ProblemBento />
 
-        {/* 4. Cómo funciona: 4 pasos ilustrados y secuenciales */}
+        {/* 3. Cómo Funciona: Scrollytelling en 4 Pasos + Garantía de 24 Horas */}
         <HowItWorks />
 
-        {/* 5. Mockup de conversación de WhatsApp animada en tiempo real */}
-        <WhatsAppMockup />
+        {/* 4. Simulador Interactivo de Conversación de WhatsApp con Nota de Voz */}
+        <ChatDemo />
 
-        {/* 5.5. Testimonios y prueba social ilustrativa */}
+        {/* 5. Beneficios Reales: Bento Grid de 6 Tarjetas con Badges */}
+        <BenefitsBento />
+
+        {/* 6. Test Rápido de Orientación en 1 Minuto con Recomendación y Mascota MENTI */}
+        <Quiz />
+
+        {/* 7. Calculadora de Ahorro para Personas (B2C) */}
+        <CalculatorB2C />
+
+        {/* 8. Nuestro Compromiso Ético y Transparencia */}
         <Testimonials />
 
-        {/* 6. Para empresas (B2B): Programa de bienestar laboral corporativo */}
+        {/* 9. Mente en Línea para Empresas (B2B EAP en Modo Oscuro Sofisticado) */}
         <ForBusiness onOpenDemoModal={() => setIsB2BModalOpen(true)} />
 
-        {/* 7. Confianza y seguridad: Verificación CPsP, supervisión y privacidad */}
-        <TrustSecurity />
+        {/* 10. Seguridad, Ética y Marco Legal (CPsP, Ley 29733, Límites y MINSA 113) */}
+        <TrustPrivacy />
 
-        {/* 8. Planes y Precios: B2C y B2B transparentes y accesibles */}
-        <Pricing onOpenB2BModal={() => setIsB2BModalOpen(true)} />
+        {/* 11. Planes y Precios Transparentes (Semana S/ 25, Mensual S/ 89, Trimestral S/ 239) */}
+        <Pricing
+          segment={activeSegment}
+          onToggleSegment={handleToggleSegment}
+        />
+
+        {/* 12. Preguntas Frecuentes (FAQ Accordion Accesible con JSON-LD) */}
+        <FAQ />
+
+        {/* 13. Llamado a la Acción Final con Mascota MENTI */}
+        <FinalCTA />
       </main>
 
-      {/* 9. Footer: Enlaces y Banner de Emergencia verificado MINSA Línea 113 Opción 5 */}
+      {/* 14. Footer Completo con Banner de Crisis MINSA 113, Redes y Legal */}
       <Footer />
 
-      {/* Modal B2B para solicitud de cotizaciones y demos */}
+      {/* 15. Botón Flotante de WhatsApp para Contacto Directo */}
+      <FloatingWhatsApp />
+
+      {/* Modal B2B para Solicitud de Propuestas Corporativas y Piloto */}
       <B2BModal
         isOpen={isB2BModalOpen}
         onClose={() => setIsB2BModalOpen(false)}

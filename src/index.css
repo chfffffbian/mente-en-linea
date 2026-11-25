@@ -2,122 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-cream: #F7F1E8;
+  --color-card: #FBF8F3;
+  --color-sage: #5E7F63;
+  --color-forest: #1F4D3A;
+  --color-mint: #DCE9DD;
+  --color-text-primary: #1E2A24;
+  --color-text-secondary: #5B6B62;
+  --color-whatsapp: #25D366;
+  --font-size-scale: 1rem;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: var(--font-size-scale);
   }
 
-  /* Scrollbar estético y sutil */
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-text-primary);
+    font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'League Spartan', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  /* Foco accesible visible para teclado */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Scrollbar sutil y no invasivo */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #F2ECE1;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(90, 147, 126, 0.25);
+    background-color: rgba(94, 127, 99, 0.35);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(90, 147, 126, 0.45);
+    background-color: rgba(94, 127, 99, 0.65);
   }
 }
 
-/* Efecto Aurora Mesh Gradient Acelerado por GPU */
-.aurora-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+/* Respeto estricto a prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-.aurora-blob-1 {
-  position: absolute;
-  top: -15%;
-  left: 10%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(206, 226, 216, 0.55) 0%, rgba(206, 226, 216, 0) 70%);
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: blob 22s infinite alternate ease-in-out;
-  will-change: transform;
+/* Blobs orgánicos cálidos */
+.blob-organic {
+  border-radius: 64% 36% 54% 46% / 44% 56% 44% 56%;
+  transition: all 0.5s ease-in-out;
+}
+.blob-organic:hover {
+  border-radius: 46% 54% 36% 64% / 56% 44% 56% 44%;
 }
 
-.aurora-blob-2 {
-  position: absolute;
-  top: 10%;
-  right: -5%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(228, 224, 248, 0.6) 0%, rgba(228, 224, 248, 0) 70%);
-  border-radius: 50%;
-  filter: blur(70px);
-  animation: blob 28s infinite alternate-reverse ease-in-out;
-  will-change: transform;
+/* Animación sutil de pulso para badges */
+@keyframes softPulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
 }
 
-.aurora-blob-3 {
-  position: absolute;
-  bottom: 5%;
-  left: 30%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(194, 222, 240, 0.45) 0%, rgba(194, 222, 240, 0) 70%);
-  border-radius: 50%;
-  filter: blur(65px);
-  animation: blob 20s infinite alternate ease-in-out;
-  will-change: transform;
-}
-
-/* Modo oscuro para Aurora Blobs */
-.dark .aurora-blob-1 {
-  background: radial-gradient(circle, rgba(56, 96, 82, 0.3) 0%, rgba(56, 96, 82, 0) 70%);
-}
-.dark .aurora-blob-2 {
-  background: radial-gradient(circle, rgba(103, 82, 155, 0.25) 0%, rgba(103, 82, 155, 0) 70%);
-}
-.dark .aurora-blob-3 {
-  background: radial-gradient(circle, rgba(37, 91, 133, 0.25) 0%, rgba(37, 91, 133, 0) 70%);
-}
-
-/* Patrón de fondo sutil tipo WhatsApp */
-.wa-pattern {
-  background-color: #EFEAE2;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
-  background-size: 16px 16px;
-}
-
-.dark .wa-pattern {
-  background-color: #0B141A;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-  background-size: 16px 16px;
-}
-
-/* Olas animadas para simulación de audio en chat */
-@keyframes voiceWave {
-  0%, 100% { height: 6px; }
-  50% { height: 22px; }
-}
-
-.wave-bar {
-  animation: voiceWave 1.2s ease-in-out infinite;
-}
-
-/* Textura sutil de grano / ruido sobre el fondo general (opacidad 3.5%) */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 40;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+.animate-soft-pulse {
+  animation: softPulse 4s infinite ease-in-out;
 }

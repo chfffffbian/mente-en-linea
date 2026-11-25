@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Building2, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
+import { getWhatsAppUrl } from '../content';
 
 export default function B2BModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -29,8 +30,8 @@ export default function B2BModal({ isOpen, onClose }) {
 - Teléfono: ${formData.phone}`;
 
     setTimeout(() => {
-      window.open(`https://wa.me/51999999999?text=${encodeURIComponent(text)}`, '_blank');
-    }, 1200);
+      window.open(getWhatsAppUrl(text), '_blank');
+    }, 1000);
   };
 
   return (

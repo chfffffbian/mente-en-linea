@@ -1,139 +1,120 @@
-# 🌿 Mente en Línea - Landing Page
+# 🌿 Mente en Línea - Landing Page Oficial
 
-Plataforma peruana de apoyo psicológico por WhatsApp que conecta a personas fuera de Lima con psicólogos colegiados (CPsP) y practicantes supervisados, sin videollamadas ni consultorio presencial. Cuenta además con un programa de bienestar laboral (B2B/EAP) para organizaciones con equipos en regiones (minería, agroindustria, retail y logística).
+Plataforma peruana de orientación y acompañamiento psicológico asincrónico por WhatsApp con psicólogos colegiados (CPsP). Diseñada con enfoque de salud mental accesible, cálido y sin barreras geográficas para todo el Perú (Lima y regiones).
+
+- 🌐 **Sitio web en producción:** [https://mente-en-linea.vercel.app/](https://mente-en-linea.vercel.app/)
+- 📦 **Repositorio GitHub:** [https://github.com/chfffffbian/mente-en-linea](https://github.com/chfffffbian/mente-en-linea)
+
+---
+
+## 🎨 Dirección de Arte y Filosofía de Diseño
+
+- **Paleta de Color Terapéutica y Cálida:**
+  - `Crema suave (#F7F1E8)` y `Crema card (#FBF8F3)`: Base luminosa que reemplaza los blancos clínicos fríos de hospital.
+  - `Verde Salvia (#5E7F63)` y `Verde Bosque (#1F4D3A)`: Transmiten serenidad, confianza profesional y estabilidad emocional.
+  - `Menta Suave (#DCE9DD)` y `Arena (#EDE5D8)`: Contrastes sutiles para microinteracciones y tarjetas bento.
+  - `Modo Oscuro Sofisticado (#12201A)`: Reservado exclusivamente para la sección B2B corporativa.
+- **Tipografía Editorial y Humana:**
+  - Titulares: *Plus Jakarta Sans* y *League Spartan*.
+  - Lectura en párrafos: *Inter* y *DM Sans*.
+  - Ajuste tipográfico de accesibilidad en vivo (A- / A+ en la barra de navegación).
+- **Mascota Oficial MENTI:** Personaje empático de la marca ilustrado y optimizado en formato PNG transparente.
+- **Fotografía de Identidad:** Textura sutil de fondo con Machu Picchu y fotografía cálida de consulta psicológica.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-- **Framework:** [React 18](https://react.dev/) + [Vite](https://vitejs.dev/) (Rápido, modular y optimizado para sitios estáticos).
-- **Estilos:** [Tailwind CSS](https://tailwindcss.com/) con paleta personalizada (*Sage Green*, *Pastel Sky*, *Warm Sand*, *Lavender* y colores nativos de WhatsApp).
-- **Animaciones:** [Framer Motion](https://www.framer.com/motion/) para scroll-reveal, contadores numéricos de impacto (*count-up*) y transiciones de chat.
-- **Iconografía:** [Lucide React](https://lucide.dev/) (iconos SVG limpios, cálidos y no clínicos).
-- **Tipografías:** *Plus Jakarta Sans* y *Quicksand* para titulares amigables + *Inter* para lectura cómoda en dispositivos móviles.
-- **Despliegue:** 100% estático (0 dependencias de backend), ideal para **Cloudflare Pages**, Vercel o GitHub Pages.
+- **Framework:** React 18 + Vite + TypeScript / JSX
+- **Motor de Estilos:** Tailwind CSS 3.4 con tokens personalizados
+- **Animaciones & Scrollytelling:** Framer Motion (aceleración por GPU y respeto a `prefers-reduced-motion`)
+- **Iconografía:** Lucide React
+- **SEO & Datos Estructurados:** JSON-LD (`MedicalBusiness` y `FAQPage`), OpenGraph, Twitter Cards, `sitemap.xml` y `robots.txt`
+- **Despliegue:** Optimizado para **Vercel** y **Cloudflare Pages** (dist 100% estático).
 
 ---
 
-## ✨ Características y Efectos Especiales
+## ✨ Características y Módulos Interactivos
 
-1. **Hero con Fondo Aurora Animado:** Mesh gradient con blobs orgánicos flotando suavemente y acelerados por GPU.
-2. **Scroll-Reveal:** Aparición secuencial con fade-in y slide-up al hacer scroll.
-3. **Contadores de Impacto Animados:** Cifras de brecha en salud mental validadas por la **Defensoría del Pueblo** y el **MINSA**.
-4. **Mockup Interactivo de WhatsApp en Tiempo Real:** Simula una conversación real entre un usuario de provincia y una psicóloga verificada (CPsP), con indicador de "escribiendo...", notas de voz y botones de reinicio.
-5. **Sección B2B / Bienestar Laboral:** Simulador interactivo de inversión para líderes de Gestión Humana y Recursos Humanos.
-6. **Modo Oscuro / Claro:** Con botón accesible y persistencia en `localStorage`.
-7. **Banner de Emergencia Oficial Verificado:** Enlace y teléfono directo a la **Línea 113 (Opción 5)** del Ministerio de Salud (MINSA Perú) disponible las 24 horas.
+1. **Barra de Anuncio & Navbar con Sticky Blur:** Anuncio de garantía de respuesta en 24h, toggle de segmento (*Personas* / *Empresas*), selector A-/A+ y botón directo a WhatsApp.
+2. **Hero con Tipografía Cinética:** Aparición palabra por palabra con énfasis en *"cuídate."*, fondo con textura sutil de Machu Picchu, mockup de laptop y burbujas de chat flotantes.
+3. **Bento Grid del Problema Nacional:** 4 tarjetas con cifras verificadas (Defensoría del Pueblo, MINSA, OMS) y contenedor con el **Mapa Geográfico del Perú** interactivo.
+4. **Scrollytelling en 4 Pasos:** Recorrido visual del acompañamiento (Escribe, Triaje ético, Psicólogo colegiado fijo y Conversa a tu ritmo).
+5. **Simulador Interactivo de WhatsApp:** Experiencia real con 3 pestañas temáticas, indicador de *"escribiendo..."*, reproducción simulada de nota de voz de 1:42 y aclaración de muestra ilustrativa.
+6. **Bento Grid de Beneficios:** 6 tarjetas con badges (*Continuidad*, *Garantía*, *Cero fricción*, *Accesible*, *Seguimiento*, *Ética*).
+7. **Test de Orientación en 1 Minuto (Quiz):** 4 preguntas interactivas, recomendación personalizada con MENTI y botón para enviar el resumen pre-llenado a WhatsApp sin cookies ni rastreo invasivo.
+8. **Calculadora de Ahorro B2C:** Slider de S/ 40 a S/ 200 para comparar el gasto en 4 sesiones presenciales frente a los S/ 89 al mes de Mente en Línea.
+9. **Compromiso Ético y Transparencia:** Declaración de principios sin testimonios falsos, preparado para reseñas verificadas con consentimiento expreso.
+10. **Sección Empresas (B2B EAP en Modo Oscuro):** 4 tarjetas de beneficios laborales, apoyo a la Ley 29783 de SST y simulador interactivo para calcular la inversión de planilla (S/ 20 por colaborador/mes + IGV).
+11. **Marco Ético, Legal y Límites Claros:** Colegiatura CPsP, Ley 29733 de Datos Personales, bloque honesto de *"Lo que somos y lo que NO somos"* y caja de crisis con la **Línea 113 Opción 5 del MINSA**.
+12. **Planes Transparentes:** Semana de prueba (S/ 25), Acompañamiento mensual (S/ 89 - destacado), Prepago trimestral (S/ 239) y Plan Plus (S/ 149 - Próximamente).
+13. **Preguntas Frecuentes (FAQ):** Acordeón accesible con 9 respuestas directas sincronizadas con el esquema JSON-LD.
+14. **Final CTA:** Tarjeta acogedora con MENTI y botón directo para comenzar.
+15. **Botón Flotante de WhatsApp:** Con badge pulsante *"En línea"* y aparición a partir de 300px de scroll.
 
 ---
 
-## 🚀 Cómo Correr el Proyecto Localmente
+## ⚙️ Fuente Única de Verdad (`src/content.ts`)
 
-### Requisitos Previos
-Tener instalado [Node.js](https://nodejs.org/) (versión 18 o superior recomendada) o [Deno](https://deno.com/).
+Todos los textos, tarifas, preguntas del test, enlaces de WhatsApp y números de contacto están centralizados en **`src/content.ts`**. Para actualizar cualquier dato del negocio:
 
-### 1. Clonar o descargar el repositorio
-```bash
-git clone https://github.com/tu-usuario/mente-en-linea.git
-cd mente-en-linea
+```typescript
+// src/content.ts
+
+// 1. Cambiar número de recepción de WhatsApp
+export const WHATSAPP_NUMBER = "+51999999999"; // Coloca aquí el número oficial
+export const WHATSAPP_DISPLAY = "(+51) 999 999 999";
+
+// 2. Modificar precios de los planes
+export const CONTENT = {
+  pricing: {
+    plans: [
+      { id: "prueba", price: 25, ... },
+      { id: "mensual", price: 89, ... },
+      { id: "trimestral", price: 239, ... },
+    ],
+    b2bPlan: { price: 20, ... }
+  }
+};
 ```
 
-### 2. Instalar dependencias
-Con npm:
-```bash
-npm install
-```
-*(O si usas Deno: `deno install`)*
+---
 
-### 3. Iniciar el servidor de desarrollo
-Con npm:
+## 🚀 Comandos de Desarrollo y Compilación
+
+### Requisitos
+- **Deno** (instalado en el sistema) o **Node.js 18+** / **npm**.
+
+### 1. Iniciar servidor de desarrollo local
 ```bash
+deno task dev
+# o con npm:
 npm run dev
 ```
-*(O con Deno: `deno task dev`)*
 
-Abre en tu navegador la dirección local que aparece en la consola (por defecto: `http://localhost:3000` o `http://localhost:5173`).
-
----
-
-## 📦 Construcción para Producción
-
-Para compilar los archivos estáticos listos para subir a producción:
-
+### 2. Compilar para producción
 ```bash
+deno task build
+# o con npm:
 npm run build
 ```
-*(O con Deno: `deno task build`)*
 
-Esto creará la carpeta optimizada y minificada `/dist`.
+Genera la carpeta optimizada y minificada `/dist`.
 
-Para probar el build localmente:
+### 3. Previsualizar la compilación
 ```bash
+deno task preview
+# o con npm:
 npm run preview
 ```
 
 ---
 
-## ☁️ Guía de Despliegue en Cloudflare Pages
+## 📋 Lista de Verificación para el Lanzamiento
 
-1. **Subir a GitHub:**
-   Crea un repositorio en GitHub y sube el proyecto:
-   ```bash
-   git add .
-   git commit -m "feat: landing page completa Mente en Línea"
-   git branch -M main
-   git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-   git push -u origin main
-   ```
-
-2. **Conectar con Cloudflare Pages:**
-   - Inicia sesión en el panel de [Cloudflare Dashboard](https://dash.cloudflare.com/).
-   - Ve a la sección **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
-   - Selecciona tu repositorio de GitHub `mente-en-linea`.
-
-3. **Configuración de Build:**
-   - **Framework preset:** `Vite`
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Node.js version (opcional en Variables de entorno):** `NODE_VERSION = 20`
-
-4. **Desplegar:**
-   - Haz clic en **Save and Deploy**. En menos de 1 minuto tendrás tu enlace `.pages.dev` activo con HTTPS gratis, CDN global de baja latencia y caché en los servidores peruanos de Cloudflare.
-
----
-
-## 🏛️ Estructura del Código
-
-```text
-mente-en-linea/
-├── public/
-│   ├── favicon.svg          # Isotipo de calma en SVG
-│   └── og-preview.svg       # Banner para redes sociales
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx       # Barra fija, navegación, dark mode, WhatsApp CTA
-│   │   ├── Hero.jsx         # Titular emocional, fondo Aurora y badges
-│   │   ├── ProblemStats.jsx # Contadores animados y datos de brecha nacional
-│   │   ├── HowItWorks.jsx   # 4 pasos ilustrados y conector de proceso
-│   │   ├── WhatsAppMockup.jsx # Simulación en vivo de WhatsApp (texto + audio)
-│   │   ├── ForBusiness.jsx  # Sección B2B corporativa con estimador de RRHH
-│   │   ├── TrustSecurity.jsx # Verificación CPsP, supervisión y privacidad
-│   │   ├── Pricing.jsx      # Planes B2C (S/ 89, S/ 49) y B2B (S/ 25-35)
-│   │   ├── Footer.jsx       # Enlaces y banner de emergencia Línea 113 MINSA
-│   │   └── B2BModal.jsx     # Modal de contacto para empresas
-│   ├── App.jsx              # Ensamblador principal de la landing
-│   ├── index.css            # Directivas Tailwind, animaciones Aurora y ondas
-│   └── main.jsx             # Punto de entrada de React
-├── index.html               # Plantilla HTML, SEO y tipografías
-├── tailwind.config.js       # Configuración cromática y temas
-├── vite.config.js           # Configuración de empaquetado de Vite
-├── package.json             # Dependencias y scripts de npm
-└── README.md                # Documentación del proyecto
-```
-
----
-
-## 🌿 Identidad y Valores
-
-- **Mente en Línea** no sustituye la atención hospitalaria ni urgencias psiquiátricas inmediatas.
-- Promueve el acceso equitativo a la salud mental, el apego estricto al código deontológico del **Colegio de Psicólogos del Perú (CPsP)** y la eliminación del estigma hacia el bienestar emocional en nuestras regiones.
+- [x] **Arquitectura y responsive:** Probado y adaptado para móviles, tablets y monitores ultrawide.
+- [x] **Accesibilidad WCAG AA:** Selector de tamaño tipográfico, contraste de color verificado, navegación completa por teclado y soporte para `prefers-reduced-motion`.
+- [x] **SEO y Open Graph:** Meta tags completos, JSON-LD estructurado, imagen OG y favicon SVG vectorizado.
+- [x] **Límites clínicos y éticos destacados:** Aviso claro de no atención de emergencias, referencia a la Línea 113 MINSA en Hero, Trust, Pricing, Footer y banner persistente.
+- [ ] **Configuración previa al tráfico masivo:** Reemplazar `+51999999999` en `src/content.ts` por la línea oficial de WhatsApp Business del proyecto.
+- [ ] **Dominio personalizado:** Vincular `menteenlinea.pe` en la configuración de dominios de Vercel / Cloudflare.
