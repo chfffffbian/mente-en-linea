@@ -1,33 +1,59 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Globe, Shield, Scale, Zap, ArrowRight, MessageCircle, Check } from 'lucide-react';
+import { Globe, Shield, Scale, Zap, ArrowRight, MessageCircle, Check } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
 export default function ForBusiness() {
-  const { b2b } = CONTENT;
-  const [collaborators, setCollaborators] = useState(100);
-
-  const priceNet = b2b.pricePerCollab * collaborators;
-  const igv = priceNet * b2b.igvRate;
-  const totalWithIgv = priceNet + igv;
+  const { forBusiness } = CONTENT;
+  const { simulator } = forBusiness;
+  
+  const [collaborators, setCollaborators] = useState(simulator.defaultVal);
+  const [inputVal, setInputVal] = useState(String(simulator.defaultVal));
+  const [errorMsg, setErrorMsg] = useState('');
 
   const icons = [Globe, Shield, Scale, Zap];
+
+  const handleSliderChange = (e) => {
+    const val = Number(e.target.value);
+    setCollaborators(val);
+    setInputVal(String(val));
+    setErrorMsg('');
+  };
+
+  const handleInputChange = (e) => {
+    const raw = e.target.value;
+    setInputVal(raw);
+    const parsed = Number(raw);
+
+    if (isNaN(parsed) || raw.trim() === '' || parsed < simulator.min) {
+      setErrorMsg(simulator.minError);
+      setCollaborators(simulator.min);
+    } else {
+      setErrorMsg('');
+      setCollaborators(Math.min(simulator.max, parsed));
+    }
+  };
 
   const formatCurrency = (val) => {
     return val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   };
 
+  const priceNet = simulator.pricePerWorker * collaborators;
+  const totalWithIgv = priceNet * (1 + simulator.igvRate);
+
+  const whatsappMsg = `Hola, quiero información sobre un piloto de Mente en Línea para mi empresa (${collaborators} colaboradores).`;
+
   return (
-    <section id="empresas" className="py-20 md:py-32 bg-[#12201A] text-[#E6F0EB] relative overflow-hidden">
+    <section id="empresas" className="py-20 lg:py-28 bg-[#12201A] text-[#FBF8F3] relative overflow-hidden">
       
-      {/* Fondo con resplandores suaves oscuros */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#1F4D3A]/30 rounded-full blur-3xl pointer-events-none" />
+      {/* Resplandores oscuros de fondo */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#1F4D3A]/25 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#7FD6A5]/10 rounded-full blur-2xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado B2B */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        {/* Encabezado */}
+        <div className="max-w-[800px] mx-auto text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1B2E25] border border-[#7FD6A5]/30 text-[#7FD6A5] text-xs font-bold uppercase tracking-wider mb-4">
             <div className="w-4 h-4 text-[#7FD6A5]">
               <img
@@ -39,53 +65,48 @@ export default function ForBusiness() {
                 className="w-full h-full object-contain filter invert opacity-90"
               />
             </div>
-            <span>{b2b.eyebrow}</span>
+            <span>{forBusiness.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-5">
-            {b2b.title}
+
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-5 [text-wrap:balance]">
+            {forBusiness.title}
           </h2>
-          <p className="text-base sm:text-lg text-sand-300 leading-relaxed font-normal">
-            {b2b.subtitle}
+
+          <p className="text-base sm:text-lg text-[#DCE9DD]/90 leading-relaxed font-normal">
+            {forBusiness.description}
           </p>
         </div>
 
-        {/* 4 Tarjetas de Pilares B2B */}
+        {/* 4 Tarjetas de Pilares (sin etiquetas inferiores) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {b2b.cards.map((card, index) => {
+          {forBusiness.cards.map((card, index) => {
             const Icon = icons[index] || Globe;
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#1B2E25] rounded-3xl p-6 sm:p-7 border border-[#263F33] hover:border-[#7FD6A5]/40 transition-all duration-200 text-left flex flex-col justify-between"
+                className="bg-[#1B2E25] rounded-3xl p-6 sm:p-7 border border-[#263F33] hover:border-[#7FD6A5]/40 transition-all duration-200 text-left flex flex-col justify-start"
               >
-                <div>
-                  <div className="w-11 h-11 rounded-2xl bg-[#12201A] border border-[#263F33] text-[#7FD6A5] flex items-center justify-center mb-5">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-display font-bold text-lg text-white mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-sand-300 leading-relaxed font-normal">
-                    {card.description}
-                  </p>
+                <div className="w-12 h-12 rounded-2xl bg-[#12201A] border border-[#263F33] text-[#7FD6A5] flex items-center justify-center mb-5 shrink-0">
+                  <Icon className="w-6 h-6" />
                 </div>
-
-                <div className="pt-4 mt-6 border-t border-[#263F33] text-[11px] text-[#7FD6A5] flex items-center gap-1.5 font-medium">
-                  <Check className="w-3.5 h-3.5" />
-                  <span>Mente en Línea Empresas</span>
-                </div>
+                <h3 className="font-display font-bold text-lg text-white mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-[#DCE9DD]/80 leading-relaxed">
+                  {card.description}
+                </p>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Calculadora B2B Interactiva */}
+        {/* Simulador Interactivo */}
         <div className="bg-[#1B2E25] border border-[#263F33] rounded-3xl p-6 sm:p-10 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Input y Sliders */}
             <div className="lg:col-span-7 text-left space-y-6">
@@ -94,84 +115,109 @@ export default function ForBusiness() {
                   Simulador de inversión
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                  {b2b.calculatorTitle}
+                  {simulator.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-sand-300">
-                  Piloto flexible de 30 a 60 días para equipos a nivel nacional.
-                </p>
               </div>
 
-              {/* Slider de Colaboradores */}
-              <div className="space-y-3 pt-2">
+              {/* Control de Colaboradores */}
+              <div className="space-y-4 pt-2">
                 <div className="flex justify-between items-baseline text-sm">
-                  <span className="text-sand-300">Nº de colaboradores:</span>
-                  <span className="font-display font-extrabold text-2xl text-white">
-                    {collaborators} colaboradores
-                  </span>
+                  <label htmlFor="collab-input" className="text-sm text-[#DCE9DD]">
+                    {simulator.label}:
+                  </label>
+                  
+                  <div className="flex items-center gap-2">
+                    <input
+                      id="collab-input"
+                      type="number"
+                      min={simulator.min}
+                      max={simulator.max}
+                      step={simulator.step}
+                      value={inputVal}
+                      onChange={handleInputChange}
+                      className="w-20 px-2.5 py-1 rounded-xl bg-[#12201A] border border-[#263F33] text-sm font-bold text-white text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7FD6A5]"
+                      aria-label="Número de colaboradores"
+                    />
+                    <span className="font-display font-extrabold text-xl sm:text-2xl text-white">
+                      colaboradores
+                    </span>
+                  </div>
                 </div>
+
+                {/* Error de validación si < 50 */}
+                {errorMsg && (
+                  <p className="text-xs font-semibold text-[#FF8E7E] animate-shake">
+                    {errorMsg}
+                  </p>
+                )}
 
                 <input
                   type="range"
-                  min={b2b.minCollaborators}
-                  max={500}
-                  step={10}
+                  min={simulator.min}
+                  max={simulator.max}
+                  step={simulator.step}
                   value={collaborators}
-                  onChange={(e) => setCollaborators(Number(e.target.value))}
+                  onChange={handleSliderChange}
                   className="w-full h-2.5 bg-[#12201A] rounded-lg appearance-none cursor-pointer accent-[#7FD6A5]"
                   aria-label="Número de colaboradores"
+                  aria-valuetext={`${collaborators} colaboradores`}
                 />
 
-                <div className="flex justify-between text-xs text-sand-400">
-                  <span>50 (Mínimo piloto)</span>
-                  <span>150 (Mediana empresa)</span>
-                  <span>500+ (Corporación)</span>
+                {/* Marcas en su posición real (50 -> 0%, 150 -> 22.2%, 500+ -> 100%) */}
+                <div className="relative text-[11px] font-semibold text-[#DCE9DD]/70 h-5">
+                  <span className="absolute left-0">50 (mínimo)</span>
+                  <span className="absolute left-[22.22%] -translate-x-1/2">150</span>
+                  <span className="absolute right-0">500+</span>
                 </div>
               </div>
 
-              {/* Nota sobre beneficio preventivo */}
-              <div className="p-4 rounded-2xl bg-[#12201A] border border-[#263F33] text-xs space-y-1.5 text-sand-300">
-                <p className="leading-relaxed">
-                  Complemento a la prevención de riesgos psicosociales (Ley 29783) para cuidar la salud emocional de tu equipo y favorecer un clima laboral saludable.
-                </p>
+              {/* Nota oficial */}
+              <div className="pt-2 text-xs text-[#DCE9DD]/70">
+                <p>{simulator.note}</p>
               </div>
             </div>
 
-            {/* Tarjeta de Resumen Financiero B2B */}
+            {/* Tarjeta de Resumen Financiero */}
             <div className="lg:col-span-5 bg-[#12201A] border border-[#263F33] p-6 sm:p-8 rounded-2xl text-left flex flex-col justify-between space-y-6">
               <div>
-                <span className="text-[11px] font-bold text-sand-400 uppercase tracking-widest block mb-1">
-                  Inversión mensual estimada
+                <span className="text-xs font-bold text-[#DCE9DD]/70 uppercase tracking-widest block mb-2">
+                  {simulator.resultHeader}
                 </span>
                 
-                <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-1">
+                {/* Total con IGV */}
+                <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-1 whitespace-nowrap">
                   S/ {formatCurrency(totalWithIgv)}
-                  <span className="text-xs font-normal text-sand-400 block mt-0.5">
-                    con IGV incluido (neto S/ {formatCurrency(priceNet)})
-                  </span>
+                </div>
+
+                {/* Neto con espacios normales */}
+                <div className="text-xs text-[#DCE9DD]/80">
+                  con IGV incluido (neto S/ {formatCurrency(priceNet)})
                 </div>
 
                 <div className="text-xs text-[#7FD6A5] font-semibold mt-3 pt-3 border-t border-[#263F33]">
-                  S/ 20 + IGV por colaborador al mes
+                  {simulator.rateText}
                 </div>
 
-                <ul className="text-xs text-sand-300 space-y-2 mt-4">
-                  {b2b.benefitsList.map((benefit, idx) => (
+                {/* Bullets */}
+                <ul className="text-xs text-[#DCE9DD]/90 space-y-2 mt-4">
+                  {simulator.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-[#7FD6A5] shrink-0" />
-                      <span>{benefit}</span>
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* Botón CTA */}
               <a
-                href={getWhatsAppUrl(`Hola, deseo solicitar una propuesta para un piloto de 30 días para mi empresa (${collaborators} colaboradores).`)}
+                href={getWhatsAppUrl(whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-5 rounded-full bg-[#7FD6A5] hover:bg-[#6ec292] text-[#12201A] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-3.5 px-5 rounded-full bg-[#7FD6A5] hover:bg-[#6ec292] text-[#12201A] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7FD6A5]"
               >
                 <MessageCircle className="w-4 h-4 fill-[#12201A]/20" />
-                <span>{b2b.cta}</span>
+                <span>{simulator.cta}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

@@ -1,207 +1,186 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, ShieldCheck, UserCheck, Clock, HeartHandshake, ArrowRight, Play, Sparkles } from 'lucide-react';
+import { MessageCircle, Play, ShieldCheck, UserCheck, Clock, HeartHandshake, ArrowRight } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
-export default function Hero({ activeSegment, onOpenChatDemo }) {
-  const currentHero = activeSegment === 'b2b' ? CONTENT.hero.b2b : CONTENT.hero.b2c;
+export default function Hero() {
+  const { hero } = CONTENT;
 
-  // Animación cinética palabra por palabra
-  const words = currentHero.titlePart1.trim().split(" ");
+  const handleOpenChatDemo = () => {
+    const el = document.getElementById('chat-demo');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const trustIcons = [ShieldCheck, UserCheck, Clock, HeartHandshake];
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-20 md:pt-14 md:pb-28 bg-cream">
+    <section className="relative pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden" id="top">
       
-      {/* Fondo Machu Picchu con niebla y textura suave */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-10 mix-blend-multiply"
-        style={{ backgroundImage: "url('/assets/wallpapermachupicchu.webp')" }}
-        aria-hidden="true"
-      />
+      {/* Fondo Machu Picchu con Overlay Crema rgba(247,241,232,0.92) y degradé a sólido */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img
+          src="/assets/machu-picchu.jpg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center opacity-30 filter saturate-50"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-[#F7F1E8]/92 bg-gradient-to-b from-[#F7F1E8]/85 via-[#F7F1E8]/95 to-[#F7F1E8]" />
+      </div>
 
-      {/* Blobs orgánicos decorativos */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-sage-200/50 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute top-1/3 right-[-100px] w-[450px] h-[450px] bg-sage-100/60 rounded-full blur-2xl pointer-events-none -z-0" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Grid Principal: Texto Izquierda + Visual Derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Columna Izquierda: Copywriting de Respuesta Directa */}
           <div className="lg:col-span-7 text-left space-y-6">
             
-            {/* Badge de Alcance Nacional */}
+            {/* Etiqueta de Alcance Nacional */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-card border border-sage/30 text-forest text-xs sm:text-sm font-semibold shadow-xs"
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DCE9DD] border border-[#5E7F63]/30 text-xs font-bold text-[#1F4D3A] tracking-wide"
             >
-              <span className="w-2 h-2 rounded-full bg-sage animate-soft-pulse" />
-              <span>{currentHero.badge}</span>
+              <span className="w-2 h-2 rounded-full bg-[#1F4D3A] animate-pulse" />
+              <span>{hero.badge}</span>
             </motion.div>
 
-            {/* Titular Cinético con Énfasis en "cuídate." */}
-            <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl text-text-primary tracking-tight leading-[1.12]">
-              {words.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-                  className="inline-block mr-2"
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.92, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: words.length * 0.08 + 0.1, ease: "easeOut" }}
-                className="relative inline-block text-sage"
-              >
-                {currentHero.titleHighlight}
-                <svg
-                  className="absolute -bottom-2 left-0 w-full h-3 text-sage/30"
-                  viewBox="0 0 100 20"
-                  preserveAspectRatio="none"
-                >
-                  <path d="M0 15 Q 50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
-                </svg>
-              </motion.span>
-            </h1>
+            {/* H1 Principal con text-wrap:balance */}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1E2A24] tracking-tight leading-[1.08] [text-wrap:balance]"
+            >
+              {hero.titlePart1}
+              <span className="text-[#5E7F63]">{hero.titleHighlight}</span>
+            </motion.h1>
 
             {/* Subtítulo Empático */}
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35 }}
-              className="text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl font-normal leading-relaxed"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base sm:text-lg lg:text-xl text-[#5B6B62] font-normal leading-relaxed max-w-2xl"
             >
-              {currentHero.subtitle}
+              {hero.subtitle}
             </motion.p>
 
             {/* CTAs Principales */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.45 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2"
             >
               <a
-                href={getWhatsAppUrl(
-                  activeSegment === 'b2b'
-                    ? "Hola, deseo coordinar un piloto de 30 días para mi empresa con Mente en Línea."
-                    : undefined
-                )}
+                href={getWhatsAppUrl("Hola, quiero hablar con un psicólogo colegiado por WhatsApp.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-forest hover:bg-forest-light text-white font-bold text-base shadow-card hover:shadow-floating hover:-translate-y-0.5 transition-all duration-200 group"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all transform active:translate-y-[1px] focus:outline-none focus-visible:ring-3 focus-visible:ring-[#1F4D3A]"
               >
-                <MessageCircle className="w-5 h-5 text-whatsapp-green fill-white/20" />
-                <span>{currentHero.primaryCta}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <MessageCircle className="w-5 h-5 text-[#25D366] fill-[#FBF8F3]/20" />
+                <span>{hero.primaryCta}</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               <button
-                onClick={onOpenChatDemo}
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-cream-card hover:bg-cream-surface border border-sand-300 text-text-primary font-semibold text-sm shadow-soft hover:shadow-card transition-all"
+                onClick={handleOpenChatDemo}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-[#FBF8F3] hover:bg-[#F2ECE1] border-1.5 border-[#1F4D3A] text-[#1F4D3A] font-semibold text-sm transition-all focus:outline-none focus-visible:ring-3 focus-visible:ring-[#1F4D3A]"
               >
-                <Play className="w-4 h-4 text-forest fill-forest/20" />
-                <span>{currentHero.secondaryCta}</span>
+                <Play className="w-4 h-4 fill-[#1F4D3A]/20 text-[#1F4D3A]" />
+                <span>{hero.secondaryCta}</span>
               </button>
             </motion.div>
 
-            {/* Microcopy de Confianza y Garantía */}
+            {/* Microtexto (14px, #5B6B62) */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-              className="text-xs text-text-muted font-medium pt-1"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-sm text-[#5B6B62] font-medium pt-1"
             >
-              {currentHero.microcopy}
+              {hero.microcopy}
             </motion.p>
           </div>
 
-          {/* Columna Derecha: Mockup Visual con Blob y Burbujas de Chat */}
+          {/* Columna Derecha: Foto en Blob --mint con Radio 40px y Burbuja de Chat Flotante */}
           <div className="lg:col-span-5 relative flex justify-center">
-            
-            {/* Blob de Arte Detrás */}
-            <div className="absolute inset-0 max-w-md mx-auto bg-sage-200/80 blob-organic -z-0 scale-105" />
-
-            {/* Contenedor Mockup */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative z-10 w-full max-w-md rounded-3xl overflow-hidden shadow-floating border border-sand-300 bg-cream-card p-3"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative w-full max-w-sm sm:max-w-md"
             >
-              {/* Imagen de Mockup / Paciente sonriendo */}
-              <div className="rounded-2xl overflow-hidden relative aspect-[4/3] bg-sand-200">
-                <img
-                  src="/assets/mockup-referencia.jpg"
-                  alt="Acompañamiento psicológico por WhatsApp con Mente en Línea"
-                  className="w-full h-full object-cover object-top"
-                  loading="eager"
-                  onError={(e) => {
-                    // Fallback a foto cálida de mujer en entorno acogedor si el archivo no cargase
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80";
-                  }}
-                />
+              {/* Contenedor en Blob --mint (#DCE9DD) con radio 40px */}
+              <div className="relative rounded-[40px] bg-[#DCE9DD] p-3 sm:p-4 shadow-lg border border-[rgba(31,77,58,0.12)] overflow-hidden">
                 
-                {/* Micro Badge en la foto */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-xs text-[11px] font-bold text-forest shadow-xs flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sage animate-soft-pulse" />
-                  <span>{currentHero.chatBadge}</span>
+                {/* Foto /assets/hero-mujer.jpg (4:5 en desktop, 1:1 en móvil) */}
+                <div className="relative rounded-[32px] overflow-hidden aspect-square sm:aspect-[4/5] bg-[#EAE1D3]">
+                  <img
+                    src="/assets/hero-mujer.jpg"
+                    alt="Acompañamiento psicológico por WhatsApp con psicólogo colegiado"
+                    className="w-full h-full object-cover object-top"
+                    loading="eager"
+                    width="400"
+                    height="500"
+                  />
+                  
+                  {/* Insignia "Conversación de ejemplo" */}
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FBF8F3]/95 backdrop-blur-xs text-xs font-bold text-[#1F4D3A] shadow-xs flex items-center gap-1.5 border border-[rgba(31,77,58,0.1)]">
+                    <span className="w-2 h-2 rounded-full bg-[#5E7F63] animate-pulse" />
+                    <span>{hero.chatBadge}</span>
+                  </div>
                 </div>
+
+                {/* Burbuja de Chat Flotante: 20:14 y 20:16 */}
+                <div className="mt-3 bg-[#FBF8F3] rounded-2xl p-3 sm:p-3.5 border border-[rgba(31,77,58,0.12)] space-y-2.5 text-left shadow-xs">
+                  {/* Mensaje de Usuario */}
+                  <div className="flex justify-end">
+                    <div className="bg-[#DCF8C6] text-[#1E2A24] px-3.5 py-2 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[88%] shadow-xs">
+                      <p>{hero.floatingChat.userMsg}</p>
+                      <span className="text-[10px] text-[#5B6B62] block text-right mt-0.5">
+                        {hero.floatingChat.userTime}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Mensaje de Psicólogo */}
+                  <div className="flex justify-start">
+                    <div className="bg-white text-[#1E2A24] px-3.5 py-2 rounded-2xl rounded-tl-xs text-xs sm:text-sm max-w-[88%] shadow-xs border border-[#EAE1D3]">
+                      <p>{hero.floatingChat.therapistMsg}</p>
+                      <span className="text-[10px] text-[#5B6B62] block text-left mt-0.5">
+                        {hero.floatingChat.therapistTime}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-              {/* Burbuja de Chat Flotante Animada */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="mt-3 bg-cream-surface rounded-2xl p-3.5 border border-sand-300 space-y-2 text-left"
-              >
-                {/* Mensaje de Usuario */}
-                <div className="flex justify-end">
-                  <div className="bg-whatsapp-bubbleLight text-text-primary px-3.5 py-2 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[85%] shadow-xs">
-                    <p>{currentHero.floatingChat.userMsg}</p>
-                    <span className="text-[10px] text-text-muted block text-right mt-0.5">
-                      {currentHero.floatingChat.userTime}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Mensaje de Terapeuta */}
-                <div className="flex justify-start">
-                  <div className="bg-white text-text-primary px-3.5 py-2 rounded-2xl rounded-tl-xs text-xs sm:text-sm max-w-[85%] shadow-xs border border-sand-200">
-                    <p>{currentHero.floatingChat.therapistMsg}</p>
-                    <span className="text-[10px] text-text-muted block text-left mt-0.5">
-                      {currentHero.floatingChat.therapistTime}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
+
         </div>
 
-        {/* Franja de Confianza (4 Pilares) */}
-        <div className="mt-16 pt-8 border-t border-sand-300/80">
+        {/* Franja de Confianza (14 px, #5B6B62, ícono 44 px) */}
+        <div className="mt-14 pt-8 border-t border-[rgba(31,77,58,0.12)]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            {CONTENT.hero.trustItems.map((item, index) => {
-              const icons = { ShieldCheck, UserCheck, Clock, HeartHandshake };
-              const IconComponent = icons[item.icon] || ShieldCheck;
+            {hero.trustItems.map((item, index) => {
+              const IconComponent = trustIcons[index] || ShieldCheck;
               return (
-                <div key={index} className="flex items-start gap-3.5 p-2">
-                  <div className="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center shrink-0 text-forest">
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-[#DCE9DD] flex items-center justify-center shrink-0 text-[#1F4D3A]">
                     <IconComponent className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-xs sm:text-sm font-bold text-text-primary leading-tight">
+                    <h2 className="text-sm font-bold text-[#1E2A24] leading-tight">
                       {item.title}
                     </h2>
-                    <p className="text-[11px] sm:text-xs text-text-secondary mt-0.5">
+                    <p className="text-sm text-[#5B6B62] mt-0.5 leading-snug">
                       {item.desc}
                     </p>
                   </div>

@@ -1,97 +1,127 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, ClipboardCheck, UserCheck, Mic, Clock, Sparkles } from 'lucide-react';
-import { CONTENT, getWhatsAppUrl } from '../content';
+import { Sparkles, Clock, MessageSquare, ClipboardCheck, UserCheck, Mic } from 'lucide-react';
+import { CONTENT } from '../content';
 
 export default function HowItWorks() {
   const { howItWorks } = CONTENT;
+  const [activeStep, setActiveStep] = useState(0);
 
   const stepIcons = [MessageSquare, ClipboardCheck, UserCheck, Mic];
 
   return (
-    <section id="como-funciona" className="py-20 md:py-32 bg-cream relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="como-funciona" className="py-20 lg:py-28 bg-[#FBF8F3] relative overflow-hidden">
+      <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado */}
-        <div className="max-w-3xl mx-auto text-center mb-16 md:mb-24">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sage-200/60 text-forest text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-forest" />
+        {/* Encabezado Principal */}
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#DCE9DD] text-[#1F4D3A] text-xs font-bold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{howItWorks.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-text-primary tracking-tight mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
             {howItWorks.title}
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
             {howItWorks.subtitle}
           </p>
         </div>
 
-        {/* Scrollytelling de 4 Pasos con Línea de Progreso Lateral */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* Scrollytelling en Desktop con Columna Izquierda Sticky y Pasos a la Derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Línea vertical de progreso */}
-          <div 
-            className="hidden md:block absolute left-8 top-12 bottom-12 w-0.5 bg-gradient-to-b from-sage via-forest to-sage-200" 
-            aria-hidden="true"
-          />
+          {/* Columna Izquierda Sticky con Barra de Progreso Vertical (4 nodos) */}
+          <div className="hidden lg:block lg:col-span-4 sticky top-28 space-y-6 text-left">
+            <div className="bg-[#F7F1E8] p-6 rounded-3xl border border-[rgba(31,77,58,0.12)]">
+              <span className="text-xs font-bold text-[#1F4D3A] uppercase tracking-wider block mb-2">
+                Tu camino paso a paso
+              </span>
+              <p className="text-xs text-[#5B6B62] leading-relaxed mb-6">
+                Acompañamiento sin fricción en la app que ya tienes en el celular.
+              </p>
 
-          <div className="space-y-10 md:space-y-12">
+              {/* Barra de progreso vertical con 4 nodos */}
+              <div className="relative pl-6 space-y-6 border-l-2 border-[#DCE9DD]">
+                {howItWorks.steps.map((step, idx) => {
+                  const isActive = activeStep === idx;
+                  return (
+                    <div
+                      key={idx}
+                      className="relative cursor-pointer"
+                      onClick={() => setActiveStep(idx)}
+                    >
+                      {/* Nodo indicador */}
+                      <span
+                        className={`absolute -left-[31px] top-0.5 w-3.5 h-3.5 rounded-full border-2 transition-all ${
+                          isActive
+                            ? 'bg-[#1F4D3A] border-[#1F4D3A] scale-125'
+                            : 'bg-[#FBF8F3] border-[#5E7F63]/50'
+                        }`}
+                      />
+                      <span
+                        className={`text-xs font-bold transition-colors block ${
+                          isActive ? 'text-[#1F4D3A]' : 'text-[#5B6B62]'
+                        }`}
+                      >
+                        Paso {step.number}: {step.title}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Columna Derecha con Pasos */}
+          <div className="lg:col-span-8 space-y-6">
             {howItWorks.steps.map((step, index) => {
               const Icon = stepIcons[index] || MessageSquare;
+              const isActive = activeStep === index;
+
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative flex flex-col md:flex-row items-start gap-6 bg-cream-card rounded-3xl p-6 sm:p-8 border border-sand-300 shadow-soft hover:shadow-card transition-all duration-200"
+                  onViewportEnter={() => setActiveStep(index)}
+                  className={`p-6 sm:p-8 rounded-3xl border text-left transition-all duration-300 ${
+                    isActive
+                      ? 'bg-[#F7F1E8] border-[#1F4D3A] shadow-md'
+                      : 'bg-[#F7F1E8]/70 border-[rgba(31,77,58,0.12)] shadow-xs hover:border-[#5E7F63]/40'
+                  }`}
                 >
-                  {/* Número e Ícono */}
-                  <div className="relative z-10 flex items-center justify-center shrink-0">
-                    <div className="w-16 h-16 rounded-2xl bg-forest text-white flex flex-col items-center justify-center shadow-card">
-                      <span className="text-[11px] font-bold text-sage-200 uppercase tracking-widest leading-none">
-                        Paso
-                      </span>
-                      <span className="font-display font-extrabold text-xl leading-tight">
-                        {step.number}
-                      </span>
+                  <div className="flex items-start gap-4 sm:gap-5">
+                    {/* Número e ícono */}
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#1F4D3A] text-[#FBF8F3] flex items-center justify-center shrink-0 shadow-xs">
+                      <Icon className="w-6 h-6 text-[#DCE9DD]" />
                     </div>
-                  </div>
 
-                  {/* Contenido del Paso */}
-                  <div className="flex-1 text-left space-y-2">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary tracking-tight">
+                    <div className="space-y-2 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-[#5E7F63] uppercase tracking-wider">
+                          Paso {step.number}
+                        </span>
+                      </div>
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1E2A24] tracking-tight">
                         {step.title}
                       </h3>
-                      <span className="px-3 py-0.5 rounded-full bg-sage-200/60 text-forest text-xs font-semibold">
-                        {step.highlight}
-                      </span>
+                      <p className="text-sm sm:text-base text-[#5B6B62] leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
-                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                      {step.description}
-                    </p>
                   </div>
                 </motion.div>
               );
             })}
-          </div>
 
-          {/* Banner de Garantía al Pie */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 p-5 rounded-2xl bg-cream-surface border border-sand-300 text-center flex flex-col sm:flex-row items-center justify-center gap-3"
-          >
-            <div className="w-8 h-8 rounded-full bg-forest text-white flex items-center justify-center shrink-0">
-              <Clock className="w-4 h-4 text-whatsapp-green" />
+            {/* Nota de garantía al pie */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#DCE9DD]/60 border border-[rgba(31,77,58,0.15)] flex items-center justify-center gap-3 text-center sm:text-left text-xs sm:text-sm font-semibold text-[#1F4D3A]">
+              <Clock className="w-5 h-5 text-[#1F4D3A] shrink-0" />
+              <span>{howItWorks.guaranteeNote}</span>
             </div>
-            <p className="text-xs sm:text-sm text-forest font-semibold">
-              {howItWorks.guaranteeNote}
-            </p>
-          </motion.div>
+          </div>
 
         </div>
 

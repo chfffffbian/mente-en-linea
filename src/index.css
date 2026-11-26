@@ -3,14 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --color-cream: #F7F1E8;
-  --color-card: #FBF8F3;
-  --color-sage: #5E7F63;
-  --color-forest: #1F4D3A;
-  --color-mint: #DCE9DD;
-  --color-text-primary: #1E2A24;
-  --color-text-secondary: #5B6B62;
-  --color-whatsapp: #25D366;
+  --cream: #F7F1E8;
+  --cream-2: #FBF8F3;
+  --sage: #5E7F63;
+  --forest: #1F4D3A;
+  --brand: #0B4A24;
+  --mint: #DCE9DD;
+  --ink: #1E2A24;
+  --ink-2: #5B6B62;
+  --wa: #25D366;
+  --danger: #A63A2E;
+  --danger-bg: #FBEDEA;
+  --dark: #12201A;
+  --dark-card: #1B2E25;
+  --dark-accent: #7FD6A5;
+  --border: rgba(31, 77, 58, 0.12);
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+  --sh-sm: 0 1px 2px rgba(30, 42, 36, 0.06);
+  --sh-md: 0 8px 24px rgba(30, 42, 36, 0.08);
+  --sh-lg: 0 20px 48px rgba(30, 42, 36, 0.10);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-size-scale: 1rem;
 }
 
@@ -21,22 +36,33 @@
   }
 
   body {
-    background-color: var(--color-cream);
-    color: var(--color-text-primary);
-    font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
+  /* Anclas con margen para navbar sticky de 72-88px */
+  section, [id] {
+    scroll-margin-top: 88px;
+  }
+
+  /* Titulares y jerarquía */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', 'League Spartan', system-ui, sans-serif;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+  }
+
+  /* PROHIBIDO tracking o word-spacing negativo en texto <24 px */
+  p, span, li, button, input, label, a {
+    letter-spacing: normal;
+    word-spacing: normal;
   }
 
   /* Foco accesible visible para teclado */
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-    outline: 2px solid var(--color-forest);
+    outline: 3px solid var(--forest);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -65,6 +91,10 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .menti-float {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Blobs orgánicos cálidos */
@@ -76,17 +106,7 @@
   border-radius: 46% 54% 36% 64% / 56% 44% 56% 44%;
 }
 
-/* Animación sutil de pulso para badges */
-@keyframes softPulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.03); }
-}
-
-.animate-soft-pulse {
-  animation: softPulse 4s infinite ease-in-out;
-}
-
-/* Flotación suave para MENTI (±6px) */
+/* Flotación suave para MENTI (±6px / 6s) */
 @keyframes mentiFloat {
   0%, 100% {
     transform: translateY(0px);
@@ -97,13 +117,5 @@
 }
 
 .menti-float {
-  animation: mentiFloat 3.5s ease-in-out infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .menti-float {
-    animation: none !important;
-    transform: none !important;
-  }
+  animation: mentiFloat 6s ease-in-out infinite;
 }

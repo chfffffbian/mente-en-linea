@@ -1,240 +1,200 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Play, Pause, CheckCheck, RotateCcw, Sparkles, Smartphone, Volume2 } from 'lucide-react';
+import { Smartphone, MessageCircle, ArrowRight } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
 export default function ChatDemo() {
   const { chatDemo } = CONTENT;
-  const [selectedConv, setSelectedConv] = useState(chatDemo.conversations[0]);
+  const [selectedIdx, setSelectedIdx] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [showReply, setShowReply] = useState(true);
+  const messagesEndRef = useRef(null);
 
-  const handleSelectConversation = (conv) => {
-    if (conv.id === selectedConv.id) return;
+  const currentSituation = chatDemo.situations[selectedIdx];
+
+  const handleSelectSituation = (idx) => {
+    if (idx === selectedIdx) return;
+    setSelectedIdx(idx);
+    setShowReply(false);
     setIsTyping(true);
-    setIsPlayingAudio(false);
-    setSelectedConv(conv);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const typingDelay = prefersReducedMotion ? 0 : 900;
 
     setTimeout(() => {
       setIsTyping(false);
-    }, 700);
+      setShowReply(true);
+    }, typingDelay);
   };
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [showReply, isTyping]);
+
   return (
-    <section id="chat-demo" className="py-20 md:py-32 bg-cream-surface/50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="chat-demo" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+      <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sage-200/60 text-forest text-xs font-bold uppercase tracking-wider mb-4">
-            <Smartphone className="w-3.5 h-3.5 text-forest" />
+        <div className="text-center max-w-[800px] mx-auto mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#DCE9DD] text-[#1F4D3A] text-xs font-bold uppercase tracking-wider mb-4">
+            <Smartphone className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{chatDemo.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-text-primary tracking-tight mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
             {chatDemo.title}
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
             {chatDemo.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-5xl mx-auto">
+        {/* Grid: Selector + Simulador Móvil de WhatsApp */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Columna Izquierda: Selector de 3 Situaciones */}
+          {/* Columna Izquierda: Tarjeta MENTI + 3 Opciones (tablist) */}
           <div className="lg:col-span-5 text-left space-y-4">
-            {/* Bienvenida MENTI en Chat Demo */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-cream-card border border-sand-300 text-left">
+            
+            {/* Tarjeta MENTI (96px) */}
+            <div className="p-4 rounded-3xl bg-[#FBF8F3] border border-[rgba(31,77,58,0.12)] shadow-xs flex items-center gap-4">
               <img
                 src="/assets/menti-hq.svg"
                 alt="MENTI, la mascota de Mente en Línea"
-                width="140"
-                height="140"
+                width="96"
+                height="96"
                 loading="lazy"
-                className="w-24 h-24 sm:w-28 sm:h-28 object-contain menti-float shrink-0"
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain menti-float shrink-0"
               />
-              <div className="space-y-1">
-                <span className="text-xs font-bold text-forest uppercase tracking-wider block">
-                  ¡Hola! Soy MENTI
-                </span>
-                <p className="text-xs sm:text-sm text-text-secondary leading-snug">
-                  Elige una situación abajo para ver cómo te acompaña tu psicólogo en WhatsApp día a día.
-                </p>
-              </div>
-            </div>
-
-            <span className="text-xs font-bold text-forest uppercase tracking-wider block pt-1 mb-2">
-              Toca un tema para probar la dinámica:
-            </span>
-
-            {chatDemo.conversations.map((conv) => {
-              const isActive = conv.id === selectedConv.id;
-              return (
-                <button
-                  key={conv.id}
-                  onClick={() => handleSelectConversation(conv)}
-                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 ${
-                    isActive
-                      ? 'bg-cream-card border-forest shadow-card scale-[1.02]'
-                      : 'bg-cream-surface border-sand-300 hover:border-sage-400 opacity-80'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-bold text-forest uppercase">
-                      {conv.tabLabel}
-                    </span>
-                    {isActive && (
-                      <span className="w-2 h-2 rounded-full bg-whatsapp-green animate-pulse" />
-                    )}
-                  </div>
-                  <p className="text-xs sm:text-sm text-text-primary font-medium line-clamp-2">
-                    "{conv.userPrompt}"
-                  </p>
-                </button>
-              );
-            })}
-
-            <div className="p-4 rounded-2xl bg-cream-card border border-sand-300 text-xs text-text-secondary space-y-1.5 mt-6">
-              <div className="font-bold text-forest flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-whatsapp-green" />
-                <span>Dinámica de escucha activa</span>
-              </div>
-              <p>
-                Sin cámara ni consultorio frío — Escribes cuando te sientas listo.
+              <p className="text-xs sm:text-sm text-[#1E2A24] leading-relaxed font-medium">
+                {chatDemo.mentiWelcome}
               </p>
             </div>
+
+            {/* Selector de Situaciones (role="tablist", alto >= 44px) */}
+            <div role="tablist" aria-label="Situaciones de ejemplo" className="space-y-3 pt-2">
+              {chatDemo.situations.map((sit, idx) => {
+                const isSelected = selectedIdx === idx;
+                return (
+                  <button
+                    key={sit.id}
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() => handleSelectSituation(idx)}
+                    className={`w-full min-h-[48px] p-4 rounded-2xl border text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A] ${
+                      isSelected
+                        ? 'bg-[#FBF8F3] border-[#1F4D3A] shadow-sm scale-[1.01]'
+                        : 'bg-[#FBF8F3]/60 border-[rgba(31,77,58,0.12)] hover:border-[#5E7F63]/50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-xs font-bold uppercase tracking-wide ${isSelected ? 'text-[#1F4D3A]' : 'text-[#5B6B62]'}`}>
+                        {sit.label}
+                      </span>
+                      {isSelected && (
+                        <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#1E2A24] font-medium line-clamp-2">
+                      "{sit.userMsg}"
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+
           </div>
 
-          {/* Columna Derecha: Mockup Interactivo de Teléfono WhatsApp */}
+          {/* Columna Derecha: Mockup Teléfono (alto 640px) */}
           <div className="lg:col-span-7 flex justify-center">
-            <div className="w-full max-w-[380px] bg-sand-900 rounded-[38px] p-3 shadow-floating border-4 border-sand-800">
+            <div className="w-full max-w-sm sm:max-w-md h-[640px] bg-[#12201A] rounded-[44px] p-3 shadow-2xl border-4 border-[#2C3E34] flex flex-col justify-between">
               
               {/* Pantalla del Teléfono */}
-              <div className="bg-[#EFEAE2] rounded-[30px] overflow-hidden flex flex-col h-[540px] text-left">
+              <div className="w-full h-full bg-[#EFEAE2] rounded-[36px] overflow-hidden flex flex-col justify-between border border-[#D5CDBC] relative">
                 
-                {/* Cabecera WhatsApp Business */}
-                <div className="bg-[#075E54] text-white p-3.5 flex items-center justify-between shadow-xs">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-full bg-cream-card flex items-center justify-center p-1.5 shrink-0">
+                {/* Cabecera de WhatsApp */}
+                <div className="bg-[#1F4D3A] text-white px-4 py-3 flex items-center justify-between shadow-sm shrink-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#DCE9DD] flex items-center justify-center text-[#1F4D3A] font-bold text-sm">
                       <img
                         src="/assets/logo-icon-hq-verde.svg"
                         alt=""
                         aria-hidden="true"
                         width="24"
                         height="24"
-                        className="w-full h-full object-contain"
+                        className="w-6 h-6 object-contain"
                       />
                     </div>
-                    <div>
-                      <div className="text-xs sm:text-sm font-bold flex items-center gap-1">
-                        <span>Tu psicólogo · Colegiado (CPsP)</span>
-                        <CheckCheck className="w-3.5 h-3.5 text-[#34B7F1]" />
+                    <div className="text-left">
+                      <div className="text-sm font-bold text-[#FBF8F3] leading-tight">
+                        {chatDemo.headerTitle}
                       </div>
-                      <span className="text-[10px] text-[#A7D8D0] block">
-                        {isTyping ? "escribiendo..." : "en línea · Lun a Sáb"}
+                      <div className="text-[11px] text-[#DCE9DD] font-medium">
+                        {chatDemo.headerStatus}
+                      </div>
+                    </div>
+                  </div>
+
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-[10px] font-bold uppercase tracking-wider text-white">
+                    {chatDemo.headerBadge}
+                  </span>
+                </div>
+
+                {/* Área de Mensajes con Scroll Propio */}
+                <div className="flex-1 p-4 overflow-y-auto space-y-3 text-left">
+                  {/* Mensaje de Usuario */}
+                  <div className="flex justify-end">
+                    <div className="bg-[#DCF8C6] text-[#1E2A24] p-3 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[85%] shadow-xs">
+                      <p>{currentSituation.userMsg}</p>
+                      <span className="text-[10px] text-[#5B6B62] block text-right mt-1">
+                        20:14
                       </span>
                     </div>
                   </div>
 
-                  <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-medium">
-                    Ejemplo
-                  </span>
-                </div>
-
-                {/* Área de Chat con Fondo Estilo WhatsApp */}
-                <div className="flex-1 p-3.5 overflow-y-auto space-y-3 text-xs sm:text-sm">
-                  
-                  {/* Etiqueta Cifrado WhatsApp */}
-                  <div className="text-center my-1">
-                    <span className="bg-[#FFEECD] text-[#554316] text-[10px] font-medium px-2.5 py-1 rounded-md shadow-2xs inline-block">
-                      🔒 Los mensajes están cifrados de extremo a extremo.
-                    </span>
-                  </div>
-
-                  {/* Mensaje de Usuario */}
-                  <div className="flex justify-end">
-                    <div className="bg-[#DCF8C6] text-text-primary px-3.5 py-2.5 rounded-2xl rounded-tr-xs max-w-[85%] shadow-xs">
-                      <p className="leading-snug">{selectedConv.userPrompt}</p>
-                      <div className="flex items-center justify-end gap-1 text-[10px] text-text-muted mt-1">
-                        <span>12:15</span>
-                        <CheckCheck className="w-3.5 h-3.5 text-[#34B7F1]" />
+                  {/* Indicador de escritura (900ms) */}
+                  {isTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-white text-[#5B6B62] px-3.5 py-2.5 rounded-2xl rounded-tl-xs text-xs shadow-xs flex items-center gap-1.5 border border-[#EAE1D3]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1F4D3A] animate-bounce" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1F4D3A] animate-bounce [animation-delay:0.2s]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1F4D3A] animate-bounce [animation-delay:0.4s]" />
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Indicador de "Escribiendo..." o Respuesta del Terapeuta */}
-                  <AnimatePresence mode="wait">
-                    {isTyping ? (
-                      <motion.div
-                        key="typing"
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="flex justify-start"
-                      >
-                        <div className="bg-white px-4 py-2.5 rounded-2xl rounded-tl-xs shadow-xs flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-forest animate-bounce" />
-                          <span className="w-2 h-2 rounded-full bg-forest animate-bounce delay-100" />
-                          <span className="w-2 h-2 rounded-full bg-forest animate-bounce delay-200" />
-                        </div>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="reply"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-2.5"
-                      >
-                        {/* Audio simulado del psicólogo */}
-                        <div className="bg-white p-3 rounded-2xl rounded-tl-xs shadow-xs max-w-[90%] border border-sand-200">
-                          <div className="flex items-center gap-3">
-                            <button
-                              onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                              className="w-9 h-9 rounded-full bg-[#128C7E] text-white flex items-center justify-center shrink-0 hover:bg-[#075E54] transition-colors"
-                              aria-label={isPlayingAudio ? "Pausar nota de voz" : "Reproducir nota de voz"}
-                            >
-                              {isPlayingAudio ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-                            </button>
-                            <div className="flex-1">
-                              <div className="h-1.5 bg-sand-200 rounded-full overflow-hidden">
-                                <div className={`h-full bg-[#128C7E] rounded-full transition-all duration-300 ${isPlayingAudio ? 'w-3/4' : 'w-1/4'}`} />
-                              </div>
-                              <div className="flex justify-between text-[10px] text-text-muted mt-1">
-                                <span>{isPlayingAudio ? "0:45" : selectedConv.audioDuration}</span>
-                                <span className="flex items-center gap-1 font-semibold text-forest">
-                                  <Volume2 className="w-3 h-3" /> Audio explicativo
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                  {/* Respuesta del Psicólogo Colegiado */}
+                  {showReply && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex justify-start"
+                    >
+                      <div className="bg-white text-[#1E2A24] p-3.5 rounded-2xl rounded-tl-xs text-xs sm:text-sm max-w-[88%] shadow-xs border border-[#EAE1D3]">
+                        <p className="leading-relaxed">{currentSituation.psychologistReply}</p>
+                        <span className="text-[10px] text-[#5B6B62] block text-left mt-1.5">
+                          20:16
+                        </span>
+                      </div>
+                    </motion.div>
+                  )}
 
-                        {/* Texto del Psicólogo */}
-                        <div className="bg-white text-text-primary px-3.5 py-2.5 rounded-2xl rounded-tl-xs max-w-[90%] shadow-xs border border-sand-200">
-                          <p className="leading-snug">{selectedConv.therapistReply}</p>
-                          <div className="mt-2 pt-2 border-t border-sand-100 text-[11px] text-forest font-semibold flex items-center gap-1">
-                            <span>🌱</span>
-                            <span>{selectedConv.exerciseNote}</span>
-                          </div>
-                          <span className="text-[10px] text-text-muted block text-right mt-1">
-                            12:18
-                          </span>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <div ref={messagesEndRef} />
                 </div>
 
-                {/* Barra Inferior Simulada con Botón para Abrir WhatsApp Real */}
-                <div className="bg-[#F0F2F5] p-2.5 border-t border-sand-300 flex items-center gap-2">
+                {/* Botón CTA FUERA del área de scroll (nada queda tapado) */}
+                <div className="p-3 bg-white/90 backdrop-blur-xs border-t border-[#D5CDBC] shrink-0">
                   <a
-                    href={getWhatsAppUrl(`Hola, me gustó la dinámica del chat sobre "${selectedConv.tabLabel}". Quiero consultar por el acompañamiento.`)}
+                    href={getWhatsAppUrl(`Hola, vi la demo de ${currentSituation.label} y me gustaría empezar.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-2 px-3 rounded-full bg-[#075E54] hover:bg-[#128C7E] text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                    className="w-full py-3 px-4 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-whatsapp-green" />
-                    <span>Empezar este chat en WhatsApp real</span>
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>{chatDemo.ctaButton}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
 
@@ -244,9 +204,9 @@ export default function ChatDemo() {
 
         </div>
 
-        {/* Disclaimer claro */}
-        <p className="text-xs text-text-muted text-center mt-8 italic">
-          {chatDemo.disclaimer}
+        {/* Pie (14 px) */}
+        <p className="text-sm text-[#5B6B62] mt-8 text-center">
+          {chatDemo.footnote}
         </p>
 
       </div>

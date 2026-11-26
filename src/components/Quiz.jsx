@@ -1,195 +1,278 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ArrowRight, CheckCircle2, RotateCcw, MessageCircle, Sparkles, Shield } from 'lucide-react';
+import { HelpCircle, ArrowLeft, ArrowRight, RotateCcw, MessageCircle, AlertTriangle } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
 export default function Quiz() {
   const { quiz } = CONTENT;
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0); // 0 to 3
+  const [selectedOption, setSelectedOption] = useState(null);
   const [answers, setAnswers] = useState({});
   const [completed, setCompleted] = useState(false);
+  const [validationError, setValidationError] = useState('');
 
-  const handleSelectOption = (questionId, option) => {
-    const updated = { ...answers, [questionId]: option.text };
-    setAnswers(updated);
+  const currentQ = quiz.questions[currentStep];
+
+  const handleNext = () => {
+    if (!selectedOption) {
+      setValidationError('Elige una opción para continuar.');
+      return;
+    }
+
+    setValidationError('');
+    const updatedAnswers = { ...answers, [currentStep + 1]: selectedOption };
+    setAnswers(updatedAnswers);
 
     if (currentStep < quiz.questions.length - 1) {
       setCurrentStep(currentStep + 1);
+      setSelectedOption(answers[currentStep + 2] || null);
     } else {
       setCompleted(true);
     }
   };
 
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setValidationError('');
+      const prevStep = currentStep - 1;
+      setCurrentStep(prevStep);
+      setSelectedOption(answers[prevStep + 1] || null);
+    }
+  };
+
   const handleReset = () => {
     setCurrentStep(0);
+    setSelectedOption(null);
     setAnswers({});
     setCompleted(false);
+    setValidationError('');
   };
 
-  // Construcción del mensaje prellenado personalizado para WhatsApp
-  const generateWhatsAppMessage = () => {
-    const q1 = answers[1] || "apoyo general";
-    const q2 = answers[2] || "horarios flexibles";
-    const q3 = answers[3] || "primera vez";
+  // Lógica de recomendación de plan según P3:
+  // Si P3 es "No" o "Prefiero no decirlo" -> Semana de prueba (S/ 25)
+  // Si P3 es "Sí" -> Acompañamiento mensual (S/ 89)
+  const prevTherapy = answers[3] || 'No';
+  const suggestedPlan =
+    prevTherapy === 'Sí'
+      ? 'Acompañamiento mensual (S/ 89)'
+      : 'Semana de prueba (S/ 25)';
 
-    return `Hola Mente en Línea, completé el test en su web y me recomendaron iniciar acompañamiento.
+  const objetivo = answers[1] || 'Cuidado personal';
+  const horario = answers[2] || 'Horario flexible';
+  const region = answers[4] || 'Todo el Perú';
 
-📋 Mis respuestas:
-- Motivo principal: ${q1}
-- Espacio para escribir: ${q2}
-- Experiencia previa: ${q3}
-
-¿Cómo puedo empezar con mi psicólogo colegiado?`;
-  };
-
-  const currentQ = quiz.questions[currentStep];
+  const whatsappMessage = `Hola, hice la guía de inicio. Me interesa: ${objetivo}. Prefiero escribir: ${horario}. Región: ${region}. Plan sugerido: ${suggestedPlan}.`;
 
   return (
-    <section id="quiz" className="py-20 md:py-32 bg-cream-surface/70 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="quiz" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+      <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sage-200/60 text-forest text-xs font-bold uppercase tracking-wider mb-4">
-            <HelpCircle className="w-3.5 h-3.5 text-forest" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#DCE9DD] text-[#1F4D3A] text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{quiz.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-text-primary tracking-tight mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
             {quiz.title}
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
             {quiz.subtitle}
           </p>
         </div>
 
-        {/* Tarjeta Contenedora del Quiz */}
-        <div className="bg-cream-card rounded-3xl p-6 sm:p-10 border border-sand-300 shadow-card relative overflow-hidden">
+        {/* Tarjeta del Quiz */}
+        <div className="bg-[#FBF8F3] rounded-3xl p-6 sm:p-10 border border-[rgba(31,77,58,0.12)] shadow-sm relative overflow-hidden">
           
           <AnimatePresence mode="wait">
             {!completed ? (
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-6 text-left"
               >
-                {/* Barra de Progreso */}
-                <div className="flex items-center justify-between text-xs font-semibold text-text-secondary pb-3 border-b border-sand-200">
+                {/* Header de Pregunta X de 4 (sin "Paso 25%") */}
+                <div className="flex items-center justify-between text-xs font-bold text-[#1F4D3A] pb-2">
                   <span>Pregunta {currentStep + 1} de {quiz.questions.length}</span>
-                  <span className="text-forest">Paso {Math.round(((currentStep + 1) / quiz.questions.length) * 100)}%</span>
                 </div>
 
-                <div className="w-full bg-sand-200 h-2 rounded-full overflow-hidden">
+                {/* Barra de progreso */}
+                <div className="w-full bg-[#EAE1D3] h-2 rounded-full overflow-hidden" role="progressbar" aria-valuenow={currentStep + 1} aria-valuemin={1} aria-valuemax={4}>
                   <div
-                    className="bg-forest h-full rounded-full transition-all duration-300"
+                    className="bg-[#1F4D3A] h-full rounded-full transition-all duration-300"
                     style={{ width: `${((currentStep + 1) / quiz.questions.length) * 100}%` }}
                   />
                 </div>
 
                 {/* Pregunta Actual */}
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary pt-2">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1E2A24] pt-2">
                   {currentQ.question}
                 </h3>
 
-                {/* Opciones */}
-                <div className="grid grid-cols-1 gap-3 pt-2">
-                  {currentQ.options.map((option, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleSelectOption(currentQ.id, option)}
-                      className="w-full text-left p-4 rounded-2xl bg-cream hover:bg-cream-surface border border-sand-300 hover:border-forest text-sm sm:text-base font-medium text-text-primary flex items-center justify-between group transition-all duration-150"
-                    >
-                      <span>{option.text}</span>
-                      <ArrowRight className="w-4 h-4 text-forest opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </button>
-                  ))}
+                {/* Opciones (role="radiogroup", alto >= 48px) */}
+                <div
+                  role="radiogroup"
+                  aria-label={currentQ.question}
+                  className="space-y-3 pt-2"
+                >
+                  {currentQ.options.map((option, idx) => {
+                    const isSelected = selectedOption === option;
+                    return (
+                      <button
+                        key={idx}
+                        type="button"
+                        role="radio"
+                        aria-checked={isSelected}
+                        onClick={() => {
+                          setSelectedOption(option);
+                          setValidationError('');
+                        }}
+                        className={`w-full min-h-[48px] p-4 rounded-2xl border text-left flex items-center justify-between text-sm sm:text-base font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A] ${
+                          isSelected
+                            ? 'bg-[#DCE9DD]/60 border-[#1F4D3A] text-[#1F4D3A] font-bold shadow-xs'
+                            : 'bg-[#F7F1E8] border-[rgba(31,77,58,0.15)] text-[#1E2A24] hover:bg-[#DCE9DD]/30'
+                        }`}
+                      >
+                        <span>{option}</span>
+                        <span
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                            isSelected ? 'border-[#1F4D3A] bg-[#1F4D3A]' : 'border-[#5B6B62]/40'
+                          }`}
+                        >
+                          {isSelected && <span className="w-2 h-2 rounded-full bg-[#FBF8F3]" />}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
 
-                {/* Botón Volver */}
-                {currentStep > 0 && (
+                {/* Mensaje de validación con aria-live */}
+                <div aria-live="polite" className="min-h-[20px]">
+                  {validationError && (
+                    <p className="text-xs font-semibold text-[#A63A2E] animate-shake">
+                      {validationError}
+                    </p>
+                  )}
+                </div>
+
+                {/* Botones de Navegación: Atrás (desde pregunta 2) y Siguiente */}
+                <div className="pt-2 flex items-center justify-between gap-4 border-t border-[rgba(31,77,58,0.1)]">
+                  {currentStep > 0 ? (
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="px-5 py-3 rounded-full bg-[#F7F1E8] border border-[rgba(31,77,58,0.15)] text-xs sm:text-sm font-bold text-[#1E2A24] hover:bg-[#DCE9DD]/40 transition-colors flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      <span>Atrás</span>
+                    </button>
+                  ) : (
+                    <div />
+                  )}
+
                   <button
-                    onClick={() => setCurrentStep(currentStep - 1)}
-                    className="text-xs font-semibold text-text-secondary hover:text-forest transition-colors pt-2 inline-flex items-center gap-1"
+                    type="button"
+                    onClick={handleNext}
+                    className="px-7 py-3 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] text-xs sm:text-sm font-bold shadow-sm transition-all flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
                   >
-                    ← Pregunta anterior
+                    <span>{currentStep === quiz.questions.length - 1 ? 'Ver sugerencia' : 'Siguiente'}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
-                )}
+                </div>
+
               </motion.div>
             ) : (
-              /* Pantalla de Resultado con MENTI */
+              /* Pantalla de Resultados con MENTI 140px */
               <motion.div
-                key="result"
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-                className="text-center space-y-6"
+                transition={{ duration: 0.3 }}
+                className="space-y-6 text-center"
               >
+                {/* Mascota MENTI (140px) */}
                 <div className="flex justify-center">
-                  <div className="w-32 h-32 relative">
-                    <img
-                      src="/assets/menti-hq.svg"
-                      alt="MENTI, la mascota de Mente en Línea"
-                      width="140"
-                      height="140"
-                      loading="lazy"
-                      className="w-full h-full object-contain menti-float"
-                    />
+                  <img
+                    src="/assets/menti-hq.svg"
+                    alt="MENTI, la mascota de Mente en Línea"
+                    width="140"
+                    height="140"
+                    loading="lazy"
+                    className="w-32 h-32 sm:w-36 sm:h-36 object-contain menti-float"
+                  />
+                </div>
+
+                {/* Plan sugerido */}
+                <div className="space-y-2">
+                  <span className="text-xs font-bold text-[#5E7F63] uppercase tracking-wider block">
+                    Resultado de tu guía de inicio
+                  </span>
+                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#1E2A24] tracking-tight">
+                    Te sugerimos empezar con la {suggestedPlan}
+                  </h3>
+                  <p className="text-sm text-[#5B6B62]">
+                    Es una sugerencia para empezar, no un diagnóstico.
+                  </p>
+                </div>
+
+                {/* Resumen: objetivo, horario y región */}
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#F7F1E8] border border-[rgba(31,77,58,0.12)] text-left text-xs sm:text-sm space-y-2 max-w-lg mx-auto">
+                  <div className="flex justify-between border-b border-[rgba(31,77,58,0.1)] pb-2">
+                    <span className="text-[#5B6B62]">Objetivo principal:</span>
+                    <span className="font-bold text-[#1E2A24]">{objetivo}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-[rgba(31,77,58,0.1)] pb-2">
+                    <span className="text-[#5B6B62]">Preferencia de horario:</span>
+                    <span className="font-bold text-[#1E2A24]">{horario}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#5B6B62]">Región:</span>
+                    <span className="font-bold text-[#1E2A24]">{region}</span>
                   </div>
                 </div>
 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sage-200 text-forest text-xs font-bold">
-                  <Sparkles className="w-3.5 h-3.5 text-forest" />
-                  <span>Tu recomendación personalizada</span>
-                </div>
-
-                <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-text-primary">
-                  El Plan Acompañamiento Mensual es el ideal para ti
-                </h3>
-
-                <p className="text-sm sm:text-base text-text-secondary max-w-xl mx-auto leading-relaxed">
-                  Por tu disponibilidad y tus objetivos, tener un <strong>psicólogo colegiado fijo</strong> en WhatsApp te permitirá reflexionar a tu ritmo sin la rigidez de citas semanales.
-                </p>
-
-                {/* Resumen de Respuestas */}
-                <div className="bg-cream p-4 rounded-2xl border border-sand-300 text-left text-xs sm:text-sm text-text-secondary space-y-1.5 max-w-md mx-auto">
-                  <div className="font-bold text-forest mb-2">Tu resumen para iniciar:</div>
-                  <p>• <strong>Objetivo:</strong> {answers[1]}</p>
-                  <p>• <strong>Horario ideal:</strong> {answers[2]}</p>
-                  <p>• <strong>Experiencia previa:</strong> {answers[3]}</p>
-                </div>
-
-                {/* Botón CTA a WhatsApp con mensaje prellenado */}
+                {/* Botón Principal y Secundario */}
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
-                    href={getWhatsAppUrl(generateWhatsAppMessage())}
+                    href={getWhatsAppUrl(whatsappMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-7 py-4 rounded-full bg-forest hover:bg-forest-light text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-card hover:shadow-floating transition-all"
+                    className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
                   >
-                    <MessageCircle className="w-5 h-5 text-whatsapp-green fill-white/20" />
-                    <span>Continuar por WhatsApp con este resumen</span>
+                    <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                    <span>Continuar por WhatsApp con mi resumen</span>
                   </a>
 
                   <button
                     onClick={handleReset}
-                    className="w-full sm:w-auto px-5 py-3 rounded-full bg-cream hover:bg-cream-surface border border-sand-300 text-text-secondary font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                    className="px-5 py-3 rounded-full text-xs font-semibold text-[#5B6B62] hover:text-[#1E2A24] transition-colors flex items-center gap-1.5"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Volver a responder</span>
+                    <span>Volver a empezar</span>
                   </button>
                 </div>
+
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Aviso Legal de Salud Mental */}
-          <div className="mt-8 pt-5 border-t border-sand-200/80 flex items-start gap-2.5 text-[11px] text-text-muted text-left">
-            <Shield className="w-4 h-4 text-forest shrink-0 mt-0.5" />
-            <p>{quiz.disclaimer}</p>
-          </div>
+        </div>
 
+        {/* Aviso (14 px) y Enlace Discreto a Ayuda Inmediata */}
+        <div className="mt-6 text-center space-y-2">
+          <p className="text-sm text-[#5B6B62] leading-relaxed">
+            {quiz.notice}
+          </p>
+          <div>
+            <a
+              href={quiz.urgentAnchor}
+              className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#5B6B62] hover:text-[#A63A2E] underline underline-offset-4 transition-colors"
+            >
+              <span>{quiz.urgentLinkText}</span>
+            </a>
+          </div>
         </div>
 
       </div>
