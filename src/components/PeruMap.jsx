@@ -89,7 +89,7 @@ const regionsData = [
     category: "metropolitan",
     brecha: "~50%",
     stat: "Aproximadamente el 50%",
-    description: "Concentra la mitad de psicólogos, pero con altas barreras de costo y tiempo.",
+    description: "Hay más oferta, pero también barreras de costo y de tiempo.",
     color: "calmblue",
     coords: { x: 415, y: 630 },
     badge: "Lima y Callao",
@@ -322,8 +322,8 @@ export default function PeruMap() {
             📍 Servicio 100% activo en los 24 departamentos y la provincia constitucional del Callao.
           </p>
 
-          <p className="text-[11px] text-sand-500 dark:text-sand-400 mt-1 text-center italic">
-            Cifras de brecha regional agregadas a partir de reportes de la Defensoría del Pueblo del Perú (2025).
+          <p className="text-[11px] text-text-muted mt-1 text-center italic">
+            Cifras referenciales de brecha de atención.
           </p>
 
         </div>

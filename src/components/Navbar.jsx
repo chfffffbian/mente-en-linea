@@ -48,18 +48,18 @@ export default function Navbar({ activeSegment, onToggleSegment, fontSizeScale, 
               className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-forest rounded-xl"
               aria-label="Ir al inicio de Mente en Línea"
             >
-              <div className="w-10 h-10 rounded-2xl bg-forest flex items-center justify-center p-1.5 shadow-xs group-hover:scale-105 transition-transform duration-200">
+              <div className="w-9 h-9 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                 <img
-                  src="/assets/logo-blanco.png"
-                  alt="Isotipo Mente en Línea"
+                  src="/assets/logo-icon-hq-verde.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width="36"
+                  height="36"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
                 />
               </div>
               <div className="flex flex-col text-left">
-                <span className="font-display font-extrabold text-lg sm:text-xl text-forest tracking-tight leading-tight">
+                <span className="font-display font-bold text-lg sm:text-xl text-forest tracking-tight leading-tight">
                   Mente en Línea
                 </span>
                 <span className="text-[11px] text-text-secondary font-medium tracking-tight -mt-0.5">

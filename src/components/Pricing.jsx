@@ -21,6 +21,18 @@ export default function Pricing({ initialSegment = 'b2c', segment: externalSegme
         
         {/* Encabezado */}
         <div className="max-w-3xl mx-auto text-center mb-12">
+          {/* MENTI en encabezado de Planes */}
+          <div className="flex justify-center mb-4">
+            <img
+              src="/assets/menti-hq.svg"
+              alt="MENTI, la mascota de Mente en Línea"
+              width="150"
+              height="150"
+              loading="lazy"
+              className="w-28 h-28 sm:w-36 sm:h-36 object-contain menti-float"
+            />
+          </div>
+
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sage-200/60 text-forest text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-forest" />
             <span>{pricing.eyebrow}</span>
@@ -94,26 +106,40 @@ export default function Pricing({ initialSegment = 'b2c', segment: externalSegme
                   </div>
 
                   {/* Precio */}
-                  <div className="text-left my-4 pb-4 border-b border-sand-200">
-                    <div className="flex items-baseline gap-1">
-                      <span className="font-display font-extrabold text-3xl sm:text-4xl text-forest">
-                        S/ {plan.price}
-                      </span>
-                      <span className="text-xs text-text-secondary font-medium">
-                        {plan.period}
-                      </span>
-                    </div>
+                  <div className="text-left my-4 pb-4 border-b border-sand-200 min-h-[56px] flex items-center">
+                    {plan.price !== null ? (
+                      <div className="flex items-baseline gap-1">
+                        <span className="font-display font-extrabold text-3xl sm:text-4xl text-forest">
+                          S/ {plan.price}
+                        </span>
+                        <span className="text-xs text-text-secondary font-medium">
+                          {plan.period}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-baseline gap-1">
+                        <span className="font-display font-bold text-lg text-forest">
+                          Lista de espera
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Lista de Beneficios */}
-                  <ul className="text-left space-y-2.5 text-xs sm:text-sm text-text-secondary mb-8">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-forest shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {plan.features.length > 0 ? (
+                    <ul className="text-left space-y-2.5 text-xs sm:text-sm text-text-secondary mb-8">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-forest shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="text-left text-xs text-text-muted mb-8 py-2">
+                      <p>Anotación temprana para cuando abramos los primeros cupos.</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Botón CTA a WhatsApp */}

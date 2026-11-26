@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Globe, Shield, Scale, Zap, ArrowRight, MessageCircle, Users, Check } from 'lucide-react';
+import { Building2, Globe, Shield, Scale, Zap, ArrowRight, MessageCircle, Check } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
 export default function ForBusiness() {
@@ -10,9 +10,12 @@ export default function ForBusiness() {
   const priceNet = b2b.pricePerCollab * collaborators;
   const igv = priceNet * b2b.igvRate;
   const totalWithIgv = priceNet + igv;
-  const activeExpected = Math.round(collaborators * 0.08); // 8% adopción proyectada
 
   const icons = [Globe, Shield, Scale, Zap];
+
+  const formatCurrency = (val) => {
+    return val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  };
 
   return (
     <section id="empresas" className="py-20 md:py-32 bg-[#12201A] text-[#E6F0EB] relative overflow-hidden">
@@ -25,8 +28,17 @@ export default function ForBusiness() {
         
         {/* Encabezado B2B */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1B2E25] border border-[#7FD6A5]/30 text-[#7FD6A5] text-xs font-bold uppercase tracking-wider mb-4">
-            <Building2 className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1B2E25] border border-[#7FD6A5]/30 text-[#7FD6A5] text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="w-4 h-4 text-[#7FD6A5]">
+              <img
+                src="/assets/logo-icon-hq.svg"
+                alt=""
+                aria-hidden="true"
+                width="16"
+                height="16"
+                className="w-full h-full object-contain filter invert opacity-90"
+              />
+            </div>
             <span>{b2b.eyebrow}</span>
           </div>
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-5">
@@ -62,9 +74,9 @@ export default function ForBusiness() {
                   </p>
                 </div>
 
-                <div className="pt-4 mt-6 border-t border-[#263F33] text-[11px] text-[#7FD6A5] flex items-center gap-1.5">
+                <div className="pt-4 mt-6 border-t border-[#263F33] text-[11px] text-[#7FD6A5] flex items-center gap-1.5 font-medium">
                   <Check className="w-3.5 h-3.5" />
-                  <span>Beneficio corporativo</span>
+                  <span>Mente en Línea Empresas</span>
                 </div>
               </motion.div>
             );
@@ -79,22 +91,22 @@ export default function ForBusiness() {
             <div className="lg:col-span-7 text-left space-y-6">
               <div>
                 <span className="text-xs font-bold text-[#7FD6A5] uppercase tracking-wider block mb-1">
-                  Simulador de inversión corporativa
+                  Simulador de inversión
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
                   {b2b.calculatorTitle}
                 </h3>
                 <p className="text-xs sm:text-sm text-sand-300">
-                  {b2b.calculatorSubtitle}
+                  Piloto flexible de 30 a 60 días para equipos a nivel nacional.
                 </p>
               </div>
 
               {/* Slider de Colaboradores */}
               <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-baseline text-sm">
-                  <span className="text-sand-300">Nº de colaboradores en planilla:</span>
+                  <span className="text-sand-300">Nº de colaboradores:</span>
                   <span className="font-display font-extrabold text-2xl text-white">
-                    {collaborators} personas
+                    {collaborators} colaboradores
                   </span>
                 </div>
 
@@ -109,21 +121,17 @@ export default function ForBusiness() {
                   aria-label="Número de colaboradores"
                 />
 
-                <div className="flex justify-between text-[11px] text-sand-400">
+                <div className="flex justify-between text-xs text-sand-400">
                   <span>50 (Mínimo piloto)</span>
                   <span>150 (Mediana empresa)</span>
                   <span>500+ (Corporación)</span>
                 </div>
               </div>
 
-              {/* Métrica de adopción estimada */}
+              {/* Nota sobre beneficio preventivo */}
               <div className="p-4 rounded-2xl bg-[#12201A] border border-[#263F33] text-xs space-y-1.5 text-sand-300">
-                <div className="flex justify-between text-white font-semibold">
-                  <span>Tasa de adopción estimada (~8% de la planilla):</span>
-                  <span className="text-[#7FD6A5] font-bold">~{activeExpected} personas con psicólogo activo</span>
-                </div>
-                <p className="text-[11px] text-sand-400">
-                  Ideal para prevenir el ausentismo laboral, rotación temprana y sanciones SST por riesgos psicosociales (Ley 29783).
+                <p className="leading-relaxed">
+                  Complemento a la prevención de riesgos psicosociales (Ley 29783) para cuidar la salud emocional de tu equipo y favorecer un clima laboral saludable.
                 </p>
               </div>
             </div>
@@ -132,33 +140,27 @@ export default function ForBusiness() {
             <div className="lg:col-span-5 bg-[#12201A] border border-[#263F33] p-6 sm:p-8 rounded-2xl text-left flex flex-col justify-between space-y-6">
               <div>
                 <span className="text-[11px] font-bold text-sand-400 uppercase tracking-widest block mb-1">
-                  Inversión mensual calculada
+                  Inversión mensual estimada
                 </span>
                 
                 <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-1">
-                  S/ {totalWithIgv.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  S/ {formatCurrency(totalWithIgv)}
                   <span className="text-xs font-normal text-sand-400 block mt-0.5">
-                    con IGV incluido (neto S/ {priceNet.toLocaleString('es-PE')})
+                    con IGV incluido (neto S/ {formatCurrency(priceNet)})
                   </span>
                 </div>
 
                 <div className="text-xs text-[#7FD6A5] font-semibold mt-3 pt-3 border-t border-[#263F33]">
-                  Aprox. S/ 20 + IGV por colaborador al mes
+                  S/ 20 + IGV por colaborador al mes
                 </div>
 
                 <ul className="text-xs text-sand-300 space-y-2 mt-4">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
-                    <span>Reportes trimestrales agregados para RR. HH.</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
-                    <span>Total privacidad individual garantizada</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#7FD6A5]" />
-                    <span>Activación del piloto en 7 días hábiles</span>
-                  </li>
+                  {b2b.benefitsList.map((benefit, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <Check className="w-3.5 h-3.5 text-[#7FD6A5] shrink-0" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -169,7 +171,7 @@ export default function ForBusiness() {
                 className="w-full py-3.5 px-5 rounded-full bg-[#7FD6A5] hover:bg-[#6ec292] text-[#12201A] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
               >
                 <MessageCircle className="w-4 h-4 fill-[#12201A]/20" />
-                <span>Solicitar piloto de 30 días</span>
+                <span>{b2b.cta}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

@@ -42,7 +42,27 @@ export default function ChatDemo() {
           
           {/* Columna Izquierda: Selector de 3 Situaciones */}
           <div className="lg:col-span-5 text-left space-y-4">
-            <span className="text-xs font-bold text-forest uppercase tracking-wider block mb-2">
+            {/* Bienvenida MENTI en Chat Demo */}
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-cream-card border border-sand-300 text-left">
+              <img
+                src="/assets/menti-hq.svg"
+                alt="MENTI, la mascota de Mente en Línea"
+                width="140"
+                height="140"
+                loading="lazy"
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain menti-float shrink-0"
+              />
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-forest uppercase tracking-wider block">
+                  ¡Hola! Soy MENTI
+                </span>
+                <p className="text-xs sm:text-sm text-text-secondary leading-snug">
+                  Elige una situación abajo para ver cómo te acompaña tu psicólogo en WhatsApp día a día.
+                </p>
+              </div>
+            </div>
+
+            <span className="text-xs font-bold text-forest uppercase tracking-wider block pt-1 mb-2">
               Toca un tema para probar la dinámica:
             </span>
 
@@ -79,7 +99,7 @@ export default function ChatDemo() {
                 <span>Dinámica de escucha activa</span>
               </div>
               <p>
-                Sin presión de encender cámara ni estar en un consultorio frío. Escribes cuando te sientas listo.
+                Sin cámara ni consultorio frío — Escribes cuando te sientas listo.
               </p>
             </div>
           </div>
@@ -94,18 +114,20 @@ export default function ChatDemo() {
                 {/* Cabecera WhatsApp Business */}
                 <div className="bg-[#075E54] text-white p-3.5 flex items-center justify-between shadow-xs">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-full bg-[#128C7E] flex items-center justify-center font-bold text-xs">
+                    <div className="w-9 h-9 rounded-full bg-cream-card flex items-center justify-center p-1.5 shrink-0">
                       <img
-                        src="/assets/logo-blanco.png"
-                        alt="Psicólogo CPsP"
-                        className="w-6 h-6 object-contain"
-                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        src="/assets/logo-icon-hq-verde.svg"
+                        alt=""
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <div>
                       <div className="text-xs sm:text-sm font-bold flex items-center gap-1">
-                        <span>Lic. [Psicólogo CPsP]</span>
-                        <CheckCheck className="w-3 h-3 text-[#34B7F1]" />
+                        <span>Tu psicólogo · Colegiado (CPsP)</span>
+                        <CheckCheck className="w-3.5 h-3.5 text-[#34B7F1]" />
                       </div>
                       <span className="text-[10px] text-[#A7D8D0] block">
                         {isTyping ? "escribiendo..." : "en línea · Lun a Sáb"}

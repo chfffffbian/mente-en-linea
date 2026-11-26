@@ -52,8 +52,8 @@ export default function TrustPrivacy() {
                 </div>
 
                 <div className="pt-4 mt-6 border-t border-sand-200/80 text-[11px] font-semibold text-forest flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-whatsapp-green" />
-                  <span>Estándar ético verificado</span>
+                  <Check className="w-3.5 h-3.5 text-forest" />
+                  <span>Estándar ético</span>
                 </div>
               </motion.div>
             );
@@ -116,7 +116,7 @@ export default function TrustPrivacy() {
                 <span>¿Estás en situación de crisis o emergencia?</span>
               </div>
               <p className="text-xs text-[#5C2B22] leading-relaxed">
-                {trustPrivacy.limitsBox.emergencyWarning}
+                {trustPrivacy.limitsBox.emergencyHelpText}
               </p>
             </div>
             <a

@@ -52,7 +52,7 @@ export default function FinalCTA() {
               <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-text-secondary border-t border-sand-300/70 pt-6">
                 <div className="flex items-center justify-center lg:justify-start gap-2">
                   <ShieldCheck className="w-4 h-4 text-forest shrink-0" />
-                  <span>Psicólogo CPsP colegiado</span>
+                  <span>Psicólogo colegiado</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start gap-2">
                   <Clock className="w-4 h-4 text-forest shrink-0" />
@@ -60,7 +60,7 @@ export default function FinalCTA() {
                 </div>
                 <div className="flex items-center justify-center lg:justify-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-forest shrink-0" />
-                  <span>Devolución 1ª semana</span>
+                  <span>Devolución la primera semana</span>
                 </div>
               </div>
 
@@ -71,14 +71,12 @@ export default function FinalCTA() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-sage/20 rounded-full blur-2xl group-hover:bg-sage/30 transition-colors" />
                 <img
-                  src="/assets/menti-clean.png"
-                  alt="MENTI, mascota de bienestar de Mente en Línea"
-                  className="relative z-10 w-56 sm:w-64 lg:w-72 h-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-300"
+                  src="/assets/menti-hq.svg"
+                  alt="MENTI, la mascota de Mente en Línea"
+                  width="180"
+                  height="180"
+                  className="relative z-10 w-40 sm:w-44 lg:w-48 h-auto object-contain menti-float drop-shadow-md"
                   loading="lazy"
-                  onError={(e) => {
-                    // Fallback a thumbs si no carga
-                    e.currentTarget.src = '/assets/menti-thumbs.png';
-                  }}
                 />
               </div>
               <p className="mt-4 text-xs font-medium text-text-secondary text-center max-w-xs">

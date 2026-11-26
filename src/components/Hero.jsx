@@ -150,8 +150,8 @@ export default function Hero({ activeSegment, onOpenChatDemo }) {
                 
                 {/* Micro Badge en la foto */}
                 <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-xs text-[11px] font-bold text-forest shadow-xs flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-whatsapp-green animate-pulse" />
-                  <span>Psicólogo activo en WhatsApp</span>
+                  <span className="w-2 h-2 rounded-full bg-sage animate-soft-pulse" />
+                  <span>{currentHero.chatBadge}</span>
                 </div>
               </div>
 

@@ -31,7 +31,6 @@ export default function Quiz() {
     const q1 = answers[1] || "apoyo general";
     const q2 = answers[2] || "horarios flexibles";
     const q3 = answers[3] || "primera vez";
-    const q4 = answers[4] || "todo el Perú";
 
     return `Hola Mente en Línea, completé el test en su web y me recomendaron iniciar acompañamiento.
 
@@ -39,7 +38,6 @@ export default function Quiz() {
 - Motivo principal: ${q1}
 - Espacio para escribir: ${q2}
 - Experiencia previa: ${q3}
-- Región: ${q4}
 
 ¿Cómo puedo empezar con mi psicólogo colegiado?`;
   };
@@ -129,14 +127,14 @@ export default function Quiz() {
                 className="text-center space-y-6"
               >
                 <div className="flex justify-center">
-                  <div className="w-28 h-28 relative">
+                  <div className="w-32 h-32 relative">
                     <img
-                      src="/assets/menti-clean.png"
-                      alt="MENTI Mascota de Mente en Línea"
-                      className="w-full h-full object-contain animate-soft-pulse"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
+                      src="/assets/menti-hq.svg"
+                      alt="MENTI, la mascota de Mente en Línea"
+                      width="140"
+                      height="140"
+                      loading="lazy"
+                      className="w-full h-full object-contain menti-float"
                     />
                   </div>
                 </div>
@@ -159,7 +157,7 @@ export default function Quiz() {
                   <div className="font-bold text-forest mb-2">Tu resumen para iniciar:</div>
                   <p>• <strong>Objetivo:</strong> {answers[1]}</p>
                   <p>• <strong>Horario ideal:</strong> {answers[2]}</p>
-                  <p>• <strong>Ubicación:</strong> {answers[4]}</p>
+                  <p>• <strong>Experiencia previa:</strong> {answers[3]}</p>
                 </div>
 
                 {/* Botón CTA a WhatsApp con mensaje prellenado */}

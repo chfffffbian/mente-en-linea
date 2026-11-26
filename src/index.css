@@ -85,3 +85,25 @@
 .animate-soft-pulse {
   animation: softPulse 4s infinite ease-in-out;
 }
+
+/* Flotación suave para MENTI (±6px) */
+@keyframes mentiFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.menti-float {
+  animation: mentiFloat 3.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menti-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}

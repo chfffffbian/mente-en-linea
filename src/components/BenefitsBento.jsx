@@ -65,8 +65,8 @@ export default function BenefitsBento() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-sand-200/80 flex items-center gap-2 text-xs font-semibold text-forest">
-                  <Check className="w-4 h-4 text-whatsapp-green" />
-                  <span>Beneficio verificado Mente en Línea</span>
+                  <Check className="w-4 h-4 text-forest" />
+                  <span>{item.result}</span>
                 </div>
               </motion.div>
             );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, TrendingDown, ArrowRight, MessageCircle, Sparkles, Check } from 'lucide-react';
+import { Calculator, TrendingDown, MessageCircle } from 'lucide-react';
 import { CONTENT, getWhatsAppUrl } from '../content';
 
 export default function CalculatorB2C() {
@@ -11,6 +11,10 @@ export default function CalculatorB2C() {
   const menteMonthly = calculatorB2C.menteEnLineaMonthly;
   const monthlySavings = traditionalMonthly - menteMonthly;
   const annualSavings = monthlySavings * 12;
+
+  const formatNumber = (num) => {
+    return num.toLocaleString('en-US');
+  };
 
   return (
     <section className="py-20 md:py-28 bg-cream relative">
@@ -46,7 +50,7 @@ export default function CalculatorB2C() {
                     <span className="text-xs font-normal text-text-secondary ml-1">/ sesión</span>
                   </span>
                   <span className="text-xs text-text-muted">
-                    Rango usual: S/ 40 a S/ 200
+                    Rango: S/ {calculatorB2C.sessionCostMin} a S/ {calculatorB2C.sessionCostMax}
                   </span>
                 </div>
 
@@ -62,10 +66,10 @@ export default function CalculatorB2C() {
                   aria-label="Costo por sesión privada tradicional"
                 />
 
-                <div className="flex justify-between text-[11px] text-text-muted mt-2">
-                  <span>S/ 40 (Tarifa social)</span>
-                  <span>S/ 120 (Promedio nacional)</span>
-                  <span>S/ 200 (Clínica privada)</span>
+                <div className="flex justify-between text-xs font-medium text-text-muted mt-2">
+                  <span>S/ {calculatorB2C.sessionCostMin}</span>
+                  <span>S/ {calculatorB2C.sessionCostDefault}</span>
+                  <span>S/ {calculatorB2C.sessionCostMax}</span>
                 </div>
               </div>
 
@@ -73,17 +77,21 @@ export default function CalculatorB2C() {
               <div className="p-4 rounded-2xl bg-cream-surface border border-sand-300 text-xs sm:text-sm text-text-secondary space-y-2">
                 <div className="flex justify-between">
                   <span>4 sesiones presenciales al mes:</span>
-                  <span className="font-bold text-text-primary">S/ {traditionalMonthly}</span>
+                  <span className="font-bold text-text-primary">S/ {formatNumber(traditionalMonthly)}</span>
                 </div>
                 <div className="flex justify-between text-forest font-semibold">
-                  <span>Mente en Línea (acompañamiento ilimitado):</span>
-                  <span>S/ {menteMonthly} al mes</span>
+                  <span>{calculatorB2C.row2Text}</span>
                 </div>
               </div>
 
-              <p className="text-[11px] text-text-muted italic">
-                {calculatorB2C.disclaimer}
-              </p>
+              <div className="space-y-1.5 text-xs text-text-muted">
+                <p className="italic">
+                  {calculatorB2C.referenceText}
+                </p>
+                <p className="font-medium text-forest/90">
+                  {calculatorB2C.mandatoryNote}
+                </p>
+              </div>
             </div>
 
             {/* Columna Resumen de Ahorro */}
@@ -95,14 +103,14 @@ export default function CalculatorB2C() {
                 </div>
 
                 <div className="font-display font-extrabold text-4xl sm:text-5xl text-forest tracking-tight">
-                  S/ {monthlySavings > 0 ? monthlySavings : 0}
+                  S/ {formatNumber(monthlySavings > 0 ? monthlySavings : 0)}
                   <span className="text-xs sm:text-sm font-normal text-text-secondary block mt-1">
-                    al mes frente a terapia presencial
+                    al mes frente a sesiones presenciales
                   </span>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-sand-300 text-xs text-text-secondary">
-                  Ahorro anual proyectado: <strong className="text-forest text-sm">S/ {annualSavings > 0 ? annualSavings : 0}</strong>
+                  Ahorro anual proyectado: <strong className="text-forest text-sm">S/ {formatNumber(annualSavings > 0 ? annualSavings : 0)}</strong>
                 </div>
               </div>
 
@@ -113,7 +121,7 @@ export default function CalculatorB2C() {
                 className="w-full py-3.5 rounded-full bg-forest hover:bg-forest-light text-white font-bold text-sm flex items-center justify-center gap-2 shadow-card hover:shadow-floating transition-all"
               >
                 <MessageCircle className="w-4 h-4 text-whatsapp-green" />
-                <span>Empezar a ahorrar y cuidarme</span>
+                <span>{calculatorB2C.ctaText}</span>
               </a>
             </div>
 

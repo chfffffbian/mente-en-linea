@@ -1,65 +1,36 @@
 import React from 'react';
-import { HeartPulse, PhoneCall, MessageCircle, ShieldCheck, Mail, MapPin, Instagram } from 'lucide-react';
-import { CONTENT, WHATSAPP_DISPLAY, getWhatsAppUrl } from '../content';
+import { MessageCircle, Mail, MapPin, Instagram, PhoneCall } from 'lucide-react';
+import { CONTENT, WHATSAPP_DISPLAY, CONTACT_EMAIL, getWhatsAppUrl } from '../content';
+
+const TikTokIcon = ({ className = "w-4 h-4" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.22a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.65z"/>
+  </svg>
+);
 
 export default function Footer() {
   const whatsappUrl = getWhatsAppUrl('Hola, deseo contactar al equipo de soporte de Mente en Línea.');
 
   return (
-    <footer className="bg-sand-100/70 border-t border-sand-300 pt-16 pb-12 transition-colors text-text-primary" aria-label="Pie de página">
+    <footer id="contacto" className="bg-sand-100/70 border-t border-sand-300 pt-16 pb-12 transition-colors text-text-primary" aria-label="Pie de página">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* BANNER DE CRISIS Y ATENCIÓN EN EMERGENCIA OFICIAL (MINSA PERÚ) */}
+        {/* Aviso Breve de Emergencia */}
         <aside
-          aria-label="Información de atención en caso de emergencia"
-          className="mb-14 p-6 sm:p-7 rounded-3xl bg-amber-500/10 border border-amber-500/30 text-sand-900"
+          aria-label="Aviso de atención en emergencias"
+          className="mb-12 p-4 rounded-2xl bg-cream-card border border-sand-300 text-xs text-text-secondary flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left"
         >
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-5 justify-between">
-            <div className="flex items-start gap-3.5">
-              <div className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-800 shrink-0 mt-0.5">
-                <HeartPulse className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-base sm:text-lg text-amber-950 mb-1">
-                  Aviso importante de atención en crisis
-                </h3>
-                <p className="text-xs sm:text-sm text-amber-900/90 leading-relaxed max-w-3xl">
-                  {CONTENT.footer.emergencyNotice} Si tú o alguien que conoces necesita contención inmediata, llama gratis a la 
-                  <strong className="font-semibold text-amber-950"> Línea 113 (Opción 5) del MINSA</strong> las 24 horas del día o acude al Centro de Salud Mental Comunitario más cercano.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0 w-full sm:w-auto">
-              <a
-                href="tel:113"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-700 hover:bg-amber-800 text-white font-semibold text-xs transition-colors shadow-xs"
-              >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>Llamar al 113 (Opción 5)</span>
-              </a>
-              <a
-                href="https://wa.me/51955557000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cream-card border border-amber-300 text-amber-950 font-medium text-xs hover:bg-amber-50 transition-colors"
-                title="WhatsApp Oficial MINSA Salud Mental: 955 557 000"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>WhatsApp MINSA: 955 557 000</span>
-              </a>
-              <a
-                href="https://wa.me/51952842623"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cream-card border border-amber-300 text-amber-950 font-medium text-xs hover:bg-amber-50 transition-colors"
-                title="WhatsApp Oficial MINSA Salud Mental (Respaldo): 952 842 623"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Respaldo: 952 842 623</span>
-              </a>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-forest">Aviso:</span>
+            <span>{CONTENT.footer.emergencyNotice}</span>
           </div>
+          <a
+            href="tel:113"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-forest text-white text-xs font-semibold shrink-0 hover:bg-forest-light transition-colors"
+          >
+            <PhoneCall className="w-3 h-3" />
+            <span>Llamar al 113</span>
+          </a>
         </aside>
 
         {/* Columnas principales de contenido */}
@@ -68,14 +39,14 @@ export default function Footer() {
           {/* Columna 1: Identidad de Marca y Misión */}
           <div className="md:col-span-1 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-forest flex items-center justify-center p-1.5 shadow-xs">
+              <div className="w-10 h-10 rounded-2xl bg-forest text-white flex items-center justify-center p-2 shadow-xs">
                 <img
-                  src="/assets/logo-blanco.png"
-                  alt="Logotipo de Mente en Línea"
-                  className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
+                  src="/assets/logo-icon-hq.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width="28"
+                  height="28"
+                  className="w-full h-full object-contain filter invert opacity-95"
                 />
               </div>
               <span className="font-display font-extrabold text-xl text-forest tracking-tight">
@@ -87,9 +58,8 @@ export default function Footer() {
               {CONTENT.footer.description}
             </p>
 
-            <div className="text-[11px] text-forest flex items-center gap-1.5 font-medium">
-              <ShieldCheck className="w-4 h-4 shrink-0 text-forest" />
-              <span>Iniciativa alineada a la Ley N° 30947</span>
+            <div className="text-[11px] text-forest font-medium">
+              Acompañamiento psicológico confidencial por WhatsApp
             </div>
 
             {/* Redes sociales */}
@@ -99,7 +69,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-xl bg-cream-card border border-sand-300 flex items-center justify-center text-text-secondary hover:text-forest hover:border-forest transition-colors"
-                aria-label="Instagram de Mente en Línea"
+                aria-label="Instagram"
                 title="Instagram: @menteenlineaperu"
               >
                 <Instagram className="w-4 h-4" />
@@ -108,18 +78,18 @@ export default function Footer() {
                 href={CONTENT.brand.tiktokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-cream-card border border-sand-300 flex items-center justify-center text-text-secondary hover:text-forest hover:border-forest transition-colors font-bold text-xs"
-                aria-label="TikTok de Mente en Línea"
+                className="w-8 h-8 rounded-xl bg-cream-card border border-sand-300 flex items-center justify-center text-text-secondary hover:text-forest hover:border-forest transition-colors"
+                aria-label="TikTok"
                 title="TikTok: @menteenlineaperu"
               >
-                Tk
+                <TikTokIcon className="w-4 h-4" />
               </a>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-xl bg-cream-card border border-sand-300 flex items-center justify-center text-text-secondary hover:text-forest hover:border-forest transition-colors"
-                aria-label="WhatsApp de Mente en Línea"
+                aria-label="WhatsApp"
                 title={`WhatsApp: ${WHATSAPP_DISPLAY}`}
               >
                 <MessageCircle className="w-4 h-4" />
@@ -127,85 +97,47 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Columna 2: Navegación Rápida */}
+          {/* Columna 2: Navegación Rápida (6 Enlaces) */}
           <div>
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-forest mb-4">
               Navegación
             </h4>
             <ul className="space-y-2.5 text-xs text-text-secondary">
-              <li>
-                <a href="#como-funciona" className="hover:text-forest transition-colors">
-                  Cómo funciona
-                </a>
-              </li>
-              <li>
-                <a href="#problema" className="hover:text-forest transition-colors">
-                  El problema y mapa del Perú
-                </a>
-              </li>
-              <li>
-                <a href="#demo-chat" className="hover:text-forest transition-colors">
-                  Simulador de WhatsApp
-                </a>
-              </li>
-              <li>
-                <a href="#beneficios" className="hover:text-forest transition-colors">
-                  Beneficios del servicio
-                </a>
-              </li>
-              <li>
-                <a href="#quiz" className="hover:text-forest transition-colors">
-                  Test de orientación
-                </a>
-              </li>
-              <li>
-                <a href="#empresas" className="hover:text-forest transition-colors">
-                  Mente en Línea para Empresas (B2B)
-                </a>
-              </li>
-              <li>
-                <a href="#precios" className="hover:text-forest transition-colors">
-                  Planes y tarifas
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-forest transition-colors">
-                  Preguntas frecuentes
-                </a>
-              </li>
+              {CONTENT.footer.navLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="hover:text-forest transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Columna 3: Ética y Marco Legal */}
           <div>
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-forest mb-4">
-              Ética y Marco Legal
+              Ética y Privacidad
             </h4>
             <ul className="space-y-2.5 text-xs text-text-secondary">
               <li>
-                <a href="#confianza" className="hover:text-forest transition-colors">
-                  Colegiatura CPsP verificada
+                <a href="#seguridad" className="hover:text-forest transition-colors">
+                  Psicólogos colegiados habilitados
                 </a>
               </li>
               <li>
-                <a href="#confianza" className="hover:text-forest transition-colors">
-                  Ley N° 29733 (Protección de Datos)
+                <a href="#seguridad" className="hover:text-forest transition-colors">
+                  Ley de Protección de Datos (Ley 29733)
                 </a>
               </li>
               <li>
-                <a href="#confianza" className="hover:text-forest transition-colors">
+                <a href="#seguridad" className="hover:text-forest transition-colors">
                   Consentimiento informado previo
                 </a>
               </li>
               <li>
-                <a href="#confianza" className="hover:text-forest transition-colors">
+                <a href="#seguridad" className="hover:text-forest transition-colors">
                   Alcance y límites del servicio
                 </a>
-              </li>
-              <li>
-                <span className="text-text-secondary/70 italic">
-                  Libro de reclamaciones virtual
-                </span>
               </li>
             </ul>
           </div>
@@ -216,16 +148,18 @@ export default function Footer() {
               Contacto y Cobertura
             </h4>
             <ul className="space-y-3 text-xs text-text-secondary">
-              <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-forest shrink-0" />
-                <a href={`mailto:${CONTENT.footer.contact.email}`} className="hover:text-forest transition-colors">
-                  {CONTENT.footer.contact.email}
-                </a>
-              </li>
+              {CONTACT_EMAIL && (
+                <li className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-forest shrink-0" />
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-forest transition-colors">
+                    {CONTACT_EMAIL}
+                  </a>
+                </li>
+              )}
               <li className="flex items-center gap-2.5">
                 <MessageCircle className="w-4 h-4 text-forest shrink-0" />
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-forest transition-colors font-medium">
-                  WhatsApp: {CONTENT.footer.contact.whatsapp}
+                  WhatsApp: {WHATSAPP_DISPLAY}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
@@ -243,7 +177,7 @@ export default function Footer() {
             {CONTENT.footer.copyright}
           </div>
           <div className="mt-2 sm:mt-0 text-[11px] text-text-secondary/80">
-            Acompañamiento psicológico asincrónico por WhatsApp · Diseñado para la realidad del Perú 🌿
+            Acompañamiento psicológico por WhatsApp · Cuidado emocional a tu alcance 🌿
           </div>
         </div>
 
