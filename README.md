@@ -19,6 +19,17 @@ Plataforma peruana de orientación y acompañamiento psicológico asincrónico p
 
 ---
 
+## 🗺️ Cartografía y Geodatos del Mapa del Perú
+
+Los límites departamentales del mapa del Perú provienen de la cartografía oficial del **Instituto Geográfico Nacional (IGN)** y del **Instituto Nacional de Estadística e Informática (INEI)**, compilados bajo licencia abierta **Open Database License (ODbL)** / Open Data Commons en el dataset público `juaneladio/peru-geojson`.
+
+La proyección cartográfica y simplificación geométrica fue generada mediante **d3-geo** (`geoMercator().fitExtent(...)`), asegurando:
+- Proporción fiel de aspecto (~0.71 ancho/alto) y coordenadas 100% integradas en un único `viewBox: 0 0 600 840`.
+- Inclusión completa del norte (Tumbes/Loreto) y del sur (Tacna, Puno, Madre de Dios).
+- Peso optimizado a ~55 KB (muy inferior al límite de 150 KB).
+
+---
+
 ## ⚙️ Guía de Configuración y Edición
 
 Toda la configuración del negocio, números de contacto, precios y copys principales se gestionan en dos archivos centrales para evitar dispersión:

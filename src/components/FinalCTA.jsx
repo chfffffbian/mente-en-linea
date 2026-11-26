@@ -9,7 +9,7 @@ export default function FinalCTA() {
 
   return (
     <section
-      className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-cream to-mint/25 relative overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 bg-[#F7F1E8] relative overflow-hidden"
       aria-labelledby="final-cta-heading"
     >
       {/* Elementos decorativos sutiles */}
@@ -28,7 +28,7 @@ export default function FinalCTA() {
 
               <h2
                 id="final-cta-heading"
-                className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-forest tracking-tight leading-tight text-balance"
+                className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-forest leading-tight text-balance"
               >
                 {CONTENT.finalCta.title}
               </h2>

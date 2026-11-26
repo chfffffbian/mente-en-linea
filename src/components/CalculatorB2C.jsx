@@ -37,7 +37,7 @@ export default function CalculatorB2C() {
   const annualSavings = monthlySavings * 12;
 
   return (
-    <section id="calculadora" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
+    <section id="calculadora" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -46,7 +46,7 @@ export default function CalculatorB2C() {
             <Calculator className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{calculatorB2C.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {calculatorB2C.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -55,7 +55,7 @@ export default function CalculatorB2C() {
         </div>
 
         {/* Tarjeta de Calculadora Interactiva */}
-        <div className="bg-[#F7F1E8] rounded-3xl p-6 sm:p-10 border border-[rgba(31,77,58,0.12)] shadow-sm">
+        <div className="bg-[#FBF8F3] rounded-3xl p-6 sm:p-10 border border-[rgba(31,77,58,0.12)] shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Columna Izquierda: Slider + Input */}
@@ -151,7 +151,7 @@ export default function CalculatorB2C() {
 
                 {monthlySavings > 0 ? (
                   <div className="space-y-1">
-                    <div className="font-display font-extrabold text-3xl sm:text-4xl text-[#1F4D3A] tracking-tight whitespace-nowrap">
+                    <div className="font-display font-extrabold text-3xl sm:text-4xl text-[#1F4D3A] whitespace-nowrap">
                       S/ {formatNumber(monthlySavings)} <span className="text-base font-normal text-[#5B6B62]">{calculatorB2C.monthlyLabel}</span>
                     </div>
                     <p className="text-xs text-[#5B6B62]">

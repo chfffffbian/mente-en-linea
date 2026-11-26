@@ -20,6 +20,23 @@ export default function App() {
   const [fontSizeScale, setFontSizeScale] = useState(1.0);
 
   useEffect(() => {
+    // Control estricto de restauración de scroll: iniciar en la parte superior si no hay hash
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    } else {
+      const targetId = window.location.hash.slice(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     document.documentElement.style.setProperty('--font-size-scale', `${fontSizeScale}rem`);
   }, [fontSizeScale]);
 

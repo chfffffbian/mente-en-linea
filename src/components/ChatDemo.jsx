@@ -8,12 +8,14 @@ export default function ChatDemo() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [showReply, setShowReply] = useState(true);
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
+  const userHasInteractedRef = useRef(false);
 
   const currentSituation = chatDemo.situations[selectedIdx];
 
   const handleSelectSituation = (idx) => {
     if (idx === selectedIdx) return;
+    userHasInteractedRef.current = true;
     setSelectedIdx(idx);
     setShowReply(false);
     setIsTyping(true);
@@ -28,13 +30,19 @@ export default function ChatDemo() {
   };
 
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    // PROHIBIDO usar scrollIntoView. El auto-scroll se hace solo sobre el contenedor del chat
+    // y SOLO después de que el usuario elija una situación (nunca al montar).
+    if (!userHasInteractedRef.current) return;
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
     }
   }, [showReply, isTyping]);
 
   return (
-    <section id="chat-demo" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+    <section id="chat-demo" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -43,7 +51,7 @@ export default function ChatDemo() {
             <Smartphone className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{chatDemo.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {chatDemo.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -142,7 +150,7 @@ export default function ChatDemo() {
                 </div>
 
                 {/* Área de Mensajes con Scroll Propio */}
-                <div className="flex-1 p-4 overflow-y-auto space-y-3 text-left">
+                <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto space-y-3 text-left">
                   {/* Mensaje de Usuario */}
                   <div className="flex justify-end">
                     <div className="bg-[#DCF8C6] text-[#1E2A24] p-3 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[85%] shadow-xs">
@@ -180,8 +188,6 @@ export default function ChatDemo() {
                       </div>
                     </motion.div>
                   )}
-
-                  <div ref={messagesEndRef} />
                 </div>
 
                 {/* Botón CTA FUERA del área de scroll (nada queda tapado) */}

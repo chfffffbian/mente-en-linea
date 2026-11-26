@@ -15,7 +15,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="planes" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+    <section id="planes" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
       <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado con MENTI 140px arriba */}
@@ -37,7 +37,7 @@ export default function Pricing() {
             <span>{pricing.eyebrow}</span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {pricing.title}
           </h2>
 
@@ -46,7 +46,7 @@ export default function Pricing() {
           </p>
 
           {/* Toggle único: "Para personas | Para empresas" */}
-          <div className="inline-flex items-center bg-[#FBF8F3] border border-[rgba(31,77,58,0.15)] rounded-full p-1.5 mt-8 shadow-xs">
+          <div className="inline-flex items-center bg-[#F7F1E8] border border-[rgba(31,77,58,0.15)] rounded-full p-1.5 mt-8 shadow-xs">
             <button
               onClick={() => setActiveTab('personas')}
               className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all ${
@@ -105,8 +105,8 @@ export default function Pricing() {
                 viewport={{ once: true }}
                 className={`relative rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 ${
                   plan.highlighted
-                    ? 'bg-[#FBF8F3] border-2 border-[#1F4D3A] shadow-md scale-[1.02] z-10'
-                    : 'bg-[#FBF8F3] border border-[rgba(31,77,58,0.12)] shadow-xs hover:shadow-sm'
+                    ? 'bg-[#F7F1E8] border-2 border-[#1F4D3A] shadow-md scale-[1.02] z-10'
+                    : 'bg-[#F7F1E8] border border-[rgba(31,77,58,0.12)] shadow-xs hover:shadow-sm'
                 }`}
               >
                 {/* Badge Superior */}

@@ -157,3 +157,46 @@ Este documento registra cada decisión técnica, de contenido y de diseño tomad
 - Se sincronizaron las 9 preguntas y respuestas de preguntas frecuentes en el esquema `FAQPage`.
 - Se creó la herramienta automatizada `scripts/check-copy.ts` para auditar la ausencia de términos no permitidos, limitar la sigla CPsP a un máximo de 3 apariciones y comprobar los cálculos matemáticos del sistema.
 - Se validó la compilación de producción con 0 errores y 0 advertencias en Deno y Vite.
+
+---
+
+## Corrección de los 6 Problemas Específicos (V2.1 - QA, Estabilidad & Geodatos)
+
+### 1. Desplazamiento Inicial (`ChatDemo` y `App`)
+- Se interceptaron `window.scrollTo`, `scrollIntoView`, `scrollBy` y `focus` identificando que `ChatDemo.jsx` llamaba a `scrollIntoView()` al montar forzando el scroll a 4960 px.
+- Se eliminó `scrollIntoView` de `ChatDemo.jsx` y se confinó el auto-scroll al contenedor interno del teléfono (`chatContainerRef.current.scrollTo`) únicamente tras la interacción explícita del usuario.
+- Se implementó en `App.jsx` `history.scrollRestoration = 'manual'` y `window.scrollTo(0, 0)` en montaje inicial si `location.hash` está vacío, respetando el anclaje si existe hash.
+- Se validó con suite automatizada Playwright en Chromium, Firefox y WebKit que `window.scrollY === 0` al cargar y tras recargar.
+
+### 2. Encabezado Principal (`Hero`)
+- Se retiró el mockup digital de laptop y celular que distraía de la propuesta de valor.
+- Se incorporó la fotografía `/assets/hero-mujer.jpg` recortada en contenedor con proporción 4:5 en escritorio y 1:1 en móvil con radio de 40 px sobre fondo blob `--mint`.
+- Se superpuso la tarjeta flotante de conversación de ejemplo (20:14 y 20:16) con desenfoque de fondo y se aplicó `text-wrap: balance` en el microtexto de garantías.
+
+### 3. Tarjetas de Estadísticas del Problema (`ProblemBento`)
+- Se dimensionó la tipografía de las cifras con `clamp(26px, 2.4vw, 36px)` y `line-height: 1.1` para asegurar jerarquía sin desbordamiento.
+- Se aplicó `whitespace-nowrap` únicamente a los tokens cuantitativos ("S/ 100–300", "12 %") permitiendo salto de línea controlado en "8 de cada 10" y "10 por 100 mil".
+- Se configuró la cuadrícula flexible con `grid-cols-[repeat(auto-fit,minmax(240px,1fr))]`, tarjetas con `min-w-0`, `overflow-hidden` y `overflow-wrap: anywhere` en texto descriptivo, garantizando un margen mínimo de 16 px respecto a los bordes en 1024 px y 1440 px.
+
+### 4. Cartografía Georreferenciada del Perú (`PeruMap`)
+- Se reemplazó el trazado vectorial aproximado por el GeoJSON oficial de los 25 departamentos del Perú (INEI / IGN bajo licencia ODbL).
+- Se proyectaron las coordenadas geográficas a SVG usando `d3-geo` (Mercator `fitExtent([[20,20],[580,820]])`, W=600, H=840, ratio 0.714) compiladas en `src/components/peruMapPaths.js` (55 KB).
+- Se garantizó la visibilidad total del territorio nacional incluyendo los departamentos del sur (Tacna, Puno y Madre de Dios) en un contenedor con `aspect-[600/840]` y alturas mínimas de 360 px en móvil y 460 px en escritorio.
+- Se asignaron roles de accesibilidad (`tabIndex={0}`, `role="button"`, `aria-label="{región}: {texto}"`), interactividad mediante tooltip al pasar el cursor o hacer clic, y leyenda inferior en 3 bloques sin truncamiento.
+- Se documentó la fuente geográfica oficial y la licencia ODbL en `README.md`.
+
+### 5. Tipografía y Espaciado de Encabezados
+- Se añadió la regla global en `index.css` para `h1, h2, h3` fijando `letter-spacing: -0.01em !important` y `word-spacing: 0.06em !important`.
+- Se removieron todas las clases de tracking negativo (`tracking-tight` y `tracking-tighter`) en textos menores a 24 px en todos los componentes del proyecto.
+- Se verificó la separación y legibilidad en titulares sensibles como "Audio-resumen mensual", "S/ 89 al mes, precio claro" y "Cuidar tu bienestar en 4 pasos".
+
+### 6. Continuidad Cromática y Fondos Alternados
+- Se eliminó la franja visual intermedia detectada entre el demo del chat y beneficios, cuya causa raíz era el posicionamiento erróneo del scroll.
+- Se unificó la alternancia estricta y sin gradientes entre `--cream` (`#F7F1E8`) y `--cream-2` (`#FBF8F3`) a lo largo de las 13 secciones consecutivas, con contraste inverso en tarjetas interiores.
+- Se retiró el gradiente inferior en `FinalCTA` y el fondo residual de arena en `Footer`, logrando una transición cromática limpia y homogénea en toda la página.
+
+### Pruebas E2E Multi-Viewport y Cero Desbordamiento Horizontal
+- Se corrigió el desbordamiento horizontal en 1024 px en la barra de navegación compactando padding y tamaño de texto entre `lg` y `xl`.
+- Se certificó que en todos los viewports (360, 390, 768, 1024, 1440 y 2560 px) `scrollWidth === clientWidth` con 0 px de scroll horizontal.
+- Se guardaron las capturas automáticas de validación visual para Hero y ProblemBento en `test-results/`.
+

@@ -12,7 +12,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+    <section id="faq" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
       <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -21,7 +21,7 @@ export default function FAQ() {
             <HelpCircle className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{faq.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {faq.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -39,7 +39,7 @@ export default function FAQ() {
             return (
               <div
                 key={index}
-                className="bg-[#FBF8F3] rounded-2xl border border-[rgba(31,77,58,0.12)] shadow-xs overflow-hidden transition-all duration-200"
+                className="bg-[#F7F1E8] rounded-2xl border border-[rgba(31,77,58,0.12)] shadow-xs overflow-hidden transition-all duration-200"
               >
                 <button
                   id={buttonId}

@@ -10,7 +10,7 @@ export default function HowItWorks() {
   const stepIcons = [MessageSquare, ClipboardCheck, UserCheck, Mic];
 
   return (
-    <section id="como-funciona" className="py-20 lg:py-28 bg-[#FBF8F3] relative overflow-hidden">
+    <section id="como-funciona" className="py-20 lg:py-28 bg-[#F7F1E8] relative overflow-hidden">
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado Principal */}
@@ -19,7 +19,7 @@ export default function HowItWorks() {
             <Sparkles className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{howItWorks.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {howItWorks.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -32,7 +32,7 @@ export default function HowItWorks() {
           
           {/* Columna Izquierda Sticky con Barra de Progreso Vertical (4 nodos) */}
           <div className="hidden lg:block lg:col-span-4 sticky top-28 space-y-6 text-left">
-            <div className="bg-[#F7F1E8] p-6 rounded-3xl border border-[rgba(31,77,58,0.12)]">
+            <div className="bg-[#FBF8F3] p-6 rounded-3xl border border-[rgba(31,77,58,0.12)]">
               <span className="text-xs font-bold text-[#1F4D3A] uppercase tracking-wider block mb-2">
                 Tu camino paso a paso
               </span>
@@ -88,8 +88,8 @@ export default function HowItWorks() {
                   onViewportEnter={() => setActiveStep(index)}
                   className={`p-6 sm:p-8 rounded-3xl border text-left transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#F7F1E8] border-[#1F4D3A] shadow-md'
-                      : 'bg-[#F7F1E8]/70 border-[rgba(31,77,58,0.12)] shadow-xs hover:border-[#5E7F63]/40'
+                      ? 'bg-[#FBF8F3] border-[#1F4D3A] shadow-md'
+                      : 'bg-[#FBF8F3]/80 border-[rgba(31,77,58,0.12)] shadow-xs hover:border-[#5E7F63]/40'
                   }`}
                 >
                   <div className="flex items-start gap-4 sm:gap-5">
@@ -104,7 +104,7 @@ export default function HowItWorks() {
                           Paso {step.number}
                         </span>
                       </div>
-                      <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1E2A24] tracking-tight">
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1E2A24]">
                         {step.title}
                       </h3>
                       <p className="text-sm sm:text-base text-[#5B6B62] leading-relaxed">

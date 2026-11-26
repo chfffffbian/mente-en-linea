@@ -64,7 +64,7 @@ export default function Quiz() {
   const whatsappMessage = `Hola, hice la guía de inicio. Me interesa: ${objetivo}. Prefiero escribir: ${horario}. Región: ${region}. Plan sugerido: ${suggestedPlan}.`;
 
   return (
-    <section id="quiz" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+    <section id="quiz" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
       <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -73,7 +73,7 @@ export default function Quiz() {
             <HelpCircle className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{quiz.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {quiz.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -82,7 +82,7 @@ export default function Quiz() {
         </div>
 
         {/* Tarjeta del Quiz */}
-        <div className="bg-[#FBF8F3] rounded-3xl p-6 sm:p-10 border border-[rgba(31,77,58,0.12)] shadow-sm relative overflow-hidden">
+        <div className="bg-[#F7F1E8] rounded-3xl p-6 sm:p-10 border border-[rgba(31,77,58,0.12)] shadow-sm relative overflow-hidden">
           
           <AnimatePresence mode="wait">
             {!completed ? (
@@ -209,7 +209,7 @@ export default function Quiz() {
                   <span className="text-xs font-bold text-[#5E7F63] uppercase tracking-wider block">
                     Resultado de tu guía de inicio
                   </span>
-                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#1E2A24] tracking-tight">
+                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#1E2A24]">
                     Te sugerimos empezar con la {suggestedPlan}
                   </h3>
                   <p className="text-sm text-[#5B6B62]">

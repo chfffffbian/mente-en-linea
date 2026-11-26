@@ -10,8 +10,16 @@ export default function ProblemBento() {
 
   const statIcons = [AlertCircle, Users, DollarSign, Stethoscope];
 
+  const renderStatValue = (val) => {
+    // Aplicar nowrap solo a tokens numéricos exactos
+    if (val.includes('S/ 100–300') || val.includes('12 %') || val.includes('12%')) {
+      return <span className="whitespace-nowrap">{val}</span>;
+    }
+    return val;
+  };
+
   return (
-    <section id="problema" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
+    <section id="problema" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
       <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -20,7 +28,7 @@ export default function ProblemBento() {
             <AlertCircle className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{problem.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-5 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-5 [text-wrap:balance]">
             {problem.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -28,8 +36,8 @@ export default function ProblemBento() {
           </p>
         </div>
 
-        {/* 4 Tarjetas de Estadísticas (cifra con nowrap y clamp(32px,4vw,48px); fuente siempre completa) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 4 Tarjetas de Estadísticas (grid con repeat(auto-fit, minmax(240px, 1fr)), p-6, clamp(26px, 2.4vw, 36px) con line-height 1.1) */}
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6 mb-16">
           {problem.stats.map((stat, index) => {
             const Icon = statIcons[index] || AlertCircle;
             return (
@@ -39,19 +47,19 @@ export default function ProblemBento() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#FBF8F3] rounded-3xl p-6 sm:p-7 border border-[rgba(31,77,58,0.12)] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
+                className="bg-[#F7F1E8] rounded-3xl p-6 min-w-0 overflow-hidden border border-[rgba(31,77,58,0.12)] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="w-11 h-11 rounded-2xl bg-[#DCE9DD] flex items-center justify-center text-[#1F4D3A] mb-5">
                     <Icon className="w-5 h-5" />
                   </div>
                   
-                  {/* Cifra con nowrap y clamp(32px, 4vw, 48px) */}
-                  <div className="font-display font-extrabold text-[#1F4D3A] tracking-tight mb-2 whitespace-nowrap text-[clamp(32px,4vw,48px)] leading-none">
-                    {stat.value}
+                  {/* Cifra con clamp(26px, 2.4vw, 36px) y line-height 1.1 */}
+                  <div className="font-display font-extrabold text-[#1F4D3A] text-[clamp(26px,2.4vw,36px)] leading-[1.1] mb-3">
+                    {renderStatValue(stat.value)}
                   </div>
 
-                  <p className="text-sm font-medium text-[#1E2A24] leading-relaxed mb-3">
+                  <p className="text-sm font-medium text-[#1E2A24] leading-relaxed mb-3 [overflow-wrap:anywhere]">
                     {stat.label}
                   </p>
                 </div>
@@ -66,7 +74,7 @@ export default function ProblemBento() {
         </div>
 
         {/* Bloque Mapa Interactivo (2 columnas iguales, gap 48; móvil: mapa primero) */}
-        <div className="bg-[#FBF8F3] rounded-3xl border border-[rgba(31,77,58,0.12)] p-6 sm:p-10 shadow-sm">
+        <div className="bg-[#F7F1E8] rounded-3xl border border-[rgba(31,77,58,0.12)] p-6 sm:p-10 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Columna Izquierda (en móvil va después del mapa) */}
@@ -77,7 +85,7 @@ export default function ProblemBento() {
                 <span>Realidad regional</span>
               </div>
 
-              <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1E2A24] tracking-tight leading-snug">
+              <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1E2A24] leading-snug">
                 {problem.map.title}
               </h3>
 

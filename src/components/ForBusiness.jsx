@@ -68,7 +68,7 @@ export default function ForBusiness() {
             <span>{forBusiness.eyebrow}</span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-5 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white mb-5 [text-wrap:balance]">
             {forBusiness.title}
           </h2>
 
@@ -185,7 +185,7 @@ export default function ForBusiness() {
                 </span>
                 
                 {/* Total con IGV */}
-                <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-1 whitespace-nowrap">
+                <div className="text-3xl sm:text-4xl font-display font-extrabold text-white mb-1 whitespace-nowrap">
                   S/ {formatCurrency(totalWithIgv)}
                 </div>
 

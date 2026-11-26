@@ -54,7 +54,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1E2A24] tracking-tight leading-[1.08] [text-wrap:balance]"
+              className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1E2A24] leading-[1.08] [text-wrap:balance]"
             >
               {hero.titlePart1}
               <span className="text-[#5E7F63]">{hero.titleHighlight}</span>
@@ -102,13 +102,13 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-sm text-[#5B6B62] font-medium pt-1"
+              className="text-sm text-[#5B6B62] font-medium pt-1 [text-wrap:balance]"
             >
               {hero.microcopy}
             </motion.p>
           </div>
 
-          {/* Columna Derecha: Foto en Blob --mint con Radio 40px y Burbuja de Chat Flotante */}
+          {/* Columna Derecha: Foto en Blob --mint con Radio 40px y Burbuja de Chat Flotante Encima */}
           <div className="lg:col-span-5 relative flex justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -117,10 +117,10 @@ export default function Hero() {
               className="relative w-full max-w-sm sm:max-w-md"
             >
               {/* Contenedor en Blob --mint (#DCE9DD) con radio 40px */}
-              <div className="relative rounded-[40px] bg-[#DCE9DD] p-3 sm:p-4 shadow-lg border border-[rgba(31,77,58,0.12)] overflow-hidden">
+              <div className="relative rounded-[40px] bg-[#DCE9DD] p-3 sm:p-4 shadow-lg border border-[rgba(31,77,58,0.12)]">
                 
                 {/* Foto /assets/hero-mujer.jpg (4:5 en desktop, 1:1 en móvil) */}
-                <div className="relative rounded-[32px] overflow-hidden aspect-square sm:aspect-[4/5] bg-[#EAE1D3]">
+                <div className="relative rounded-[32px] overflow-hidden aspect-square sm:aspect-[4/5] bg-[#EAE1D3] shadow-inner">
                   <img
                     src="/assets/hero-mujer.jpg"
                     alt="Acompañamiento psicológico por WhatsApp con psicólogo colegiado"
@@ -131,31 +131,34 @@ export default function Hero() {
                   />
                   
                   {/* Insignia "Conversación de ejemplo" */}
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FBF8F3]/95 backdrop-blur-xs text-xs font-bold text-[#1F4D3A] shadow-xs flex items-center gap-1.5 border border-[rgba(31,77,58,0.1)]">
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FBF8F3]/95 backdrop-blur-xs text-xs font-bold text-[#1F4D3A] shadow-xs flex items-center gap-1.5 border border-[rgba(31,77,58,0.1)] z-10">
                     <span className="w-2 h-2 rounded-full bg-[#5E7F63] animate-pulse" />
                     <span>{hero.chatBadge}</span>
                   </div>
-                </div>
 
-                {/* Burbuja de Chat Flotante: 20:14 y 20:16 */}
-                <div className="mt-3 bg-[#FBF8F3] rounded-2xl p-3 sm:p-3.5 border border-[rgba(31,77,58,0.12)] space-y-2.5 text-left shadow-xs">
-                  {/* Mensaje de Usuario */}
-                  <div className="flex justify-end">
-                    <div className="bg-[#DCF8C6] text-[#1E2A24] px-3.5 py-2 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[88%] shadow-xs">
-                      <p>{hero.floatingChat.userMsg}</p>
-                      <span className="text-[10px] text-[#5B6B62] block text-right mt-0.5">
-                        {hero.floatingChat.userTime}
-                      </span>
+                  {/* Degradado sutil en la base para realzar la burbuja de chat flotante */}
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1F4D3A]/25 to-transparent pointer-events-none" />
+
+                  {/* Burbuja de Chat Flotante: 20:14 y 20:16 posicionada encima de la foto */}
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-[#FBF8F3]/95 backdrop-blur-sm rounded-2xl p-3 sm:p-3.5 border border-[rgba(31,77,58,0.15)] space-y-2 text-left shadow-md z-10">
+                    {/* Mensaje de Usuario */}
+                    <div className="flex justify-end">
+                      <div className="bg-[#DCF8C6] text-[#1E2A24] px-3 py-1.5 rounded-2xl rounded-tr-xs text-xs sm:text-sm max-w-[88%] shadow-xs">
+                        <p>{hero.floatingChat.userMsg}</p>
+                        <span className="text-[10px] text-[#5B6B62] block text-right mt-0.5">
+                          {hero.floatingChat.userTime}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Mensaje de Psicólogo */}
-                  <div className="flex justify-start">
-                    <div className="bg-white text-[#1E2A24] px-3.5 py-2 rounded-2xl rounded-tl-xs text-xs sm:text-sm max-w-[88%] shadow-xs border border-[#EAE1D3]">
-                      <p>{hero.floatingChat.therapistMsg}</p>
-                      <span className="text-[10px] text-[#5B6B62] block text-left mt-0.5">
-                        {hero.floatingChat.therapistTime}
-                      </span>
+                    {/* Mensaje de Psicólogo */}
+                    <div className="flex justify-start">
+                      <div className="bg-white text-[#1E2A24] px-3 py-1.5 rounded-2xl rounded-tl-xs text-xs sm:text-sm max-w-[88%] shadow-xs border border-[#EAE1D3]">
+                        <p>{hero.floatingChat.therapistMsg}</p>
+                        <span className="text-[10px] text-[#5B6B62] block text-left mt-0.5">
+                          {hero.floatingChat.therapistTime}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -19,7 +19,7 @@ export default function TrustPrivacy() {
   );
 
   return (
-    <section id="confianza" className="py-20 lg:py-28 bg-[#FBF8F3] relative">
+    <section id="confianza" className="py-20 lg:py-28 bg-[#F7F1E8] relative">
       <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
@@ -28,7 +28,7 @@ export default function TrustPrivacy() {
             <ShieldCheck className="w-3.5 h-3.5 text-[#1F4D3A]" />
             <span>{trustPrivacy.eyebrow}</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1E2A24] leading-tight mb-4 [text-wrap:balance]">
             {trustPrivacy.title}
           </h2>
           <p className="text-base sm:text-lg text-[#5B6B62] leading-relaxed font-normal">
@@ -47,7 +47,7 @@ export default function TrustPrivacy() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#F7F1E8] rounded-3xl p-7 border border-[rgba(31,77,58,0.12)] shadow-xs text-left"
+                className="bg-[#FBF8F3] rounded-3xl p-7 border border-[rgba(31,77,58,0.12)] shadow-xs text-left"
               >
                 <div className="w-12 h-12 rounded-2xl bg-[#DCE9DD] text-[#1F4D3A] flex items-center justify-center mb-5">
                   <Icon className="w-6 h-6" />
@@ -64,9 +64,9 @@ export default function TrustPrivacy() {
         </div>
 
         {/* Bloque: Lo que sí hacemos y lo que no */}
-        <div className="bg-[#F7F1E8] rounded-3xl border border-[rgba(31,77,58,0.12)] p-6 sm:p-10 mb-16 shadow-xs">
+        <div className="bg-[#FBF8F3] rounded-3xl border border-[rgba(31,77,58,0.12)] p-6 sm:p-10 mb-16 shadow-xs">
           <div className="text-center max-w-[800px] mx-auto mb-10">
-            <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#1E2A24] tracking-tight mb-2">
+            <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#1E2A24] mb-2">
               {trustPrivacy.limits.title}
             </h3>
             <p className="text-sm sm:text-base text-[#5B6B62]">
@@ -119,7 +119,7 @@ export default function TrustPrivacy() {
             <span>Atención Inmediata</span>
           </div>
 
-          <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#A63A2E] tracking-tight">
+          <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#A63A2E]">
             {trustPrivacy.crisis.title}
           </h3>
 

@@ -43,7 +43,7 @@ export default function Navbar({ fontSizeScale, onChangeFontSize }) {
             : 'bg-[#F7F1E8]/85 backdrop-blur-md'
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-8">
           <div className="flex items-center justify-between gap-4">
             
             {/* Logo + Mente en Línea (1 sola línea, sin tagline) */}
@@ -66,20 +66,20 @@ export default function Navbar({ fontSizeScale, onChangeFontSize }) {
                   className="w-9 h-9 object-contain"
                 />
               </div>
-              <span className="font-display font-bold text-xl sm:text-2xl text-[#0B4A24] tracking-tight leading-none whitespace-nowrap">
+              <span className="font-display font-bold text-lg xl:text-2xl text-[#0B4A24] leading-none whitespace-nowrap">
                 Mente en Línea
               </span>
             </a>
 
             {/* Enlaces Desktop */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navegación principal">
+            <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 text-xs xl:text-sm" aria-label="Navegación principal">
               {CONTENT.navbar.links.map((link) => {
                 if (link.isSecondary) {
                   return (
                     <button
                       key={link.href}
                       onClick={() => handleNavClick(link.href)}
-                      className="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#1F4D3A] bg-[#DCE9DD]/70 hover:bg-[#DCE9DD] border border-[#5E7F63]/30 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
+                      className="whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold text-[#1F4D3A] bg-[#DCE9DD]/70 hover:bg-[#DCE9DD] border border-[#5E7F63]/30 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
                     >
                       {link.label}
                     </button>
@@ -89,7 +89,7 @@ export default function Navbar({ fontSizeScale, onChangeFontSize }) {
                   <button
                     key={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className="whitespace-nowrap text-sm font-medium text-[#1E2A24] hover:text-[#1F4D3A] transition-colors relative py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
+                    className="whitespace-nowrap font-medium text-[#1E2A24] hover:text-[#1F4D3A] transition-colors relative py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4D3A]"
                   >
                     {link.label}
                   </button>
@@ -97,8 +97,8 @@ export default function Navbar({ fontSizeScale, onChangeFontSize }) {
               })}
             </nav>
 
-            {/* Acciones Derecha: Botón Aa + CTA WhatsApp */}
-            <div className="hidden sm:flex items-center gap-3">
+            {/* Acciones Derecha: Botón Aa + CTA WhatsApp (solo en desktop con nav) */}
+            <div className="hidden lg:flex items-center gap-2.5 xl:gap-3">
               
               {/* Botón de Tamaño de Texto "Aa" accesible */}
               <div className="relative">
@@ -146,7 +146,7 @@ export default function Navbar({ fontSizeScale, onChangeFontSize }) {
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] text-sm font-bold shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1F4D3A]"
+                className="inline-flex items-center justify-center gap-1.5 xl:gap-2 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full bg-[#1F4D3A] hover:bg-[#173B2C] text-[#FBF8F3] text-xs xl:text-sm font-bold shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1F4D3A]"
               >
                 <MessageCircle className="w-4 h-4 fill-[#FBF8F3]/20 text-[#25D366]" />
                 <span className="whitespace-nowrap">{CONTENT.navbar.cta}</span>

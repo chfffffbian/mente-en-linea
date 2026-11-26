@@ -48,10 +48,18 @@
     scroll-margin-top: 88px;
   }
 
-  /* Titulares y jerarquía */
-  h1, h2, h3, h4, h5, h6 {
+  /* Titulares y jerarquía: letter-spacing no menor a -0.01em y word-spacing: 0.06em */
+  h1, h2, h3 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     color: var(--ink);
+    letter-spacing: -0.01em !important;
+    word-spacing: 0.06em !important;
+  }
+  h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    letter-spacing: normal;
+    word-spacing: normal;
   }
 
   /* PROHIBIDO tracking o word-spacing negativo en texto <24 px */

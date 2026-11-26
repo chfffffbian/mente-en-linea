@@ -28,7 +28,7 @@ export default function Footer() {
   ].filter((link) => Boolean(link.href && link.href.trim() !== ''));
 
   return (
-    <footer id="contacto" className="bg-sand-100/70 border-t border-sand-300 pt-16 pb-20 transition-colors text-text-primary" aria-label="Pie de página">
+    <footer id="contacto" className="bg-[#FBF8F3] border-t border-[rgba(31,77,58,0.12)] pt-16 pb-20 transition-colors text-text-primary" aria-label="Pie de página">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Aviso Breve Único de Emergencia */}
@@ -65,7 +65,7 @@ export default function Footer() {
                   className="w-full h-full object-contain filter invert opacity-95"
                 />
               </div>
-              <span className="font-display font-black text-xl text-forest tracking-tight">
+              <span className="font-display font-black text-xl text-forest">
                 {CONTENT.brand.name}
               </span>
             </div>
